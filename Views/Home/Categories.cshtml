@@ -1,0 +1,30 @@
+﻿@model irr.Models.Categories_View
+
+@{
+    ViewBag.Title = "Categories";
+}
+
+<div>
+    @Html.Action("Main_header", "Home")
+
+    <div>
+        <p>@Html.ActionLink(@Model.Sale.Name, "Real_estate", "Home", new {  }, new { })</p>
+       
+        @foreach (var i in Model.Sale.list_cat)
+        {
+            <p>@Html.ActionLink(i, "list_ad","Home",new { str_param=i },new { })</p>
+        }
+
+    </div>
+    <div>
+        <p>@Html.ActionLink(@Model.Lease.Name, "Real_estate", "Home", new { }, new { })</p>
+
+     
+        @foreach (var i in Model.Lease.list_cat)
+        {
+            <p>@Html.ActionLink(i, "list_ad", "Home", new { str_param = i }, new { })</p>
+        }
+
+    </div>
+</div>
+

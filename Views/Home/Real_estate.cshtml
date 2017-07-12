@@ -1,0 +1,49 @@
+﻿@model irr.Models.Real_estate_View
+
+@{
+    ViewBag.Title = "Real_estate";
+}
+
+<div>
+    @Html.Action("Main_header", "Home")
+    <div>
+
+        @foreach (var i in Model.list)
+        {
+            <div>@Html.ActionLink(@i.Name, "list_ad", "Home",new { type2 = i.Type2 },new { })  </div>
+        }
+    </div>
+    <div>
+        @foreach(var i in Model.list)
+        {
+            <div>
+                <div>
+                    <input type="image" name="image" src="@i.img" width="50">
+                    </div>
+                <div>
+                    <p>@i.Name</p>
+                    @Html.ActionLink(i.Sale.Name, "", "", new { type2 = i.Type2,type=i.Sale.Type }, new { })
+                    @foreach (var i2 in i.Sale.list)
+                    {
+                        @Html.ActionLink(i2, "", "", new { }, new { })
+
+                    }
+                </div>
+
+                    </div>
+                    <div>
+                        
+                        @Html.ActionLink(i.Lease.Name, "", "", new { type2 = i.Type2, type = i.Lease.Type }, new { })
+                        @foreach (var i2 in i.Lease.list)
+                        {
+                            @Html.ActionLink(i2, "", "", new { }, new { })
+
+                        }
+
+                    </div>
+        }
+    </div>
+
+
+    </div>
+

@@ -1,0 +1,27 @@
+﻿@model irr.Models.list_ad_View
+
+@{
+
+    ViewBag.Title = "list_ad";
+    AjaxOptions ajaxOpts = new AjaxOptions
+    {
+        UpdateTargetId = "form_for_ajax_1",
+        Url = Url.Action("list_ad_ajax_1","Home")
+    };
+}
+<script src="~/Scripts/jquery-1.7.1.min.js" type="text/javascript"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"
+        type="text/javascript"></script>
+<div>
+    <div>
+        @Html.Action("Main_header", "Home")
+    </div>
+        <div id="form_for_ajax_1">
+            @Html.Action("list_ad_ajax_1","Home", new { res = Model })
+           
+            
+
+
+
+    </div>
+</div>

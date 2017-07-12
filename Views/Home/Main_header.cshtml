@@ -1,0 +1,32 @@
+﻿<div>
+    <div>
+        @Html.ActionLink("Главная", "Categories", "Home", null, new { })
+    </div>
+    <div>
+        @Html.ActionLink("Добавить", "Add_new_ad", "Home", null, new { })
+    </div>
+    <div>
+        @using (Html.BeginForm("Search", "Home"))
+        {
+            <div>@Html.Editor("str")</div>
+            
+            <div>
+                <div>@Html.Editor("category")</div>
+            </div>
+            <div>
+                <div>@Html.Editor("town")</div>
+            </div>
+            <div><input type="submit" value="Поиск" /></div>
+            
+        }
+
+    </div>
+    <div>
+
+
+    </div>
+    <div>
+
+
+    </div>
+    </div>

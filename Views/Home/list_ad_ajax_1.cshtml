@@ -1,0 +1,16 @@
+﻿@model irr.Models.list_ad_View
+
+
+@foreach (var i in Model.list)
+{
+    <div>
+        @Html.ActionLink("","","Home",new { },new { });
+        <div>
+            <input type="image" name="image" src=@i.Images[0] width="50">
+        </div>
+        <div>
+            <p>@i.Header</p>
+            <p>@i.Price</p>
+        </div>
+    </div>
+}
