@@ -23,14 +23,19 @@ namespace irr
                            url: "Real-estate/{type}/{type2}/page{pg}",
                            defaults: new { controller = "Home", action = "list_ad", type2 = UrlParameter.Optional, pg = UrlParameter.Optional }
                        );
+            routes.MapRoute(
+                          name: "Real_estate_next3",
+                          url: "Real-estate/{type}/{type2}",
+                          defaults: new { controller = "Home", action = "list_ad", type2 = UrlParameter.Optional }
+                      );
 
-           /* routes.MapRoute(
-                name: "Real_estate_next1",
-                url: "Real-estate/{type}/page{pg}",
-                defaults: new { controller = "Home", action = "list_ad",  pg = UrlParameter.Optional }
-            );*/
+            /* routes.MapRoute(
+                 name: "Real_estate_next1",
+                 url: "Real-estate/{type}/page{pg}",
+                 defaults: new { controller = "Home", action = "list_ad",  pg = UrlParameter.Optional }
+             );*/
 
-            
+
 
             routes.MapRoute(
                 name: "Real_estate1",

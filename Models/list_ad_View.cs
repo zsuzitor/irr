@@ -13,6 +13,7 @@ namespace irr.Models
         public string Type;
         public string Type2;
         public List<Entry> list;
+        public int[] str;
 
 
         public list_ad_View()
@@ -22,6 +23,7 @@ namespace irr.Models
             Type = "all";
             Type2 = "all-type";
             list = new List<Entry>();
+            str = new int[6];
         }
     }
 }

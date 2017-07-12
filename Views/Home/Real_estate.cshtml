@@ -10,7 +10,7 @@
 
         @foreach (var i in Model.list)
         {
-            <div>@Html.ActionLink(@i.Name, "list_ad", "Home",new { type2 = i.Type2 },new { })  </div>
+            <div>@Html.ActionLink(@i.Name, "list_ad", "Home",new {type="all", type2 = i.Type2 ,pg=1},new { })  </div>
         }
     </div>
     <div>
@@ -22,7 +22,7 @@
                     </div>
                 <div>
                     <p>@i.Name</p>
-                    @Html.ActionLink(i.Sale.Name, "", "", new { type2 = i.Type2,type=i.Sale.Type }, new { })
+                    @Html.ActionLink(i.Sale.Name, "list_ad", "Home", new { type2 = i.Type2,type=i.Sale.Type, pg = 1 }, new { })
                     @foreach (var i2 in i.Sale.list)
                     {
                         @Html.ActionLink(i2, "", "", new { }, new { })
@@ -33,7 +33,7 @@
                     </div>
                     <div>
                         
-                        @Html.ActionLink(i.Lease.Name, "", "", new { type2 = i.Type2, type = i.Lease.Type }, new { })
+                        @Html.ActionLink(i.Lease.Name, "list_ad", "Home", new { type2 = i.Type2, type = i.Lease.Type, pg = 1 }, new { })
                         @foreach (var i2 in i.Lease.list)
                         {
                             @Html.ActionLink(i2, "", "", new { }, new { })

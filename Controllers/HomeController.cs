@@ -16,11 +16,57 @@ namespace irr.Controllers
 
 
 //-SETTINGS/ADMIN BLOCK--------------------------------------------------------------------------------------------------------------------//
-        public ActionResult Index()
+        public void UP_nedo_bd()
         {
             StreamReader reader = new StreamReader(@"C:\Users\zsuz\Desktop\волгту\парсерPYквартирыirr\data.json");
             //чтение файла и разбивка по объектам+ добавление
             string next_str = "";
+            int id_tmp = 1;
+            try
+            {
+                int i = 0;
+                while(true)
+                {
+                    char[] b = new char[10];
+                    reader.Read(b, i * 0, 10);
+                    string str = next_str + string.Concat(b);
+                   
+                    b = new char[10];
+                    ++i;
+                    while (str.IndexOf('}') == -1)
+                    {
+                        reader.Read(b, i * 0, 10);
+                        str += string.Concat(b);
+                        b = new char[10];
+                        ++i;
+                    }
+                    string[] arr = str.Split('}');
+                    try
+                    {
+                        arr[0] += "}";
+                        next_str = arr[1];
+                    }
+                    catch
+                    {
+
+
+                    }
+                    //сделать объект entry
+                    Entry new_temp = new Entry();
+                    new_temp = JsonConvert.DeserializeObject<Entry>(arr[0]);
+                    new_temp.Id = id_tmp;
+                    ++id_tmp;
+                    main_arr.Add(new_temp);
+
+                }
+                    
+                    }
+            catch
+            {
+
+            }
+            
+            /*
             while (!reader.EndOfStream)
             {
 
@@ -41,11 +87,19 @@ namespace irr.Controllers
 
                 }
                 //сделать объект entry
-                Entry new_temp = JsonConvert.DeserializeObject<Entry>(arr[0]);
+                Entry new_temp = new Entry();
+                 new_temp = JsonConvert.DeserializeObject<Entry>(arr[0]);
+                new_temp.Id = id_tmp;
+                ++id_tmp;
                 main_arr.Add(new_temp);
 
             }
-
+            */
+        }
+        public ActionResult Index()
+        {
+            UP_nedo_bd();
+          
             return View();
         }
         //END-SETTINGS/ADMIN BLOCK--------------------------------------------------------------------------------------------------------------------//
@@ -70,6 +124,23 @@ namespace irr.Controllers
             string type = res.Type;
             string type2 = res.Type2;
             int pg = res.Current_page;
+
+           if(true)
+            {
+                int tmp = pg  - 2;
+                tmp = tmp > 1 ? tmp : 1;
+               for (int i=0;i<5;++i)
+                {
+                    res.str[i] = tmp;
+                    ++tmp;
+                }
+            }
+
+                //int tmp = pg - i - 1;
+               // res.str[i] = tmp > 1 ? tmp : 1;
+            
+            res.str[5] = res.Count_page;
+
             //
             if (type != "all")
             {
@@ -84,6 +155,7 @@ namespace irr.Controllers
                 if (type2 == "zn")
                     type2 = "Загородная недвижимость";
             }
+            UP_nedo_bd();
             res.list = main_arr.
                 Where(x1 => type == "all" ? true : x1.Type_ad == type ? true : false).
                 Where(x2 => type == "all-type" ? true : x2.Type_of_apartment == type2 ? true : false).
@@ -96,6 +168,18 @@ namespace irr.Controllers
             return PartialView(res);
         }
 //END-PARTIAL BLOCK--------------------------------------------------------------------------------------------------------------------//
+       
+
+        //-POST/FORM BLOCK--------------------------------------------------------------------------------------------------------------------//
+        //отправка формы с поиском
+        [HttpPost]
+        public ActionResult Search(string str, string category, string town)
+        {
+            return View();
+        }
+        //END-POST/FORM BLOCK--------------------------------------------------------------------------------------------------------------------//
+
+
         //главная страница с разделами
         public ActionResult Categories()
         {
@@ -111,16 +195,6 @@ namespace irr.Controllers
             return View(categories_View);
         }
 
-        //-POST/FORM BLOCK--------------------------------------------------------------------------------------------------------------------//
-        //отправка формы с поиском
-        [HttpPost]
-        public ActionResult Search(string str, string category, string town)
-        {
-            return View();
-        }
-        //END-POST/FORM BLOCK--------------------------------------------------------------------------------------------------------------------//
-
-
         //отображение списка с объявлениями
         //type= тип объявления type2 тип квартиры
 
@@ -128,9 +202,8 @@ namespace irr.Controllers
         {
             // type2   gn kn zn
             //type sale lease
-
-            list_ad_View res = new list_ad_View() {Current_page=pg, Count_ad_on_page=10 , Count_page = main_arr .Count/10+1,Type= type, Type2 = type2 };
-            
+            UP_nedo_bd();
+            list_ad_View res = new list_ad_View() {list=main_arr,Current_page=pg, Count_ad_on_page=10 , Count_page = main_arr .Count/10+1,Type= type, Type2 = type2 };
             
 
             // Type_of_apartment   Type_ad
@@ -165,5 +238,12 @@ public ActionResult Real_estate()//string Count_of_room, string , string, string
 
             return View(res);
         }
-    }
+        public ActionResult Show_one_ad(int? id=1)//хз мб вопрос лишний
+        {
+            UP_nedo_bd();
+            Entry res = main_arr.First(x1 => x1.Id == id);
+
+            return View(res);// в модель отдельную
+        }
+        }
 }
