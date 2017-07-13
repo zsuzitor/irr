@@ -1,0 +1,56 @@
+﻿@model irr.Models.Entry
+
+@{
+    ViewBag.Title = "Show_one_ad";
+}
+
+<div>
+    <div>
+        @Html.Action("Main_header", "Home")
+    </div>
+    <div>
+        @foreach(var i in Model.Images)
+        {
+            <div>
+                <input type="image" name="image" src=@i width="50">
+            </div>
+        }
+
+    </div>
+    <div>
+        <div>@Model.Header</div>
+        <div>@Model.Under_header</div>
+        <div>@Model.Description</div>
+        <div>
+            <div>
+                @foreach(var i in Model.Info1)
+                {
+                    <p>@i</p>
+                }
+
+            </div>
+            <div>
+                @foreach (var i in Model.Info2)
+                {
+                    <p>@i</p>
+                }
+            </div>
+            <div>
+                @foreach (var i in Model.Info3)
+                {
+                    <p>@i</p>
+                }
+            </div>
+             </div>
+    </div>
+    <div>
+        <div><p>@Model.Price</p></div>
+        <div><p>@Model.Phone_number</p></div>
+        <div><p>@Model.Name</p></div>
+        <div><p>@Model.Place</p></div>
+        <div><p>@Model.Url_page</p></div>
+        
+    </div>
+
+</div>
+

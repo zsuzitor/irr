@@ -183,6 +183,7 @@
     <Content Include="Views\Home\Real_estate.cshtml" />
     <Content Include="Views\Home\list_ad.cshtml" />
     <Content Include="Views\Home\list_ad_ajax_1.cshtml" />
+    <Content Include="Views\Home\Show_one_ad.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

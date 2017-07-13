@@ -244,7 +244,7 @@ public ActionResult Real_estate()//string Count_of_room, string , string, string
 
             return View(res);
         }
-        public ActionResult Show_one_ad(int? id=1)//хз мб вопрос лишний
+        public ActionResult Show_one_ad(int id=1)//хз мб вопрос лишний
         {
             UP_nedo_bd();
             Entry res = main_arr.First(x1 => x1.Id == id);

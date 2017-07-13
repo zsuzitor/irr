@@ -18,14 +18,29 @@ namespace irr
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
             routes.MapRoute(
+                           name: "Real_estate_next1_1",
+                           url: "Real-estate/{type}/{type2}/page{pg}/id{id}",
+                           defaults: new { controller = "Home", action = "Show_one_ad" }
+                       );
+            routes.MapRoute(
                            name: "Real_estate_next1",
                            url: "Real-estate/{type}/{type2}/page{pg}",
                            defaults: new { controller = "Home", action = "list_ad" }
                        );
             routes.MapRoute(
+                          name: "Real_estate_next2_2",
+                          url: "Real-estate/{type}/{type2}/id{id}",
+                          defaults: new { controller = "Home", action = "Show_one_ad" }
+                      );
+            routes.MapRoute(
                            name: "Real_estate_next2",
                            url: "Real-estate/{type}/{type2}",
                            defaults: new { controller = "Home", action = "list_ad" }
+                       );
+            routes.MapRoute(
+                           name: "Real_estate_next3_3",
+                           url: "Real-estate/{type}/id{id}",
+                           defaults: new { controller = "Home", action = "Show_one_ad" }
                        );
             routes.MapRoute(
                            name: "Real_estate_next3",
