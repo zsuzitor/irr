@@ -19,7 +19,7 @@ namespace irr.Models
         public list_ad_View()
         {
             Current_page = 0;
-            Count_ad_on_page = 0;
+            Count_ad_on_page = 10;
             Type = "all";
             Type2 = "all-type";
             list = new List<Entry>();

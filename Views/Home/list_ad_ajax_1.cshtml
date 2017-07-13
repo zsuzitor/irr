@@ -4,7 +4,7 @@
 @foreach (var i in Model.list)
 {
     <div>
-        @Html.ActionLink("show", "Show_one_ad", "Home",new { id = i.Id },new { });
+        @Html.ActionLink("show", "Show_one_ad", "Home",new { id = i.Id },new { })
         <div>
             <input type="image" name="image" src=@i.Images[0] width="50">
         </div>
@@ -14,6 +14,26 @@
         </div>
     </div>
 }
+
+<div>
+    @foreach (var i in Model.str)
+    {
+        <div class="ajaxLink">
+            @Ajax.ActionLink(i.ToString(), "list_ad_ajax_1", "Home",
+new { type = Model.Type, type2 = Model.Type2, pg = i },
+new AjaxOptions
+{
+    UpdateTargetId = "form_for_ajax_1"
+
+})
+        </div>
+    }
+
+
+</div>
+
+
+
 
 
     

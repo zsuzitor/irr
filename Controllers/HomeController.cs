@@ -117,15 +117,15 @@ namespace irr.Controllers
             return PartialView();
         }
 
-        public ActionResult list_ad_ajax_1(list_ad_View res)
+        public ActionResult list_ad_ajax_1(string type = "all", string type2 = "all-type", int pg = 1)
         {
             //, type=Model.Type, type2=Model.Type2,pg=Model.Current_page
             //, string type = "all", string type2 = "all-type", int pg = 1
-            string type = res.Type;
-            string type2 = res.Type2;
-            int pg = res.Current_page;
-
-           if(true)
+            // string type = res.Type;
+            //string type2 = res.Type2;
+            //int pg = res.Current_page;
+            list_ad_View res = new list_ad_View() { Type=type, Type2= type2,Current_page=pg  };
+            if (true)
             {
                 int tmp = pg  - 2;
                 tmp = tmp > 1 ? tmp : 1;
@@ -139,12 +139,12 @@ namespace irr.Controllers
                 //int tmp = pg - i - 1;
                // res.str[i] = tmp > 1 ? tmp : 1;
             
-            res.str[5] = res.Count_page;
+            
 
             //
             if (type != "all")
             {
-                type = type == "sell" ? "Продажа" : "Аренда";
+                type = type == "sale" ? "Продажа" : "Аренда";
             }
             if (type2 != "all-type")
             {
@@ -163,7 +163,8 @@ namespace irr.Controllers
                 Take(res.Count_ad_on_page).
                 ToList();
             //
-
+            res.str[5] = res.list.Count/10+1;
+            res.Count_page = res.str[5];
 
             return PartialView(res);
         }
@@ -202,8 +203,9 @@ namespace irr.Controllers
         {
             // type2   gn kn zn
             //type sale lease
-            UP_nedo_bd();
-            list_ad_View res = new list_ad_View() {list=main_arr,Current_page=pg, Count_ad_on_page=10 , Count_page = main_arr .Count/10+1,Type= type, Type2 = type2 };
+
+            //UP_nedo_bd();
+            list_ad_View res = new list_ad_View() {Current_page=pg, Type= type, Type2 = type2 };
             
 
             // Type_of_apartment   Type_ad
@@ -215,7 +217,9 @@ namespace irr.Controllers
 public ActionResult Real_estate()//string Count_of_room, string , string, string, string,
         {
             Real_estate_View res = new Real_estate_View();
-            res.list.Add(new Real_estate_block() {Name= "Жилая недвижимость",img= @"C:\csharp\asp1\kniga\irr\irr\App_Data\gn.PNG",Type2="gn",
+            //Url.Content("~/App_Data/gn.PNG")  Url.Content("~/App_Data/kn.PNG")  Url.Content("~/App_Data/zn.PNG")
+            res.list.Add(new Real_estate_block() {Name= "Жилая недвижимость",img= Url.Content("~/Content/img/gn.PNG"),
+                Type2="gn",
                 Sale =new Real_estate_block_lvl_2("Продажа", "sale", new string[4] { "1 комнатные", "2 комнатные", "3 комнатные", "4 комнатные" }) ,
                 Lease =new Real_estate_block_lvl_2("аренда", "lease", new string[4] { "1 комнатные", "2 комнатные", "3 комнатные", "4 комнатные" })
             }); 
@@ -224,14 +228,16 @@ public ActionResult Real_estate()//string Count_of_room, string , string, string
 
             res.list.Add(new Real_estate_block()
             {
-                Name = "Коммерческая недвижимость", img = @"C:\csharp\asp1\kniga\irr\irr\App_Data\kn.PNG",Type2 = "kn",
+                Name = "Коммерческая недвижимость", img = Url.Content("~/Content/img/kn.PNG"),
+                Type2 = "kn",
                 Sale = new Real_estate_block_lvl_2("Продажа", "sale", new string[4] { "1 комнатные", "2 комнатные", "3 комнатные", "4 комнатные" }),
                 Lease = new Real_estate_block_lvl_2("аренда", "lease", new string[4] { "1 комнатные", "2 комнатные", "3 комнатные", "4 комнатные" })
             });
             
                  res.list.Add(new Real_estate_block()
                  {
-                     Name = "Загородная недвижимость", img = @"C:\csharp\asp1\kniga\irr\irr\App_Data\zn.PNG",Type2 = "zn",
+                     Name = "Загородная недвижимость", img = Url.Content("~/Content/img/zn.PNG"),
+                     Type2 = "zn",
                      Sale = new Real_estate_block_lvl_2("Продажа", "sale", new string[4] { "1 комнатные", "2 комнатные", "3 комнатные", "4 комнатные" }),
                      Lease = new Real_estate_block_lvl_2("аренда", "lease", new string[4] { "1 комнатные", "2 комнатные", "3 комнатные", "4 комнатные" })
                  });
