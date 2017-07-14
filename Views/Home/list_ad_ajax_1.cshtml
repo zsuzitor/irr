@@ -7,19 +7,21 @@
 
 @foreach (var i in Model.list)
 {
-    <div>
-        @Html.ActionLink("show", "Show_one_ad", "Home",new { id = i.Id },new { })
-        <div>
-            <input type="image" name="image" src=@i.Images[0] width="50">
+    <div class="list_ad_ajax_1_block_one_ad">
+        
+       
+        <div class="list_ad_ajax_1_img">
+            <a href='@Url.Action("Show_one_ad", "Home",new { id = i.Id })'><img src="@i.Images[0]" /></a>
+            
         </div>
-        <div>
-            <p>@i.Header</p>
+        <div class="list_ad_ajax_1_block_info_1_ad">
+            @Html.ActionLink(@i.Header, "Show_one_ad", "Home", new { id = i.Id }, new { @class = "link_standart_for_div" })
             <p>@i.Price</p>
         </div>
     </div>
 }
 
-<div>
+<div class="list_ad_ajax_1_link_block">
     @foreach (var i in Model.str)
     {
         <div class="ajaxLink">
@@ -29,11 +31,14 @@ new AjaxOptions
 {
     UpdateTargetId = "form_for_ajax_1"
 
-})
+},new {@class= "link_standart_for_div" })
         </div>
     }
 
 
+</div>
+<div class="list_ad_ajax_1_down">
+    <p> </p>
 </div>
 
 

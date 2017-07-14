@@ -6,44 +6,59 @@
 
 <div>
     @Html.Action("Main_header", "Home")
-    <div>
+    <div class="Real_estate_body_compl">
+        <div class="Real_estate_body">
+            <div class="Real_estate_block_up">
 
-        @foreach (var i in Model.list)
-        {
-            <div>@Html.ActionLink(@i.Name, "list_ad", "Home",new {type="all", type2 = i.Type2 },new { })  </div>
-        }
+                @foreach (var i in Model.list)
+            {
+                    <div class="Real_estate_one_block_up">@Html.ActionLink(@i.Name, "list_ad", "Home", new { type = "all", type2 = i.Type2 }, new { })  </div>
+                }
+            </div>
+            <div class="Real_estate_body2">
+                @foreach (var i in Model.list)
+            {
+                    <div class="Real_estate_one_block">
+                        <div class="Real_estate_img">
+                            <img src="@i.img" >
+                            
+                        </div><div class="Real_estate_block_all">
+                                  <p class="Real_estate_ref">@i.Name</p>
+    <div class="Real_estate_block_s_e">
+        
+        @Html.ActionLink(i.Sale.Name, "list_ad", "Home", new { type2 = i.Type2, type = i.Sale.Type }, new { @class = "Real_estate_ref" })
+        <ul>
+            @foreach (var i2 in i.Sale.list)
+            {
+                <li> @Html.ActionLink(i2, "", "", new { }, new { @class = "Real_estate_ref" })</li>
+
+            }
+        </ul>
     </div>
-    <div>
-        @foreach(var i in Model.list)
-        {
-            <div>
-                <div>
-                    <input type="image" name="image" src="@i.img" width="50">
-                    </div>
-                <div>
-                    <p>@i.Name</p>
-                    @Html.ActionLink(i.Sale.Name, "list_ad", "Home", new { type2 = i.Type2,type=i.Sale.Type }, new { })
-                    @foreach (var i2 in i.Sale.list)
-                    {
-                        @Html.ActionLink(i2, "", "", new { }, new { })
+    <div class="Real_estate_block_s_e">
 
-                    }
-                </div>
+        @Html.ActionLink(i.Lease.Name, "list_ad", "Home", new { type2 = i.Type2, type = i.Lease.Type }, new { @class = "Real_estate_ref" })
+        <ul>
+            @foreach (var i2 in i.Lease.list)
+            {
+                <li>
+                    @Html.ActionLink(i2, "", "", new { }, new { @class = "Real_estate_ref" })
+                </li>
 
-                    </div>
-                    <div>
-                        
-                        @Html.ActionLink(i.Lease.Name, "list_ad", "Home", new { type2 = i.Type2, type = i.Lease.Type }, new { })
-                        @foreach (var i2 in i.Lease.list)
-                        {
-                            @Html.ActionLink(i2, "", "", new { }, new { })
-
-                        }
-
-                    </div>
-        }
+            }
+        </ul>
     </div>
+</div>
 
 
+
+                    </div>
+                    
+                    <div class="for_separation"></div>
+                }
+            </div>
+        </div>
+
+        </div>
     </div>
 

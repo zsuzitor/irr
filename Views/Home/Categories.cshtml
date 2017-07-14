@@ -6,25 +6,27 @@
 
 <div>
     @Html.Action("Main_header", "Home")
+    <div class="categories_sum_block">
+        <div class="categories_block">
+            <p>@Html.ActionLink(@Model.Sale.Name, "Real_estate", "Home", new { }, new { })</p>
+            <ul>
+                @foreach (var i in Model.Sale.list_cat)
+            {
+                    <li>@Html.ActionLink(i, "list_ad", "Home", new { str_param = i }, new { })</li>
+                }
+            </ul>
 
-    <div>
-        <p>@Html.ActionLink(@Model.Sale.Name, "Real_estate", "Home", new {  }, new { })</p>
-       
-        @foreach (var i in Model.Sale.list_cat)
-        {
-            <p>@Html.ActionLink(i, "list_ad","Home",new { str_param=i },new { })</p>
-        }
+        </div>
+        <div class="categories_block">
+            <p>@Html.ActionLink(@Model.Lease.Name, "Real_estate", "Home", new { }, new { })</p>
 
-    </div>
-    <div>
-        <p>@Html.ActionLink(@Model.Lease.Name, "Real_estate", "Home", new { }, new { })</p>
-
-     
-        @foreach (var i in Model.Lease.list_cat)
-        {
-            <p>@Html.ActionLink(i, "list_ad", "Home", new { str_param = i }, new { })</p>
-        }
-
+            <ul>
+                @foreach (var i in Model.Lease.list_cat)
+            {
+                    <li>@Html.ActionLink(i, "list_ad", "Home", new { str_param = i }, new { })</li>
+                }
+            </ul>
+</div>
     </div>
 </div>
 

@@ -1,22 +1,22 @@
-﻿<div>
-    <div>
-        @Html.ActionLink("Главная", "Categories", "Home", null, new { })
+﻿<div class="main_header_div_lvl_1">
+    <div class="main_header_link_home">
+        @Html.ActionLink("Главная", "Categories", "Home", null, new {@class= "link_standart_for_div" ,id="main_header_sr_text"})
     </div>
-    <div>
-        @Html.ActionLink("Добавить", "Add_new_ad", "Home", null, new { })
+    <div class="main_header_link_add">
+        @Html.ActionLink("Добавить", "Add_new_ad", "Home", null, new { @class = "link_standart_for_div", id = "main_header_sr_text" })
     </div>
-    <div>
+    <div class="main_header_form_all">
         @using (Html.BeginForm("Search", "Home"))
         {
-            <div>@Html.Editor("str")</div>
+            <div class="main_header_inline_block_form">@Html.Editor("str",new {@class="main_header_str_search" })</div>
             
-            <div>
-                <div>@Html.Editor("category")</div>
+            <div class="main_header_inline_block_form">
+                <div>@Html.Editor("category", new { @class = "main_header_str_search" })</div>
             </div>
-            <div>
-                <div>@Html.Editor("town")</div>
+            <div class="main_header_inline_block_form">
+                <div>@Html.Editor("town", new { @class = "main_header_str_search" })</div>
             </div>
-            <div><input type="submit" value="Поиск" /></div>
+            <div class="main_header_inline_block_form"><input type="submit" value="Поиск" id="main_header_button_search"/></div>
             
         }
 
