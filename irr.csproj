@@ -137,6 +137,7 @@
     <Compile Include="Models\EntryContext.cs" />
     <Compile Include="Models\list_ad_View.cs" />
     <Compile Include="Models\Real_estate_View.cs" />
+    <Compile Include="Models\Search.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -117,14 +117,28 @@ namespace irr.Controllers
             return PartialView();
         }
 
-        public ActionResult list_ad_ajax_1(string type = "all", string type2 = "all-type", int pg = 1)
+        public ActionResult list_ad_ajax_1(string type = "all", string type2 = "all-type", int pg = 1,Search srch=null)
         {
             //, type=Model.Type, type2=Model.Type2,pg=Model.Current_page
             //, string type = "all", string type2 = "all-type", int pg = 1
             // string type = res.Type;
             //string type2 = res.Type2;
             //int pg = res.Current_page;
-            list_ad_View res = new list_ad_View() { Type=type, Type2= type2,Current_page=pg  };
+            /*
+             List<Entry> res = new List<Entry>();
+                    if (town != "Вся Россия")
+                        res= main_arr.Where(x1 => (x1.Place.IndexOf(town) != -1) && x1.search_str(str)).ToList();
+                    else
+                    {
+                        res = main_arr.Where(x1 => x1.search_str(str)).ToList();
+                    } 
+              
+              */
+
+
+
+
+            list_ad_View res = new list_ad_View() { Type=type, Type2= type2,Current_page=pg  , srch =srch};
             if (true)
             {
                 int tmp = pg  - 2;
@@ -156,12 +170,27 @@ namespace irr.Controllers
                     type2 = "Загородная недвижимость";
             }
             UP_nedo_bd();
+
+
+
+           
+
+            if(srch != null)
             res.list = main_arr.
                 Where(x1 => type == "all" ? true : x1.Type_ad == type ? true : false).
                 Where(x2 => type == "all-type" ? true : x2.Type_of_apartment == type2 ? true : false).
+                Where(x3=> (srch.town== "Вся Россия"?true: x3.Place.IndexOf(srch.town) != -1)&&(x3.search_str(srch.str))).
                 Skip((pg > 0 ? pg - 1 : pg) * res.Count_ad_on_page).
                 Take(res.Count_ad_on_page).
                 ToList();
+            else
+                res.list = main_arr.
+               Where(x1 => type == "all" ? true : x1.Type_ad == type ? true : false).
+               Where(x2 => type == "all-type" ? true : x2.Type_of_apartment == type2 ? true : false).
+               Skip((pg > 0 ? pg - 1 : pg) * res.Count_ad_on_page).
+               Take(res.Count_ad_on_page).
+               ToList();
+
             //
             res.str[5] = res.list.Count/10+1;
             res.Count_page = res.str[5];
@@ -176,6 +205,30 @@ namespace irr.Controllers
         [HttpPost]
         public ActionResult Search(string str, string category, string town)
         {
+            UP_nedo_bd();
+            //квартиры  list_ad(string type="all", string type2 = "all-type", int pg=1)
+            Search res = new Models.Search();
+            res.str = str;
+            res.category = category;
+            res.town = town;
+            switch (category)
+                {
+                //"Все типы", "квартиры", "телефоны", "животные", "машины"
+                case "Все типы":
+                    break;
+                case "Квартиры":
+                    
+                    list_ad("all", "all-type", 1, res);
+
+                    break;
+                case "Телефоны":
+                    break;
+                case "Животные":
+                    break;
+                case "Машины":
+                    break;
+            }
+
             return View();
         }
         //END-POST/FORM BLOCK--------------------------------------------------------------------------------------------------------------------//
@@ -199,14 +252,14 @@ namespace irr.Controllers
         //отображение списка с объявлениями
         //type= тип объявления type2 тип квартиры
 
-        public ActionResult list_ad(string type="all", string type2 = "all-type", int pg=1)//string Count_of_room, string , string, string, string,
+        public ActionResult list_ad(string type="all", string type2 = "all-type", int pg=1,Search srch=null)//string Count_of_room, string , string, string, string,
         {
             // type2   gn kn zn
             //type sale lease
 
             //UP_nedo_bd();
             list_ad_View res = new list_ad_View() {Current_page=pg, Type= type, Type2 = type2 };
-            
+            res.srch = srch;
 
             // Type_of_apartment   Type_ad
             return View(res);

@@ -50,7 +50,11 @@ li {
     margin-left: 0; /* Отступ слева в браузере IE и Opera */
     padding-left: 0; /* Отступ слева в браузере Firefox, Safari, Chrome */
    }
-
+   .text-box{
+line-height:30px;
+    height:30px;
+    font-size: 14pt;
+   }
 
 div.for_separation{
 
@@ -61,7 +65,17 @@ div.for_separation{
 
 
 
+/*main_header*/
+.main_header_str_search{
+    width:100%;
+    line-height:30px;
+    height:30px;
+    font-size: 14pt;
+}
 
+div.main_header_inline_block_form{
+    width:19%;
+}
 
 div.main_header_div_lvl_1{
     height: 500px;

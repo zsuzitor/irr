@@ -14,7 +14,7 @@ namespace irr.Models
         public string Type2;
         public List<Entry> list;
         public int[] str;
-
+       public Search srch;
 
         public list_ad_View()
         {
@@ -24,6 +24,7 @@ namespace irr.Models
             Type2 = "all-type";
             list = new List<Entry>();
             str = new int[6];
+            srch = null;
         }
     }
 }

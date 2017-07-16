@@ -54,6 +54,45 @@ namespace irr.Models
 
 
         }
+        public bool search_str(string str)
+        {
+            if (string.IsNullOrEmpty(str))
+                return true;
+            if (Type_of_apartment.IndexOf(str) != -1)
+                return true;
+            if (Type_ad.IndexOf(str) != -1)
+                return true;
+            if (Header.IndexOf(str) != -1)
+                return true;
+            if (Under_header.IndexOf(str) != -1)
+                return true;
+            if (Price.IndexOf(str) != -1)
+                return true;
+            if (Phone_number.IndexOf(str) != -1)
+                return true;
+            if (Name.IndexOf(str) != -1)
+                return true;
+            if (Place.IndexOf(str) != -1)
+                return true;
+            if (Description.IndexOf(str) != -1)
+                return true;
+            foreach(var i in Info1)
+                if (i.IndexOf(str) != -1)
+                    return true;
+            
+            foreach (var i in Info2)
+                if (i.IndexOf(str) != -1)
+                    return true;
+            
+            foreach (var i in Info3)
+                if (i.IndexOf(str) != -1)
+                    return true;
+            
+
+
+
+            return false;
+        }
 
     }
 }

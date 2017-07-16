@@ -1,4 +1,11 @@
-﻿<div class="main_header_div_lvl_1">
+﻿@{ 
+    List<string> town = new List<string>() {"Вся Россия","Москва","Петербург","Пермь","Воронеж","Казань","Сочи","Саратов" };
+
+
+    List<string> category = new List<string>() { "Все типы", "Квартиры", "Телефоны", "Животные", "Машины" };
+
+}
+<div class="main_header_div_lvl_1">
     <div class="main_header_link_home">
         @Html.ActionLink("Главная", "Categories", "Home", null, new {@class= "link_standart_for_div" ,id="main_header_sr_text"})
     </div>
@@ -11,10 +18,18 @@
             <div class="main_header_inline_block_form">@Html.Editor("str",new {@class="main_header_str_search" })</div>
             
             <div class="main_header_inline_block_form">
-                <div>@Html.Editor("category", new { @class = "main_header_str_search" })</div>
-            </div>
+
+                <div>
+                    @Html.DropDownList("category", new SelectList(category), new { @class = "main_header_str_search" })
+
+                </div>
+                   
+                </div>
             <div class="main_header_inline_block_form">
-                <div>@Html.Editor("town", new { @class = "main_header_str_search" })</div>
+                <div>
+                    @Html.DropDownList("town", new SelectList(town), new { @class = "main_header_str_search" })
+                </div>
+                    
             </div>
             <div class="main_header_inline_block_form"><input type="submit" value="Поиск" id="main_header_button_search"/></div>
             
