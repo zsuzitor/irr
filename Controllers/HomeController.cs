@@ -207,29 +207,39 @@ namespace irr.Controllers
         {
             UP_nedo_bd();
             //квартиры  list_ad(string type="all", string type2 = "all-type", int pg=1)
-            Search res = new Models.Search();
-            res.str = str;
-            res.category = category;
-            res.town = town;
+            Search srch = new Models.Search();
+            srch.str = str;
+            srch.category = category;
+            srch.town = town;
             switch (category)
                 {
                 //"Все типы", "квартиры", "телефоны", "животные", "машины"
                 case "Все типы":
+                    return View();
                     break;
                 case "Квартиры":
+                    int a = 0;
                     
-                    list_ad("all", "all-type", 1, res);
-
+                    list_ad_View res = new list_ad_View() { Current_page = 1, Type = "all", Type2 = "all-type" };
+                    res.srch = srch;
+                    return View("list_ad",res);
+                    //int b = 0;
                     break;
                 case "Телефоны":
+                    return View();
                     break;
                 case "Животные":
+                    return View();
                     break;
                 case "Машины":
+                    return View();
+                    break;
+                default:
+                    return View();
                     break;
             }
-
-            return View();
+           // int c = 0;
+           
         }
         //END-POST/FORM BLOCK--------------------------------------------------------------------------------------------------------------------//
 
