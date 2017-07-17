@@ -178,15 +178,15 @@ namespace irr.Controllers
             if(srch != null)
             res.list = main_arr.
                 Where(x1 => type == "all" ? true : x1.Type_ad == type ? true : false).
-                Where(x2 => type == "all-type" ? true : x2.Type_of_apartment == type2 ? true : false).
-                Where(x3=> (srch.town== "Вся Россия"?true: x3.Place.IndexOf(srch.town) != -1)&&(x3.search_str(srch.str))).
+                Where(x2 => type2 == "all-type" ? true : x2.Type_of_apartment == type2 ? true : false).
+                Where(x3=> (srch.town== "Вся Россия"?true: x3.Place.IndexOf(srch.town) != -1) && (x3.search_str(srch.str))).//&&(x3.search_str(srch.str))
                 Skip((pg > 0 ? pg - 1 : pg) * res.Count_ad_on_page).
                 Take(res.Count_ad_on_page).
                 ToList();
             else
                 res.list = main_arr.
                Where(x1 => type == "all" ? true : x1.Type_ad == type ? true : false).
-               Where(x2 => type == "all-type" ? true : x2.Type_of_apartment == type2 ? true : false).
+               Where(x2 => type2 == "all-type" ? true : x2.Type_of_apartment == type2 ? true : false).
                Skip((pg > 0 ? pg - 1 : pg) * res.Count_ad_on_page).
                Take(res.Count_ad_on_page).
                ToList();
@@ -314,5 +314,41 @@ public ActionResult Real_estate()//string Count_of_room, string , string, string
 
             return View(res);// в модель отдельную
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //-Function BLOCK--------------------------------------------------------------------------------------------------------------------//
+
+
+        public List<Entry> search_bd(Search srsh)
+        {
+
+
+            return main_arr;
         }
+    }
+
+
 }
+
+
+
+
+
+
+
+
+
+
