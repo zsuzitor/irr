@@ -24,7 +24,7 @@ namespace irr.Models
             Type2 = "all-type";
             list = new List<Entry>();
             str = new int[6];
-            srch = null;
+            srch = new Search();
         }
     }
 }
