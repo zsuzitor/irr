@@ -31,9 +31,12 @@
                 </div>
                     
             </div>
-            <div class="main_header_inline_block_form"><input type="submit" value="Поиск" id="main_header_button_search"/></div>
-            
-        }
+            <div class="main_header_inline_block_form"><input type="submit" value="Поиск" id="main_header_button_search"/>
+        <div class="main_header_Extended_search_div">
+                @Html.ActionLink("Расширенный поиск", "Extended_search", "Home", new { }, new { @class = "link_standart_for_div" })</div>
+        </div>
+
+   }
 
     </div>
     <div>

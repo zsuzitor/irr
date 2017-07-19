@@ -122,7 +122,15 @@ div.main_header_form_all{
 div.main_header_inline_block_form{
      display: inline-block;
      width:24%;
+     height:100%;
     
+}
+div.main_header_Extended_search_div{
+    float:right;
+    margin-top:35px;
+    width: 200px;
+    height:30px;
+    font-size: 10pt;
 }
 
 
@@ -233,6 +241,13 @@ div.list_ad_ajax_1_link_block{
     width:100%;
     margin-left:40%;
 }
+div.ajaxLink_select{
+     width:30px;
+    border :1px solid black;
+    display: inline-block;
+    background-color:#BC8F8F;
+}
+
 div.ajaxLink{
     width:30px;
     border :1px solid black;

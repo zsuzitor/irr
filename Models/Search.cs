@@ -7,13 +7,14 @@ namespace irr.Models
 {
     public class Search
     {
-        public string str;
-        public string category;//
-        public string town;
-        public int Count_ad_on_page;
-        public string type ;
-        public string type2;
-        public int pg ;
+        public string str { get; set; }
+        public string category { get; set; }//
+        public string town { get; set; }
+        public int Count_ad_on_page { get; set; }
+        public int Count_page { get; set; }
+        public string type { get; set; }
+        public string type2 { get; set; }
+        public int pg { get; set; }
 
         public Search()
         {
@@ -24,6 +25,7 @@ namespace irr.Models
          type = "all";
          type2 = "all-type";
          pg = 1;
+            Count_page = 1;
     }
 
         public Search(Search a)

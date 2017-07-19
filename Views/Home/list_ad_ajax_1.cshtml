@@ -24,16 +24,21 @@
 <div class="list_ad_ajax_1_link_block">
     @foreach (var i in Model.str)
     {
-        
+        string tmp_class = "ajaxLink";
+        if (i == Model.srch.pg)
+        {
+            tmp_class = "ajaxLink_select";
+        }
+        <div class=@tmp_class>
 
-        <div class="ajaxLink">
+
             @Ajax.ActionLink(i.ToString(), "list_ad_ajax_1", "Home",
-new { srch=new irr.Models.Search(Model.srch) { pg = i } },
+new { str=Model.srch.str, category= Model.srch.category, town= Model.srch.town, Count_ad_on_page= Model.srch.Count_ad_on_page, type= Model.srch.type, type2= Model.srch.type2, pg= i },
     new AjaxOptions
     {
         UpdateTargetId = "form_for_ajax_1"
 
-    },new {@class= "link_standart_for_div" })
+    }, new { @class = "link_standart_for_div" })
         </div>
     }
 

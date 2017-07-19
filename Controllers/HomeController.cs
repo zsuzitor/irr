@@ -98,8 +98,11 @@ namespace irr.Controllers
             return PartialView(res);
         }
 
-        public ActionResult list_ad_ajax_1(Search srch=null)
+        public ActionResult list_ad_ajax_1(string str="", string category= "all", string town= "Вся Россия", int Count_ad_on_page=10, string type= "all", string type2= "all-type", int pg=1)
         {
+            
+               irr.Models.Search srch = new Models.Search() { str = str, category = category, town = town, Count_ad_on_page = Count_ad_on_page, type = type, type2 = type2, pg = pg };
+
             //string type = "all", string type2 = "all-type", int pg = 1,
 
 
@@ -111,9 +114,9 @@ namespace irr.Controllers
 
 
 
-            
 
-            list_ad_View res = new list_ad_View() { Type= srch.type, Type2= srch.type2, Current_page= srch.pg, srch =srch.copy()};
+
+            list_ad_View res = new list_ad_View() { Count_ad_on_page=srch.Count_ad_on_page, Type = srch.type, Type2= srch.type2, Current_page= srch.pg};
             if (true)
             {
                 int tmp = srch.pg - 2;
@@ -134,14 +137,14 @@ namespace irr.Controllers
             
             UP_nedo_bd();
             res.list = search_bd(srch);
-
+            res.srch = srch.copy();
 
 
 
 
 
             //
-            res.str[5] = res.list.Count/10+1;
+            res.str[5] = srch.Count_page;
             res.Count_page = res.str[5];
 
             return PartialView(res);
@@ -191,12 +194,12 @@ namespace irr.Controllers
            
         }
         [HttpPost]
-        public ActionResult Extended_search(Search a,string str="",string category="", string town = "", int Count_ad_on_page = 0, string type = "", string type2 = "", int pg=0)
+        public ActionResult Extended_search(Search a)
         {
             //тут принимает постом форма поиска и уже переход к конкретным листам с объявлениями
             //TO-DO что то очень похожее на метод Search
-            int fd = 0;
-           /* switch (a.category)
+           
+            switch (a.category)
             {
 
                 case "Все типы":
@@ -222,8 +225,8 @@ namespace irr.Controllers
                 default:
                     return View();
                    
-            }*/
-            return View();
+            }
+            
 
         }
         //END-POST/FORM BLOCK--------------------------------------------------------------------------------------------------------------------//
@@ -331,9 +334,13 @@ public ActionResult Real_estate()
         {
             //TODO category нет поиска по категориям и бд без категорий
              List<Entry> res = new List<Entry>();
+            
+
+
             if (srch.type != "all")
             {
-                srch.type = srch.type == "sale" ? "Продажа" : "Аренда";
+                if(srch.type== "sale" || srch.type== "lease")
+                     srch.type = srch.type == "sale" ? "Продажа" : "Аренда";
             }
             if (srch.type2 != "all-type")
             {
@@ -349,8 +356,9 @@ public ActionResult Real_estate()
                 res = main_arr.
                     Where(x1 => srch.type == "all" ? true : x1.Type_ad == srch.type ? true : false).
                     Where(x2 => srch.type2 == "all-type" ? true : x2.Type_of_apartment == srch.type2 ? true : false).
-                    Where(x3 => (srch.town == "Вся Россия" ? true : x3.Place.IndexOf(srch.town) != -1) && (x3.search_str(srch.str))).//&&(x3.search_str(srch.str))
-                    Skip((srch.pg > 0 ? srch.pg - 1 : srch.pg) * srch.Count_ad_on_page).
+                    Where(x3 => (srch.town == "Вся Россия" ? true : x3.Place.IndexOf(srch.town) != -1) && (x3.search_str(srch.str))).ToList();//&&(x3.search_str(srch.str))
+            srch.Count_page = res.Count / srch.Count_ad_on_page + 1;
+            res = res.Skip((srch.pg > 0 ? srch.pg - 1 : srch.pg) * srch.Count_ad_on_page).
                     Take(srch.Count_ad_on_page).
                     ToList();
             
