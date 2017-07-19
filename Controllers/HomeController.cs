@@ -88,6 +88,15 @@ namespace irr.Controllers
 
             return PartialView();
         }
+        //
+        public ActionResult Extended_search_ajax_1(string category)
+        {
+            Search res = new Models.Search();
+            res.category = category;
+            //partial для ajax
+            // TO-DO   смотреть какой пункт выбран  и устанавливать флаг для типа расширенного поиска
+            return PartialView(res);
+        }
 
         public ActionResult list_ad_ajax_1(Search srch=null)
         {
@@ -145,9 +154,9 @@ namespace irr.Controllers
         [HttpPost]
         public ActionResult Search(string str, string category, string town)
         {
-            UP_nedo_bd();
+            //UP_nedo_bd();
             //квартиры  list_ad(string type="all", string type2 = "all-type", int pg=1)
-            Search srch = new Search();
+            Search srch = new Models.Search();
             srch.str = str;
             srch.category = category;
             srch.town = town;
@@ -156,7 +165,7 @@ namespace irr.Controllers
                
                 case "Все типы":
                     return View();
-                    break;
+                    
                 case "Квартиры":
                     
                     
@@ -164,22 +173,58 @@ namespace irr.Controllers
                     res.srch = srch;
                     return View("list_ad",res);
                     //int b = 0;
-                    break;
+                    
                 case "Телефоны":
                     return View();
-                    break;
+                    
                 case "Животные":
                     return View();
-                    break;
+                    
                 case "Машины":
                     return View();
-                    break;
+                    
                 default:
                     return View();
-                    break;
+                    
             }
            // int c = 0;
            
+        }
+        [HttpPost]
+        public ActionResult Extended_search(Search a,string str="",string category="", string town = "", int Count_ad_on_page = 0, string type = "", string type2 = "", int pg=0)
+        {
+            //тут принимает постом форма поиска и уже переход к конкретным листам с объявлениями
+            //TO-DO что то очень похожее на метод Search
+            int fd = 0;
+           /* switch (a.category)
+            {
+
+                case "Все типы":
+                    return View();
+                   
+                case "Квартиры":
+
+
+                    list_ad_View res = new list_ad_View() { Current_page = a.pg, Type = a.type, Type2 = a.type2};
+                    res.srch = a.copy();
+                    return View("list_ad", res);
+                    //int b = 0;
+                    
+                case "Телефоны":
+                    return View();
+                    
+                case "Животные":
+                    return View();
+                    
+                case "Машины":
+                    return View();
+                    
+                default:
+                    return View();
+                   
+            }*/
+            return View();
+
         }
         //END-POST/FORM BLOCK--------------------------------------------------------------------------------------------------------------------//
 
@@ -209,9 +254,11 @@ namespace irr.Controllers
 
             
             list_ad_View res = new list_ad_View() {Current_page=pg, Type= type, Type2 = type2 };
-            //res.srch = srch;
+            res.srch.pg =pg ;
+            res.srch.type = type;
+            res.srch.type2 = type2;
 
-            
+
             return View(res);
             }
 
@@ -257,11 +304,11 @@ public ActionResult Real_estate()
         //Extended
         public ActionResult Extended_search()
         {
-            list_ad_View res = new list_ad_View() { Current_page = 1, Type = "all", Type2 = "all-type" };
-            res.srch = srch;
-            return View("list_ad", res);
-
+            Search res = new Models.Search();
+           // res.srch = srch;
             return View(res);
+
+           
         }
 
 
@@ -282,6 +329,7 @@ public ActionResult Real_estate()
 
         public List<Entry> search_bd(Search srch)
         {
+            //TODO category нет поиска по категориям и бд без категорий
              List<Entry> res = new List<Entry>();
             if (srch.type != "all")
             {

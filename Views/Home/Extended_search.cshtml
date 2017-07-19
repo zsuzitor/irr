@@ -1,0 +1,36 @@
+﻿@model irr.Models.Search
+@section scripts
+    {
+    @Scripts.Render("~/scripts/jquery-1.10.2.js")
+    @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.js")
+}
+@{
+    ViewBag.Title = "Extended_search";
+    List<string> category = new List<string>() { "Квартиры", "Телефоны", "Животные", "Машины" };
+    AjaxOptions ajaxOpts = new AjaxOptions
+    {
+        UpdateTargetId = "Extended_search_id_for_ajax",
+        Url = Url.Action("Extended_search_ajax_1")
+    };
+}
+
+<div>
+    <div>
+        @Html.Action("Main_header", "Home")
+    </div>
+
+    <div class="Extended_search__body">
+        <div class="Extended_search_div_form">
+@using (Ajax.BeginForm(ajaxOpts))
+{
+            @Html.DropDownList("category", new SelectList(category), new { @class = "Extended_search_category_dr_list" })
+            <input type="submit" value="Выбрать категорию" class="Extended_search_button_inp"/>
+}
+        </div>
+        <div id="Extended_search_id_for_ajax">
+            @Html.Action("Extended_search_ajax_1", "Home", new { category= category[0] })
+        </div>
+    </div>
+
+
+</div>

@@ -90,6 +90,11 @@ div.main_header_div_lvl_1{
 #main_header_button_search{
     width: 100%;
     height:30px;
+    font-size: 14pt;
+}
+
+#main_header_button_search:hover{
+    background-color: green;
 }
 
 div.main_header_link_home{
@@ -241,4 +246,51 @@ siv.list_ad_ajax_1_down{
   
     min-height:200px;
     width:100%;
+}
+
+/* Extended_search */
+.Extended_search_category_dr_list{
+     width:100%;
+    line-height:30px;
+    height:30px;
+    font-size: 14pt;
+}
+div.Extended_search_div_form{
+    width:45%;
+    display: inline-block;
+    vertical-align: top;
+    height:200px;
+}
+#Extended_search_id_for_ajax{
+    width:45%;
+    display: inline-block;
+    vertical-align: top;
+}
+
+div.Extended_search__body{
+   margin-top:50px;
+    width: 80%;
+     margin-left:10%; 
+}
+.Extended_search_button_inp{
+    height:30px;
+     font-size: 14pt;
+}
+.Extended_search_button_inp:hover{
+    background-color: green;
+}
+
+/* Extended_search_ajax_1 */
+.Extended_search_ajax_1_line_srch{
+    width:100%;
+   line-height:30px;
+    height:30px;
+    font-size: 14pt;
+}
+.Extended_search_ajax_1_button_inp{
+    height:30px;
+     font-size: 14pt;
+}
+.Extended_search_ajax_1_button_inp:hover{
+    background-color: green;
 }

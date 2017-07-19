@@ -24,14 +24,16 @@
 <div class="list_ad_ajax_1_link_block">
     @foreach (var i in Model.str)
     {
+        
+
         <div class="ajaxLink">
             @Ajax.ActionLink(i.ToString(), "list_ad_ajax_1", "Home",
-new { type = Model.Type, type2 = Model.Type2, pg = i },
-new AjaxOptions
-{
-    UpdateTargetId = "form_for_ajax_1"
+new { srch=new irr.Models.Search(Model.srch) { pg = i } },
+    new AjaxOptions
+    {
+        UpdateTargetId = "form_for_ajax_1"
 
-},new {@class= "link_standart_for_div" })
+    },new {@class= "link_standart_for_div" })
         </div>
     }
 

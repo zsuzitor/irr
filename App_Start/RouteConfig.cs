@@ -66,7 +66,12 @@ namespace irr
                 url: "Real-estate",
                 defaults: new { controller = "Home", action = "Real_estate", id = UrlParameter.Optional }
             );
-
+            routes.MapRoute(
+                           name: "Search_1",
+                           url: "Search",
+                           defaults: new { controller = "Home", action = "Extended_search" }
+                       );
+           
 
 
 

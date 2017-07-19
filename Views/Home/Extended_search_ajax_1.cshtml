@@ -1,0 +1,64 @@
+﻿@model irr.Models.Search
+
+@{
+    List<string> town = new List<string>() { "Вся Россия", "Москва", "Петербург", "Пермь", "Воронеж", "Казань", "Сочи", "Саратов" };
+
+
+    List<string> category = new List<string>() { "Все типы", "Квартиры", "Телефоны", "Животные", "Машины" };
+
+}
+@section scripts
+    {
+    @Scripts.Render("~/scripts/jquery-1.10.2.js")
+    @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.js")
+}
+
+
+
+<div>
+    @using (Html.BeginForm("Extended_search", "Home"))
+    {
+        <div>
+           <h1>@Html.Label("Все поля не обязательны",new{ })</h1></div>
+           @Html.HiddenFor(x1=>x1.category)
+        <div>@Html.Label("Ключевое слово", new { @class = "Extended_search_ajax_1_line_srch" })<p> @Html.Editor("str", new { @class = "Extended_search_ajax_1_line_srch" })</p> </div>
+        <div>@Html.Label("Количество объявлений на одной странице", new { @class = "Extended_search_ajax_1_line_srch" }) <p>@Html.Editor("Count_ad_on_page", new { @class = "Extended_search_ajax_1_line_srch" })</p> </div>
+
+
+
+
+        <div>
+            @Html.Label("Город",new { @class = "Extended_search_ajax_1_line_srch" })
+            
+            <p>@Html.DropDownList("town", new SelectList(town), new { @class = "Extended_search_ajax_1_line_srch" })</p>
+</div>
+
+        <div>
+            @if (Model.category == "Квартиры")
+            {
+                <div>
+                    @Html.Label("Тип объявления", new { @class = "Extended_search_ajax_1_line_srch" })
+                    <p>@Html.DropDownList("type", new SelectList(new string[2] { "Продажа", "Аренда" }), new { @class = "Extended_search_ajax_1_line_srch" })</p>
+                    
+
+</div>
+                <div>
+                    @Html.Label("Тип недвижимости", new { @class = "Extended_search_ajax_1_line_srch" })
+                    <p>@Html.DropDownList("type2", new SelectList(new string[3] { "Жилая недвижимость", "Коммерческая недвижимость", "Загородная недвижимость" }), new { @class = "Extended_search_ajax_1_line_srch" })</p>
+
+</div>
+                
+                <div>
+                    @Html.Label("Страница поиска", new { @class = "Extended_search_ajax_1_line_srch" })
+                    <p> @Html.Editor("pg", new { @class = "Extended_search_ajax_1_line_srch" })</p></div>
+            }
+
+        </div>
+
+
+        <input type="submit" value="Расширенный поиск" class="Extended_search_ajax_1_button_inp" />
+        }
+
+
+    </div>
+

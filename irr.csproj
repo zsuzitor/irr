@@ -185,6 +185,8 @@
     <Content Include="Views\Home\list_ad.cshtml" />
     <Content Include="Views\Home\list_ad_ajax_1.cshtml" />
     <Content Include="Views\Home\Show_one_ad.cshtml" />
+    <Content Include="Views\Home\Extended_search.cshtml" />
+    <Content Include="Views\Home\Extended_search_ajax_1.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
