@@ -193,7 +193,7 @@ div.Real_estate_one_block{
 
 /*list_ad*/
 #form_for_ajax_1{
-    
+    margin-top:-30px;
      width: 50%;
      vertical-align: top;
      display: inline-block;
@@ -211,7 +211,17 @@ div.list_ad_block_right{
     min-height:1000px;
 }
 /*list_ad_ajax_1*/
-
+div.list_ad_ajax_1_price_div_lg{
+    
+    width:100%;
+    height:30px;
+}
+div.list_ad_ajax_1_price_div{
+    width:60px;
+    height:30px;
+    float:right;
+    border :1px solid black;
+}
 div.list_ad_ajax_1_block_one_ad{
     border-bottom :1px solid black;
     border-top :1px solid black;
@@ -247,6 +257,18 @@ div.ajaxLink_select{
     display: inline-block;
     background-color:#BC8F8F;
 }
+div.ajaxLink_select_size_1{
+     width:40px;
+    border :1px solid black;
+    display: inline-block;
+    background-color:#BC8F8F;
+}
+div.ajaxLink_select_size_2{
+     width:50px;
+    border :1px solid black;
+    display: inline-block;
+    background-color:#BC8F8F;
+}
 
 div.ajaxLink{
     width:30px;
@@ -255,6 +277,24 @@ div.ajaxLink{
     background-color:#FFE4C4;
 }
 div.ajaxLink:hover {
+    background-color:#FFF8DC;
+}
+div.ajaxLink_size_1{
+    width:40px;
+    border :1px solid black;
+    display: inline-block;
+    background-color:#FFE4C4;
+}
+div.ajaxLink_size_1:hover {
+    background-color:#FFF8DC;
+}
+div.ajaxLink_size_2{
+    width:50px;
+    border :1px solid black;
+    display: inline-block;
+    background-color:#FFE4C4;
+}
+div.ajaxLink_size_2:hover {
     background-color:#FFF8DC;
 }
 siv.list_ad_ajax_1_down{

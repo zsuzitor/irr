@@ -5,32 +5,34 @@ using System.Web;
 
 namespace irr.Models
 {
+  
     public class Entry
     {
-        public int Id;
-        public string Type_of_apartment;
-        public string Type_ad;
-            public string Url_page;
-           
-            public string Map;
-            public string Header;
-        public string Under_header;
-        public string Price;
-            public string Phone_number;
-            public string Name;
-            public string Place;
-            public string Link;
-            public string Description;
-         public List<string> Images;
-        public List<string> Info1;
-        public List<string> Info2;
-        public List<string> Info3;
+        public int Id { get; set; }
+        public string Type_of_apartment { get; set; }
+        public string Type_ad { get; set; }
+        public string Url_page { get; set; }
+        public bool VIP { get; set; }
+        public string Map { get; set; }
+        public string Header { get; set; }
+        public string Under_header { get; set; }
+        public string Price { get; set; }
+        public string Phone_number { get; set; }
+        public string Name { get; set; }
+        public string Place { get; set; }
+        public string Link { get; set; }
+        public string Description { get; set; }
+        public List<string> Images { get; set; }
+        public List<string> Info1 { get; set; }
+        public List<string> Info2 { get; set; }
+        public List<string> Info3 { get; set; }
         //public string Images;
-       // public string Info1;
-       // public string Info2;
+        // public string Info1;
+        // public string Info2;
         //public string Info3;
         public Entry()
         {
+            VIP = false;
             Type_of_apartment = "";
             Type_ad = "";
             Url_page = "";

@@ -13,11 +13,19 @@ namespace irr.Controllers
     public class HomeController : Controller
     {
         List<Entry> main_arr = new List<Entry>();
+        //EntryContext db = new EntryContext();
 
 
-//-SETTINGS/ADMIN BLOCK--------------------------------------------------------------------------------------------------------------------//
+        //-SETTINGS/ADMIN BLOCK--------------------------------------------------------------------------------------------------------------------//
         public void UP_nedo_bd()
         {
+
+            
+            //List<Entry> tffr = db.Entrys;
+
+
+
+
             StreamReader reader = new StreamReader(@"C:\Users\zsuz\Desktop\волгту\парсерPYквартирыirr\data.json");
             //чтение файла и разбивка по объектам+ добавление
             string next_str = "";
@@ -25,20 +33,23 @@ namespace irr.Controllers
             try
             {
                 int i = 0;
-                while(true)
+                bool tr = true;
+                while (tr)
                 {
                     char[] b = new char[10];
                     reader.Read(b, i * 0, 10);
                     string str = next_str + string.Concat(b);
-                   
+
                     b = new char[10];
                     ++i;
-                    while (str.IndexOf('}') == -1)
+                    while ((str.IndexOf('}') == -1)&&tr)
                     {
                         reader.Read(b, i * 0, 10);
                         str += string.Concat(b);
                         b = new char[10];
                         ++i;
+                        if (str.IndexOf('\0') != -1)
+                            tr = false;
                     }
                     string[] arr = str.Split('}');
                     try
@@ -57,19 +68,24 @@ namespace irr.Controllers
                     new_temp.Id = id_tmp;
                     ++id_tmp;
                     main_arr.Add(new_temp);
+                    //if (main_arr.Count == 271)
+                    //{ 
+                    //     int a112 = 0;
+                    //}
 
                 }
                     
                     }
             catch
             {
-
+               
             }
             
            
         }
         public ActionResult Index()
         {
+            //представление тоже удалить
             UP_nedo_bd();
           
             return View();
@@ -98,10 +114,12 @@ namespace irr.Controllers
             return PartialView(res);
         }
 
-        public ActionResult list_ad_ajax_1(string str="", string category= "all", string town= "Вся Россия", int Count_ad_on_page=10, string type= "all", string type2= "all-type", int pg=1)
+        public ActionResult list_ad_ajax_1(bool? price_bool=null,string str ="", string category= "all", string town= "Вся Россия", int Count_ad_on_page=10, string type= "all", string type2= "all-type", int pg=1)
         {
-            
-               irr.Models.Search srch = new Models.Search() { str = str, category = category, town = town, Count_ad_on_page = Count_ad_on_page, type = type, type2 = type2, pg = pg };
+            if (price_bool != null)
+                 price_bool = !price_bool;
+
+               irr.Models.Search srch = new Models.Search() { price_bool= price_bool, str = str, category = category, town = town, Count_ad_on_page = Count_ad_on_page, type = type, type2 = type2, pg = pg };
 
             //string type = "all", string type2 = "all-type", int pg = 1,
 
@@ -117,16 +135,7 @@ namespace irr.Controllers
 
 
             list_ad_View res = new list_ad_View() { Count_ad_on_page=srch.Count_ad_on_page, Type = srch.type, Type2= srch.type2, Current_page= srch.pg};
-            if (true)
-            {
-                int tmp = srch.pg - 2;
-                tmp = tmp > 1 ? tmp : 1;
-               for (int i=0;i<5;++i)
-                {
-                    res.str[i] = tmp;
-                    ++tmp;
-                }
-            }
+            
 
                 //int tmp = pg - i - 1;
                // res.str[i] = tmp > 1 ? tmp : 1;
@@ -144,15 +153,43 @@ namespace irr.Controllers
 
 
             //
-            res.str[5] = srch.Count_page;
-            res.Count_page = res.str[5];
+            
+            
+            if (true)
+            {
+                res.str.Add(1);
+                int tmp = srch.pg - 2;
+                tmp = tmp > 1 ? tmp : 2;
+                
+                for (int i = 1; i < 5&& tmp < srch.Count_page; ++i)
+                {
+                    res.str.Add(tmp);
+                    ++tmp;
+                }
+            }
+            if(srch.Count_page!=1)
+            {
+                res.str.Add(srch.Count_page);
+            }
+           
+            res.Count_page = srch.Count_page;
 
             return PartialView(res);
         }
-//END-PARTIAL BLOCK--------------------------------------------------------------------------------------------------------------------//
-       
 
-//-POST/FORM BLOCK--------------------------------------------------------------------------------------------------------------------//
+        [ChildActionOnly]
+        public ActionResult vip_entry(Search srch)
+        {
+            srch.VIP = true;
+
+            return PartialView();
+        }
+
+
+        //END-PARTIAL BLOCK--------------------------------------------------------------------------------------------------------------------//
+
+
+        //-POST/FORM BLOCK--------------------------------------------------------------------------------------------------------------------//
         //отправка формы с поиском
         [HttpPost]
         public ActionResult Search(string str, string category, string town)
@@ -274,7 +311,7 @@ public ActionResult Real_estate()
             res.list.Add(new Real_estate_block() {Name= "Жилая недвижимость",img= Url.Content("~/Content/img/gn.PNG"),
                 Type2="gn",
                 Sale =new Real_estate_block_lvl_2("Продажа", "sale", new string[4] { "1 комнатные", "2 комнатные", "3 комнатные", "4 комнатные" }) ,
-                Lease =new Real_estate_block_lvl_2("аренда", "lease", new string[4] { "1 комнатные", "2 комнатные", "3 комнатные", "4 комнатные" })
+                Lease =new Real_estate_block_lvl_2("Аренда", "lease", new string[4] { "1 комнатные", "2 комнатные", "3 комнатные", "4 комнатные" })
             }); 
 
 
@@ -284,7 +321,7 @@ public ActionResult Real_estate()
                 Name = "Коммерческая недвижимость", img = Url.Content("~/Content/img/kn.PNG"),
                 Type2 = "kn",
                 Sale = new Real_estate_block_lvl_2("Продажа", "sale", new string[4] { "1 комнатные", "2 комнатные", "3 комнатные", "4 комнатные" }),
-                Lease = new Real_estate_block_lvl_2("аренда", "lease", new string[4] { "1 комнатные", "2 комнатные", "3 комнатные", "4 комнатные" })
+                Lease = new Real_estate_block_lvl_2("Аренда", "lease", new string[4] { "1 комнатные", "2 комнатные", "3 комнатные", "4 комнатные" })
             });
             
                  res.list.Add(new Real_estate_block()
@@ -292,7 +329,7 @@ public ActionResult Real_estate()
                      Name = "Загородная недвижимость", img = Url.Content("~/Content/img/zn.PNG"),
                      Type2 = "zn",
                      Sale = new Real_estate_block_lvl_2("Продажа", "sale", new string[4] { "1 комнатные", "2 комнатные", "3 комнатные", "4 комнатные" }),
-                     Lease = new Real_estate_block_lvl_2("аренда", "lease", new string[4] { "1 комнатные", "2 комнатные", "3 комнатные", "4 комнатные" })
+                     Lease = new Real_estate_block_lvl_2("Аренда", "lease", new string[4] { "1 комнатные", "2 комнатные", "3 комнатные", "4 комнатные" })
                  });
 
             return View(res);
@@ -352,11 +389,27 @@ public ActionResult Real_estate()
                     srch.type2 = "Загородная недвижимость";
             }
 
-            
-                res = main_arr.
-                    Where(x1 => srch.type == "all" ? true : x1.Type_ad == srch.type ? true : false).
-                    Where(x2 => srch.type2 == "all-type" ? true : x2.Type_of_apartment == srch.type2 ? true : false).
-                    Where(x3 => (srch.town == "Вся Россия" ? true : x3.Place.IndexOf(srch.town) != -1) && (x3.search_str(srch.str))).ToList();//&&(x3.search_str(srch.str))
+
+            //цена сортируется не как число а как строка
+            var res_1 = main_arr.
+                Where(x1 => srch.type == "all" ? true : x1.Type_ad == srch.type ? true : false).
+                Where(x2 => srch.type2 == "all-type" ? true : x2.Type_of_apartment == srch.type2 ? true : false).
+                Where(x3 => (srch.town == "Вся Россия" ? true : x3.Place.IndexOf(srch.town) != -1) && (x3.search_str(srch.str))) ;//.OrderBy(x4=> int.TryParse(x4.Price))
+            if (srch.price_bool != null)
+            {
+                res_1 = res_1.OrderBy(x4 => x4.Price);
+                if (srch.price_bool == false)
+                {
+                    res_1 = res_1.Reverse();
+                }
+
+                
+            }
+                
+
+            res=res_1.ToList();
+
+
             srch.Count_page = res.Count / srch.Count_ad_on_page + 1;
             res = res.Skip((srch.pg > 0 ? srch.pg - 1 : srch.pg) * srch.Count_ad_on_page).
                     Take(srch.Count_ad_on_page).
