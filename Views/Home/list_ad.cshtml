@@ -20,15 +20,7 @@
 
         </div>
         <div class="list_ad_block_right">
-            <ul>
-                <li>test1</li>
-                <li>test2</li>
-                <li>test3</li>
-                <li>test4</li>
-                <li>test5</li>
-                <li>test6</li>
-
-            </ul>
+            @Html.Action("vip_entry", "Home", new { srch = Model.srch.copy() })
         </div>
 
     </div>

@@ -1,0 +1,19 @@
+﻿@model IEnumerable<irr.Models.Entry>
+
+@foreach (var i in Model)
+{
+    <div class="vip_entry_block_one_ad">
+
+
+        <div class="vip_entry_img">
+            <a href='@Url.Action("Show_one_ad", "Home",new { id = i.Id })'><img src="@i.Images[0]" /></a>
+
+        </div>
+        <div class="vip_entry_block_info_1_ad">
+            @Html.ActionLink(@i.Header, "Show_one_ad", "Home", new { id = i.Id }, new { @class = "link_standart_for_div" })
+            <div class="vip_entry_price_str">
+                @Html.ActionLink(@i.Price, "Show_one_ad", "Home", new { id = i.Id }, new { @class = "link_standart_for_div" })
+            </div>
+        </div>
+    </div>
+}

@@ -182,7 +182,8 @@ namespace irr.Controllers
         {
             srch.VIP = true;
 
-            return PartialView();
+            UP_nedo_bd();
+            return PartialView(search_bd(srch));
         }
 
 
@@ -404,6 +405,12 @@ public ActionResult Real_estate()
                 }
 
                 
+            }
+            if(srch.VIP)
+            {
+                res_1 = res_1.Where(x5 => x5.VIP);
+                res = res_1.ToList();
+                return res;
             }
                 
 

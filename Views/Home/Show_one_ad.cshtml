@@ -3,54 +3,81 @@
 @{
     ViewBag.Title = "Show_one_ad";
 }
+@section scripts
+    {
+    @Scripts.Render("~/scripts/jquery-1.10.2.js")
+    @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.js")
+}
 
 <div>
     <div>
         @Html.Action("Main_header", "Home")
     </div>
-    <div>
-        @foreach(var i in Model.Images)
+    <div class="Show_one_ad_body">
+        <div id="Show_one_ad_featured">
+            @foreach (var i in Model.Images)
+            {
+                <img src=@i  width="50"height="50"/>
+                                
+            }
+
+        </div>
+        <div  class="Show_one_ad_body_left">
+            <div class="Show_one_ad_header">@Model.Header</div>
+            <div class="Show_one_ad_Under_header">@Model.Under_header</div>
+            <div  class="Show_one_ad_Description">
+            <p class="Show_one_ad_block_name">Описание</p>
+            @Model.Description</div>
+            <div>
+                @if (Model.Info1.Count > 0)
+                {
+                    <div class="Show_one_ad_block_one_info">
+                        <p class="Show_one_ad_block_name">Инфо 1</p>
+                        @foreach (var i in Model.Info1)
+                        {
+                            <p>@i</p>
+                        }
+
+                    </div>
+                }
+                @if (Model.Info2.Count > 0)
+                {
+                    <div class="Show_one_ad_block_one_info">
+                        <p class="Show_one_ad_block_name">Инфо 2</p>
+                        @foreach (var i in Model.Info2)
+                        {
+                            <p>@i</p>
+                        }
+                    </div>
+                }
+@if (Model.Info3.Count > 0)
+{
+    <div class="Show_one_ad_block_one_info">
+        <p class="Show_one_ad_block_name">Инфо 3</p>
+        @foreach (var i in Model.Info3)
         {
-            <div>
-                <input type="image" name="image" src=@i width="50">
-            </div>
+            <p>@i</p>
         }
-
     </div>
-    <div>
-        <div>@Model.Header</div>
-        <div>@Model.Under_header</div>
-        <div>@Model.Description</div>
-        <div>
-            <div>
-                @foreach(var i in Model.Info1)
-                {
-                    <p>@i</p>
-                }
+}
+            </div>
+        </div>
+        <div class="Show_one_ad_body_right_1">
+            <div  class="Show_one_ad_price"><p>@Model.Price</p></div>
+            <div class="Show_one_ad_body_right_2">
+                <div class="Show_one_ad_body_right_3">
+                    <p  class="Show_one_ad_phone_number">@Model.Phone_number</p>
+                    </div>
+                    
+                    <div></div>
+                    <div><p class="Show_one_ad_name"> Имя: @Model.Name</p></div>
+                    <div><p  class="Show_one_ad_name">Место:</p>
+                        <p   class="Show_one_ad_name"> @Model.Place</p>
+</div>
+                    
+                </div>
 
             </div>
-            <div>
-                @foreach (var i in Model.Info2)
-                {
-                    <p>@i</p>
-                }
-            </div>
-            <div>
-                @foreach (var i in Model.Info3)
-                {
-                    <p>@i</p>
-                }
-            </div>
-             </div>
     </div>
-    <div>
-        <div><p>@Model.Price</p></div>
-        <div><p>@Model.Phone_number</p></div>
-        <div><p>@Model.Name</p></div>
-        <div><p>@Model.Place</p></div>
-        <div><p>@Model.Url_page</p></div>
-        
-    </div>
-
 </div>
 
