@@ -16,6 +16,8 @@ namespace irr.Controllers
         //EntryContext db = new EntryContext();
 
 
+        //TODO список категорий и именно его закидывать уже куда надо List<string> category = new List<string>() { "Квартиры", "Телефоны", "Животные", "Машины" };
+
         //-SETTINGS/ADMIN BLOCK--------------------------------------------------------------------------------------------------------------------//
         public void UP_nedo_bd()
         {
@@ -185,7 +187,18 @@ namespace irr.Controllers
             UP_nedo_bd();
             return PartialView(search_bd(srch));
         }
-
+        
+        public ActionResult Add_new_ad_ajax_1(string category)
+        {
+            //if (category == "Квартиры")
+            //{
+            //   irr.Models.Entry res = new irr.Models.Entry();
+            //  return View(res);
+            //}
+            ViewBag.category = category;
+            //
+            return View();
+        }
 
         //END-PARTIAL BLOCK--------------------------------------------------------------------------------------------------------------------//
 
@@ -231,6 +244,8 @@ namespace irr.Controllers
            // int c = 0;
            
         }
+        
+        
         [HttpPost]
         public ActionResult Extended_search(Search a)
         {
@@ -267,8 +282,29 @@ namespace irr.Controllers
             
 
         }
-        //END-POST/FORM BLOCK--------------------------------------------------------------------------------------------------------------------//
+        [HttpPost]
+        public ActionResult Add_new_ad(Entry a)
+        {
+            //irr.Models.Entry res = new irr.Models.Entry();
+            //
 
+            
+string serialized = JsonConvert.SerializeObject(a);
+            StreamWriter writer = new StreamWriter(@"C:\Users\zsuz\Desktop\волгту\парсерPYквартирыirr\data.json",true);
+            writer.Write(serialized);
+                 writer.Close();
+            //UP_nedo_bd();
+            //Entry res = main_arr.First(x1 => x1.Id == main_arr.Count+1);
+
+            return View("Show_one_ad", a);
+            //return View();
+        }
+        //END-POST/FORM BLOCK--------------------------------------------------------------------------------------------------------------------//
+        public ActionResult Add_new_ad()
+        {
+            //irr.Models.Entry res = new irr.Models.Entry();
+            return View();
+        }
 
         //главная страница с разделами
         public ActionResult Categories()
@@ -409,8 +445,8 @@ public ActionResult Real_estate()
             if(srch.VIP)
             {
                 res_1 = res_1.Where(x5 => x5.VIP);
-                res = res_1.ToList();
-                return res;
+                //res = res_1.ToList();
+                //return res;
             }
                 
 
@@ -418,7 +454,8 @@ public ActionResult Real_estate()
 
 
             srch.Count_page = res.Count / srch.Count_ad_on_page + 1;
-            res = res.Skip((srch.pg > 0 ? srch.pg - 1 : srch.pg) * srch.Count_ad_on_page).
+            int int_skip = (srch.pg > 0 ? srch.pg - 1 : srch.pg)*srch.Count_ad_on_page;
+            res = res.Skip(int_skip< res.Count? int_skip: res.Count- srch.Count_ad_on_page).
                     Take(srch.Count_ad_on_page).
                     ToList();
             

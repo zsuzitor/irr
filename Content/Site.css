@@ -67,6 +67,98 @@ div.for_separation{
 
 
 /*main_header*/
+div.main_header_link_Social{
+    
+    float:left;
+    margin-top:100px;
+    margin-left:5px;
+    height:60px;
+    width:50%;
+}
+div.main_header_vk_follow_div{
+ display:inline-block;
+	width: 60px;
+    height: 60px;
+    border-radius: 30px;
+    background-color: #FFF;
+    border: 2px solid black;
+}
+div.main_header_vk_follow_div:hover{
+    background-color:grey;
+}
+.main_header_vk_follow{
+    display: block; /* Ссылка как блочный элемент */
+     text-align: center; /* Выравнивание по центру */
+     height: 100%; /* Высота на весь слой */
+     color: black; /* Цвет ссылки */
+     margin-top:8px;
+     font-size:23pt;
+	text-decoration: none;
+	
+    
+}
+.main_header_vk_follow:hover{
+
+    color: white; /* Цвет ссылки */
+    text-decoration: none;
+}
+
+div.main_header_inst_follow_div{
+ display:inline-block;
+	width: 60px;
+    height: 60px;
+    border-radius: 30px;
+    background-color: #FFF;
+    border: 2px solid black;
+}
+div.main_header_inst_follow_div:hover{
+    background-color:grey;
+}
+.main_header_inst_follow{
+    display: block; /* Ссылка как блочный элемент */
+     text-align: center; /* Выравнивание по центру */
+     height: 100%; /* Высота на весь слой */
+     color: black; /* Цвет ссылки */
+     margin-top:8px;
+     font-size:23pt;
+	text-decoration: none;
+	
+    
+}
+.main_header_inst_follow:hover{
+
+    color: white; /* Цвет ссылки */
+    text-decoration: none;
+}
+div.main_header_gh_follow_div{
+ display:inline-block;
+	width: 60px;
+    height: 60px;
+    border-radius: 30px;
+    background-color: #FFF;
+    border: 2px solid black;
+}
+div.main_header_gh_follow_div:hover{
+    background-color:grey;
+}
+.main_header_gh_follow{
+    display: block; /* Ссылка как блочный элемент */
+     text-align: center; /* Выравнивание по центру */
+     height: 100%; /* Высота на весь слой */
+     color: black; /* Цвет ссылки */
+     margin-top:8px;
+     font-size:23pt;
+	text-decoration: none;
+	
+    
+}
+.main_header_gh_follow:hover{
+
+    color: white; /* Цвет ссылки */
+    text-decoration: none;
+}
+
+
 .main_header_str_search{
     width:100%;
     line-height:30px;
@@ -80,7 +172,6 @@ div.main_header_inline_block_form{
 
 div.main_header_div_lvl_1{
     height: 500px;
-    /*/background: url(Content/img/1_5_Alfa_zelenaya.jpg);*/
     background:  #C0C0C0;   
     
 
@@ -92,10 +183,12 @@ div.main_header_div_lvl_1{
     width: 100%;
     height:30px;
     font-size: 14pt;
+    transition: 3s;
 }
 
 #main_header_button_search:hover{
     background-color: green;
+    transition: 3s;
 }
 
 div.main_header_link_home{
@@ -114,9 +207,10 @@ div.main_header_link_add{
     border-radius: 10px;
 }
 div.main_header_form_all{
+    min-width:420px;
     margin-top: 100px;
     margin-left:20%;
-    height:100px;
+    height:200px;
     border:2px solid black;
      width:60%;
 }
@@ -128,7 +222,7 @@ div.main_header_inline_block_form{
 }
 div.main_header_Extended_search_div{
     float:right;
-    margin-top:35px;
+    margin-top:130px;
     width: 200px;
     height:30px;
     font-size: 10pt;
@@ -195,9 +289,12 @@ div.Real_estate_one_block{
 /*list_ad*/
 #form_for_ajax_1{
     margin-top:-30px;
-     width: 50%;
-     vertical-align: top;
-     display: inline-block;
+}
+div.form_for_ajax_1{
+    margin-top:0px; 
+    width: 50%; 
+    vertical-align: top;
+     display: inline-block; 
 }
 div.list_ad_body{
     margin-top:50px;
@@ -209,19 +306,36 @@ div.list_ad_block_right{
      width: 40%;
      background-color:green;
     display: inline-block;
-    min-height:1000px;
 }
+
+
+
+
 /*list_ad_ajax_1*/
+
+
+div.list_ad_ajax_1_load{
+    border-bottom :2px solid red;
+    font-size: 20pt;
+}
+div.list_ad_ajax_1_two_colums{
+    margin-top:20px;
+}
 div.list_ad_ajax_1_price_div_lg{
-    
+    margin-top:-50px;
     width:100%;
     height:30px;
 }
 div.list_ad_ajax_1_price_div{
     width:60px;
     height:30px;
-    float:right;
+    margin-left:400px;
     border :1px solid black;
+     transition: 3s;
+}
+div.list_ad_ajax_1_price_div:hover {
+    background-color:green;
+     transition: 3s;
 }
 div.list_ad_ajax_1_block_one_ad{
     border-bottom :1px solid black;
@@ -229,10 +343,13 @@ div.list_ad_ajax_1_block_one_ad{
      width: 100%;
     height:153px;
     background-color:#FFE4C4;
+    min-width:400px;
+     transition: 1s;
     
 }
 div.list_ad_ajax_1_block_one_ad:hover{
     background-color:#FFF8DC;
+     transition: 1s;
     
 }
 div.list_ad_ajax_1_img{
@@ -276,27 +393,33 @@ div.ajaxLink{
     border :1px solid black;
     display: inline-block;
     background-color:#FFE4C4;
+     
 }
 div.ajaxLink:hover {
     background-color:#FFF8DC;
+     
 }
 div.ajaxLink_size_1{
     width:40px;
     border :1px solid black;
     display: inline-block;
     background-color:#FFE4C4;
+     
 }
 div.ajaxLink_size_1:hover {
     background-color:#FFF8DC;
+     
 }
 div.ajaxLink_size_2{
     width:50px;
     border :1px solid black;
     display: inline-block;
     background-color:#FFE4C4;
+     
 }
 div.ajaxLink_size_2:hover {
     background-color:#FFF8DC;
+     
 }
 siv.list_ad_ajax_1_down{
   
@@ -317,10 +440,13 @@ div.vip_entry_block_one_ad{
      width: 100%;
     height:153px;
     background-color:#FF7F50;
+    min-width:400px;
+     transition: 1s;
     
 }
 div.vip_entry_block_one_ad:hover{
     background-color:#FFF8DC;
+     transition: 1s;
     
 }
 div.vip_entry_img{
@@ -359,7 +485,7 @@ div.Extended_search_div_form{
     vertical-align: top;
 }
 
-div.Extended_search__body{
+div.Extended_search_body{
    margin-top:50px;
     width: 80%;
      margin-left:10%; 
@@ -367,9 +493,11 @@ div.Extended_search__body{
 .Extended_search_button_inp{
     height:30px;
      font-size: 14pt;
+      transition: 3s;
 }
 .Extended_search_button_inp:hover{
     background-color: green;
+     transition: 3s;
 }
 
 /* Extended_search_ajax_1 */
@@ -382,9 +510,11 @@ div.Extended_search__body{
 .Extended_search_ajax_1_button_inp{
     height:30px;
      font-size: 14pt;
+      transition: 3s;
 }
 .Extended_search_ajax_1_button_inp:hover{
     background-color: green;
+     transition: 3s;
 }
 
 
@@ -424,9 +554,12 @@ div.Show_one_ad_body_right_3{
     margin-top:5px;
     height:60px;
      background-color:#DC143C;
+      transition: 3s;
 }
 div.Show_one_ad_body_right_3:hover {
+
     background-color:#FFA07A;
+     transition: 3s;
     
 }
 div.Show_one_ad_header{

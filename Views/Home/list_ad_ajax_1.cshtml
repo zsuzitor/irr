@@ -5,72 +5,88 @@
     @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.js")
     }
 <div class="list_ad_ajax_1_price_div_lg">
+    <div id="loading_1" class="list_ad_ajax_1_load" style="display: none">
+        <p>Loading Data...</p>
+    </div>
     <div class="list_ad_ajax_1_price_div">
         @Ajax.ActionLink("Цена", "list_ad_ajax_1", "Home",
 new { price_bool = Model.srch.price_bool==null?false: Model.srch.price_bool, str = Model.srch.str, category = Model.srch.category, town = Model.srch.town, Count_ad_on_page = Model.srch.Count_ad_on_page, type = Model.srch.type, type2 = Model.srch.type2 },
     new AjaxOptions
     {
-        UpdateTargetId = "form_for_ajax_1"
+        UpdateTargetId = "form_for_ajax_1",
+        LoadingElementId = "loading_1",
+        LoadingElementDuration = 1000
 
     }, new { @class = "link_standart_for_div" })
 
 
     </div>
 </div>
-@foreach (var i in Model.list)
-{
-    string tmp = "list_ad_ajax_1_";
-    if(i.VIP)
+<div class="list_ad_ajax_1_two_colums">
+<div class="form_for_ajax_1">
+    @foreach (var i in Model.list)
     {
-        tmp = "vip_entry_";
-    }
-    <div class=@string.Concat(tmp,"block_one_ad") >
+        string tmp = "list_ad_ajax_1_";
+        if (i.VIP)
+        {
+            tmp = "vip_entry_";
+        }
+        <div class=@string.Concat(tmp,"block_one_ad")>
 
-       
-        <div class=@string.Concat(tmp, "img")>
-            <a href='@Url.Action("Show_one_ad", "Home",new { id = i.Id })'><img src="@i.Images[0]" /></a>
-            
-        </div>
-        <div class= @string.Concat(tmp, "block_info_1_ad")>
-            @Html.ActionLink(@i.Header, "Show_one_ad", "Home", new { id = i.Id }, new { @class = "link_standart_for_div" })
-            <div class=@string.Concat(tmp, "price_str")>
-                @Html.ActionLink(@i.Price, "Show_one_ad", "Home", new { id = i.Id }, new { @class = "link_standart_for_div" })
+
+            <div class=@string.Concat(tmp, "img")>
+                <a href='@Url.Action("Show_one_ad", "Home",new { id = i.Id })'><img src="@i.Images[0]" /></a>
+
+            </div>
+            <div class=@string.Concat(tmp, "block_info_1_ad")>
+                @Html.ActionLink(@i.Header, "Show_one_ad", "Home", new { id = i.Id }, new { @class = "link_standart_for_div" })
+                <div class=@string.Concat(tmp, "price_str")>
+                    @Html.ActionLink(@i.Price, "Show_one_ad", "Home", new { id = i.Id }, new { @class = "link_standart_for_div" })
+                </div>
             </div>
         </div>
+    }
     </div>
-}
-
-<div class="list_ad_ajax_1_link_block">
-    @foreach (var i in Model.str)
-    {
-        string tmp_class = "ajaxLink";
-        if (i == Model.srch.pg)
+    <div class="list_ad_block_right">
+        @Html.Action("vip_entry", "Home", new { srch = Model.srch.copy() })
+    </div>
+</div>
+<div id="loading_2" class="list_ad_ajax_1_load" style="display: none">
+    <p>Loading Data...</p>
+</div>
+    <div class="list_ad_ajax_1_link_block">
+        @foreach (var i in Model.str)
         {
-            tmp_class = "ajaxLink_select";
-        }
-        if(i>100)
-        { tmp_class+="_size_1"; }
-        if (i > 1000)
-        { tmp_class += "_size_2"; }
+            string tmp_class = "ajaxLink";
+            if (i == Model.srch.pg)
+            {
+                tmp_class = "ajaxLink_select";
+            }
+            if (i > 100)
+            { tmp_class += "_size_1"; }
+            if (i > 1000)
+            { tmp_class += "_size_2"; }
 
-        <div class=@tmp_class>
+            <div class=@tmp_class>
 
 
-            @Ajax.ActionLink(i.ToString(), "list_ad_ajax_1", "Home",
-new { price_bool = Model.srch.price_bool, str =Model.srch.str, category= Model.srch.category, town= Model.srch.town, Count_ad_on_page= Model.srch.Count_ad_on_page, type= Model.srch.type, type2= Model.srch.type2, pg= i },
+                @Ajax.ActionLink(i.ToString(), "list_ad_ajax_1", "Home",
+new { price_bool = Model.srch.price_bool, str = Model.srch.str, category = Model.srch.category, town = Model.srch.town, Count_ad_on_page = Model.srch.Count_ad_on_page, type = Model.srch.type, type2 = Model.srch.type2, pg = i },
     new AjaxOptions
     {
-        UpdateTargetId = "form_for_ajax_1"
+        UpdateTargetId = "form_for_ajax_1",
+        LoadingElementId = "loading_2",
+        LoadingElementDuration = 1000
 
     }, new { @class = "link_standart_for_div" })
-        </div>
-    }
+            </div>
+        }
 
 
-</div>
-<div class="list_ad_ajax_1_down">
-    <p> </p>
-</div>
+    </div>
+    <div class="list_ad_ajax_1_down">
+        <p> </p>
+    </div>
 
 
 

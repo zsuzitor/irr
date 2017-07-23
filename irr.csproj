@@ -188,6 +188,8 @@
     <Content Include="Views\Home\Extended_search.cshtml" />
     <Content Include="Views\Home\Extended_search_ajax_1.cshtml" />
     <Content Include="Views\Home\vip_entry.cshtml" />
+    <Content Include="Views\Home\Add_new_ad.cshtml" />
+    <Content Include="Views\Home\Add_new_ad_ajax_1.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

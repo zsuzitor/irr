@@ -1,0 +1,42 @@
+﻿@model irr.Models.Entry
+@section scripts
+    {
+    @Scripts.Render("~/scripts/jquery-1.10.2.js")
+    @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.js")
+}
+@{
+    ViewBag.Title = "Add_new_ad";
+    List<string> category = new List<string>() { "Квартиры", "Телефоны", "Животные", "Машины" };
+    AjaxOptions ajaxOpts = new AjaxOptions
+    {
+        UpdateTargetId = "Add_new_ad_id_for_ajax",
+        Url = Url.Action("Add_new_ad_ajax_1")
+    };
+}
+
+
+
+
+<div>
+    <div>
+        @Html.Action("Main_header", "Home")
+    </div>
+
+    <div class="Add_new_ad_body">
+        <div class="Add_new_ad_div_form">
+            @using (Ajax.BeginForm(ajaxOpts))
+            {
+                @Html.DropDownList("category", new SelectList(category), new {  })
+                <input type="submit" value="Выбрать категорию" class="Add_new_ad_button_inp" />
+            }
+        </div>
+        <div id="Add_new_ad_id_for_ajax">
+            @Html.Action("Add_new_ad_ajax_1", "Home", new { category = category[0] })
+        </div>
+    </div>
+
+
+</div>
+
+
+
