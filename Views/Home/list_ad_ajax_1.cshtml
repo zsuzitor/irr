@@ -41,7 +41,7 @@ new { price_bool = Model.srch.price_bool==null?false: Model.srch.price_bool, str
             <div class=@string.Concat(tmp, "block_info_1_ad")>
                 @Html.ActionLink(@i.Header, "Show_one_ad", "Home", new { id = i.Id }, new { @class = "link_standart_for_div" })
                 <div class=@string.Concat(tmp, "price_str")>
-                    @Html.ActionLink(@i.Price, "Show_one_ad", "Home", new { id = i.Id }, new { @class = "link_standart_for_div" })
+                    @Html.ActionLink(@i.Price.ToString(), "Show_one_ad", "Home", new { id = i.Id }, new { @class = "link_standart_for_div" })
                 </div>
             </div>
         </div>

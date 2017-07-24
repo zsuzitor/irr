@@ -22,12 +22,12 @@ namespace irr.Controllers
         public void UP_nedo_bd()
         {
 
-            
+
             //List<Entry> tffr = db.Entrys;
 
 
-
-
+            
+           // StreamWriter writer = new StreamWriter(@"C:\csharp\asp1\kniga\irr\irr\Content\data.json", true);
             StreamReader reader = new StreamReader(@"C:\Users\zsuz\Desktop\волгту\парсерPYквартирыirr\data.json");
             //чтение файла и разбивка по объектам+ добавление
             string next_str = "";
@@ -65,15 +65,144 @@ namespace irr.Controllers
 
                     }
                     //сделать объект entry
+
+
+                    string a123 = arr[0].Substring(0, arr[0].IndexOf("Price")+9);
+                    string a1233= arr[0].Substring(arr[0].IndexOf("Price") + 5, 30);
+                    string a12333 = "";
+                    var a12334 = a1233.ToCharArray();
+                    for (int i44=0;i44< a12334.Length;++i44)
+                    {
+                        if (char.IsDigit(a12334[i44]))
+                        {
+                            a12333 += a12334[i44];
+                        }
+                    }
+                    a123 += a12333+ arr[0].Substring(arr[0].IndexOf("Phone_number") -4);
+                    arr[0] = a123;
+                    a123 = arr[0].Substring(arr[0].IndexOf("\"Общая площадь\":")+18,20);
+                    double a123_int = 0;
+                    string tmp123 = "";
+                    bool flag = true;
+                    foreach(var i44 in a123.ToCharArray())
+                    {
+                        if(flag&&(i44=='.'||char.IsDigit(i44)))
+                        {
+                            tmp123 += i44;
+                        }
+                        else
+                        {
+                            flag = false;
+                        }
+                            
+                    }
+                    double.TryParse(tmp123, out a123_int);
+
+
+
+
+                    a123 = arr[0].Substring(arr[0].IndexOf("\"Жилая площадь\": ") + 18, 20);
+                    double a12344_int = 0;
+                     tmp123 = "";
+                     flag = true;
+                    foreach (var i44 in a123.ToCharArray())
+                    {
+                        if (flag && (i44 == '.' || char.IsDigit(i44)))
+                        {
+                            tmp123 += i44;
+                        }
+                        else
+                        {
+                            flag = false;
+                        }
+
+                    }
+                    double.TryParse(tmp123, out a12344_int);
+
+
+
+
+
+
+                    flag = true;
+                    tmp123 = "";
+                    string tmp1234 = "";
+                    a123 = arr[0].Substring(arr[0].IndexOf(" \"Этаж\":")+10, 20);
+                    foreach (var i44 in a123.ToCharArray())
+                    {
+                        if (flag)
+                        {
+                            if (char.IsDigit(i44))
+                            {
+                                tmp123 += i44;
+                                
+                            }
+                            else
+                            flag = false;
+                        }
+                        else
+                        {
+                            if (char.IsDigit(i44))
+                            {
+                                tmp1234 += i44;
+                                
+                            }
+                           
+                        }
+
+                    }
+
+
+                    int a1234_int = 0;
+                    int.TryParse(tmp123, out a1234_int);
+                    int a12345_int = 0;
+                    int.TryParse(tmp1234, out a12345_int);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                     Entry new_temp = new Entry();
+
                     new_temp = JsonConvert.DeserializeObject<Entry>(arr[0]);
+                    if (a123_int == 0)
+                        new_temp.Total_area = null;
+                    else
+                        new_temp.Total_area = a123_int;
+                    if (a1234_int == 0)
+                        new_temp.Floor = null;
+                    else
+                        new_temp.Floor = a1234_int;
+
+                    if (a12345_int == 0)
+                        new_temp.Count_floor = null;
+                    else
+                        new_temp.Count_floor = a12345_int;
+
+                    if (a12344_int == 0)
+                        new_temp.Residential_area = null;
+                    else
+                        new_temp.Residential_area = a12344_int;
+                    
+
                     new_temp.Id = id_tmp;
                     ++id_tmp;
                     main_arr.Add(new_temp);
-                    //if (main_arr.Count == 271)
-                    //{ 
-                    //     int a112 = 0;
-                    //}
+
+                    //string serialized = JsonConvert.SerializeObject(new_temp);
+
+                    //writer.Write(serialized);
+                    
 
                 }
                     
@@ -82,8 +211,10 @@ namespace irr.Controllers
             {
                
             }
-            
-           
+
+
+
+           // writer.Close();
         }
         public ActionResult Index()
         {

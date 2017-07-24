@@ -16,7 +16,13 @@ namespace irr.Models
         public string Map { get; set; }
         public string Header { get; set; }
         public string Under_header { get; set; }
-        public string Price { get; set; }
+        public int ?Price { get; set; }
+        public int ?Count_rooms{ get; set; }
+        public double ?Total_area { get; set; }
+        public double? Residential_area { get; set; }
+        
+        public int? Floor { get; set; }
+        public int? Count_floor { get; set; }
         public string Phone_number { get; set; }
         public string Name { get; set; }
         public string Place { get; set; }
@@ -39,7 +45,7 @@ namespace irr.Models
             Map = "";
             Header = "";
             Under_header = "";
-            Price = "";
+            Price = 0;
             Phone_number = "";
             Name = "";
             Place = "";
@@ -68,7 +74,7 @@ namespace irr.Models
                 return true;
             if (Under_header.IndexOf(str) != -1)
                 return true;
-            if (Price.IndexOf(str) != -1)
+            if (Price.ToString().IndexOf(str) != -1)
                 return true;
             if (Phone_number.IndexOf(str) != -1)
                 return true;
