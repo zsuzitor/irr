@@ -1,10 +1,102 @@
-﻿@{ 
+﻿
+<script>
+    function isVisible(tag) {
+        var t = $(tag);
+        var w = $(window);
+        var wt = w.scrollTop();
+        var tt = t.offset().top;
+        var tb = tt + t.height();
+        return (tb <= wt) ;
+    }
+
+    $(function () {
+        $(window).scroll(function () {
+            var b = $(".main_header_div_lvl_1");
+            if (!b.prop("shown") && isVisible(b)) {
+                b.prop("shown", true);
+                var o = document.getElementById("main_header_small_id")
+             
+                o.style.display = 'block';
+
+            }
+            else {
+                if (b.prop("shown") && !isVisible(b)) {
+                    b.prop("shown", false);
+                    var o = document.getElementById("main_header_small_id")
+
+                    o.style.display = 'none';
+                }
+            }
+        });
+    });
+
+    /*
+    function isVisible(tag) {
+        var t = $(tag);
+        var w = $(window);
+        var wt = w.scrollTop();
+        var tt = t.offset().top;
+        var tb = tt + t.height();
+        return (tb <= wt) ;
+    }
+
+    $(function () {
+        $(window).scroll(function () {
+            var b = $(".main_header_div_lvl_1");
+            if (!b.prop("shown") && isVisible(b)) {
+                b.prop("shown", true);
+                alert("послать сигнал");
+            }
+        });
+    });
+    */
+
+   /* function isVisible(tag) {
+        var t = $(tag);
+        var w = $(window);
+        var wt = w.scrollTop();
+        var tt = t.offset().top;
+        var tb = tt + t.height();
+        return ((tb <= wt + w.height()) && (tt >= wt));
+    }
+
+    $(function () {
+        $(window).scroll(function () {
+            var b = $(".Show_one_ad_block_name");
+            if (!b.prop("shown") && isVisible(b)) {
+                b.prop("shown", true);
+                alert("послать сигнал");
+            }
+        });
+    });*/
+</script>
+@{ 
     List<string> town = new List<string>() {"Вся Россия","Москва","Петербург","Пермь","Воронеж","Казань","Сочи","Саратов" };
 
 
     List<string> category = new List<string>() { "Все типы", "Квартиры", "Телефоны", "Животные", "Машины" };
 
 }
+<div id="main_header_small_id" class="main_header_small">
+    <div class="main_header_small_link_Social">
+        <div class="main_header_vk_follow_div">
+            <a title="Vkontakte" class="main_header_vk_follow" href="https://vk.com/zsuzitor">VK</a>
+        </div>
+        <div class="main_header_inst_follow_div">
+            <a title="instagram" class="main_header_inst_follow" href="https://instagram.com/zsuzitor/">Isnt</a>
+        </div>
+        <div class="main_header_gh_follow_div">
+            <a title="github" class="main_header_gh_follow" href="https://github.com/zsuzitor/">GH</a>
+        </div>
+
+
+    </div>
+
+    <div class="main_header_small_Extended_search_div">
+        @Html.ActionLink("Расширенный поиск", "Extended_search", "Home", new { }, new { @class = "link_standart_for_div" })
+    </div>
+
+</div>
 <div class="main_header_div_lvl_1">
     <div class="main_header_link_home">
         @Html.ActionLink("Главная", "Categories", "Home", null, new {@class= "link_standart_for_div" ,id="main_header_sr_text"})
@@ -67,3 +159,5 @@
 
     </div>
     </div>
+
+

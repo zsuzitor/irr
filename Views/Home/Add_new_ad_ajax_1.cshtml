@@ -11,53 +11,80 @@
 
 @using (Html.BeginForm("Add_new_ad", "Home"))
 {
+    
+        @Html.Label((string)@ViewBag.category, new { @class= "Add_new_ad_ajax_1_text_big" })
+    
 
     <div>
-        @Html.Label("Хедер", new { })
-        <p> @Html.Editor("Header", new { })</p>
-        @Html.Label("Под Хедер", new { })
-        <p> @Html.Editor("Under_header", new { })</p>
-        @Html.Label("Цена", new { })
-        <p> @Html.Editor("Price", new { })</p>
-        @Html.Label("Номер телефона", new { })
-        <p> @Html.Editor("Phone_number", new { })</p>
-        @Html.Label("Имя", new { })
-        <p> @Html.Editor("Name", new { })</p>
-        @Html.Label("Адрес", new { })
-        <p> @Html.Editor("Place", new { })</p>
-        @Html.Label("Описание", new { })
-        <p> @Html.Editor("Description", new { })</p>
-        @Html.Label("ссылки на картинки", new { })
-        <p> @Html.Editor("Images", new { })</p>
-
-        @Html.Label("Платные услуги", new { })
-        @Html.RadioButton("VIP", "VIP", new { })
-
-        @if (ViewBag.category == "Квартиры")
-        {
-            @Html.Label("Квартиры", new {  })
-            @Html.Label("ТИп жилья", new { })
-            <p>@Html.DropDownList("Type_of_apartment", new SelectList(new string[3] { "Жилая недвижимость", "Коммерческая недвижимость", "Загородная недвижимость" }), new { })</p>
-            @Html.Label("Тип объявления", new { })
-            <p>@Html.DropDownList("Type_ad", new SelectList(new string[2] { "Продажа", "Аренда" }), new {  })</p>
-            @Html.Label("Ссылка на крату", new { })
-            <p> @Html.Editor("Map", new { })</p>
-            
-
-            
-            @Html.Label("Инфо1", new { })
-            <p> @Html.Editor("Info1", new { })</p>
-            @Html.Label("Инф2", new { })
-            <p> @Html.Editor("Info2", new { })</p>
-            @Html.Label("Инфо3", new { })
-            <p> @Html.Editor("Info3", new { })</p>
+        <ul>
+            <li>
+                @Html.Label("Платные услуги", new { @class = "Add_new_ad_ajax_1_text_small" })
+                <p>
+                    @Html.CheckBox("VIP", new { @class = "Add_new_ad_ajax_1_check_box" })
 
 
+                </p>
+            </li>
+            <li>
+                @Html.Label("Хедер", new { @class = "Add_new_ad_ajax_1_text_small" })
+                <p> @Html.Editor("Header", new {  })</p>
+            </li>
+            <li>
+                @Html.Label("Под Хедер", new { @class = "Add_new_ad_ajax_1_text_small" })
+                <p> @Html.Editor("Under_header", new {  })</p>
+            </li><li>
+    @Html.Label("Цена", new { @class = "Add_new_ad_ajax_1_text_small" })
+    <p> @Html.Editor("Price", new { })</p>
+</li><li>
+    @Html.Label("Номер телефона", new { @class = "Add_new_ad_ajax_1_text_small" })
+    <p> @Html.Editor("Phone_number", new { })</p>
+</li><li>
+    @Html.Label("Имя", new { @class = "Add_new_ad_ajax_1_text_small" })
+    <p> @Html.Editor("Name", new {  })</p>
+</li><li>
+    @Html.Label("Адрес", new { @class = "Add_new_ad_ajax_1_text_small" })
+    <p> @Html.Editor("Place", new {  })</p>
+</li><li>
+    @Html.Label("Описание", new { @class = "Add_new_ad_ajax_1_text_small" })
+    <p> @Html.TextArea("Description", new { @class = "Add_new_ad_ajax_1_text_heigh" })</p>
 
-            
-        }
+</li><li>
+    @Html.Label("ссылки на картинки", new { @class = "Add_new_ad_ajax_1_text_small" })
+    <p> @Html.Editor("Images", new { })</p>
 
-        <input type="submit" value="Создать" class="Extended_search_ajax_1_button_inp" />
+</li>
+
+                
+
+            <li>
+                @Html.Label("Тип жилья", new { @class = "Add_new_ad_ajax_1_text_small" })
+                <p>@Html.DropDownList("Type_of_apartment", new SelectList(new string[3] { "Жилая недвижимость", "Коммерческая недвижимость", "Загородная недвижимость" }), new { @class = "Add_new_ad_ajax_1_drop_d_l_inp" })</p>
+            </li> <li>
+    @Html.Label("Тип объявления", new { @class = "Add_new_ad_ajax_1_text_small" })
+    <p>@Html.DropDownList("Type_ad", new SelectList(new string[2] { "Продажа", "Аренда" }), new { @class = "Add_new_ad_ajax_1_drop_d_l_inp" })</p>
+</li><li>
+    @Html.Label("Ссылка на крату", new { @class = "Add_new_ad_ajax_1_text_small" })
+    <p> @Html.Editor("Map", new { })</p>
+
+
+
+</li> <li>
+    @Html.Label("Инфо1", new { @class = "Add_new_ad_ajax_1_text_small" })
+    <p> @Html.TextArea("Info1", new { @class = "Add_new_ad_ajax_1_text_heigh" })</p>
+
+</li> <li>
+    @Html.Label("Инфо2", new { @class = "Add_new_ad_ajax_1_text_small" })
+    <p> @Html.TextArea("Info2", new { @class = "Add_new_ad_ajax_1_text_heigh" })</p>
+</li><li>
+    @Html.Label("Инфо3", new { @class = "Add_new_ad_ajax_1_text_small" })
+    <p> @Html.TextArea("Info3", new { @class = "Add_new_ad_ajax_1_text_heigh" })</p>
+
+
+</li>
+</ul>
+    
+
+        <input type="submit" value="Создать" class="Add_new_ad_ajax_1_button_inp" />
     </div>
 
 }

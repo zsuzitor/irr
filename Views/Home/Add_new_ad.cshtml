@@ -26,7 +26,7 @@
         <div class="Add_new_ad_div_form">
             @using (Ajax.BeginForm(ajaxOpts))
             {
-                @Html.DropDownList("category", new SelectList(category), new {  })
+                @Html.DropDownList("category", new SelectList(category), new { @class = "Add_new_ad_drop_d_l_inp" })
                 <input type="submit" value="Выбрать категорию" class="Add_new_ad_button_inp" />
             }
         </div>

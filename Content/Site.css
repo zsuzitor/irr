@@ -17,11 +17,11 @@
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
-input,
+/*input,
 select,
-textarea {
+textarea{
     max-width: 280px;
-}
+}*/ 
 
 
 
@@ -61,12 +61,47 @@ div.for_separation{
 
 }
 
+div.start_bot{
+    height:50px;
+    background-color:#C0C0C0;
+    margin-top:10px;
+}
+div.start_visual_place{
+    min-height:200px;
+    
+        background-color:grey;
+
+}
+
 
 
 
 
 
 /*main_header*/
+div.main_header_small{
+    margin-top:-50px;
+    height:70px;
+    width:100%;
+    display:none;
+    background-color: #C0C0C0;
+    position:fixed;
+    
+}
+div.main_header_small_link_Social{
+    float:left;
+    margin-top:5px;
+    margin-left:5px;
+    height:60px;
+    width:50%;
+}
+div.main_header_small_Extended_search_div{
+    float:right;
+    margin-top:35px;
+    width: 200px;
+    height:30px;
+    font-size: 10pt;
+}
 div.main_header_link_Social{
     
     float:left;
@@ -602,4 +637,76 @@ div.Show_one_ad_price{
 }
 .Show_one_ad_name{
     font-size:20pt;
+}
+.Add_new_ad_button_inp{
+
+ height:30px;
+     font-size: 14pt;
+      transition: 3s;
+}
+.Add_new_ad_button_inp:hover{
+    background-color: green;
+     transition: 3s;
+}
+.Add_new_ad_drop_d_l_inp{
+    height:30px;
+     font-size: 14pt;
+     width:200px;
+}
+
+
+/*Add_new_ad*/
+div.Add_new_ad_body{
+    margin-top:50px;
+    width: 80%;
+     margin-left:10%; 
+}
+div.Add_new_ad_div_form{
+    
+     
+      width:100%;
+}
+#Add_new_ad_id_for_ajax{
+    
+     
+     width:100%;
+     background-color:#FFFFF0;
+}
+
+/*Add_new_ad_ajax_1*/
+.Add_new_ad_ajax_1_text_big{
+    font-size:25pt;
+}
+
+.Add_new_ad_ajax_1_text_small{
+    font-size:20pt;
+}
+.Add_new_ad_ajax_1_text_heigh{
+    /*cols:40; 
+    rows:5;*/
+    min-height:200px;
+    min-width:150px;
+    width:300px;
+    max-width:500px;
+    
+}
+.Add_new_ad_ajax_1_drop_d_l_inp{
+    height:30px;
+     font-size: 14pt;
+     width:200px;
+}
+
+.Add_new_ad_ajax_1_button_inp{
+
+ height:30px;
+     font-size: 14pt;
+      transition: 3s;
+      width:300px;
+}
+.Add_new_ad_ajax_1_button_inp:hover{
+    background-color: green;
+     transition: 3s;
+}
+.Add_new_ad_ajax_1_check_box{
+    
 }
