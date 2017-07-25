@@ -30,7 +30,7 @@
         <ul>
             @foreach (var i2 in i.Sale.list)
             {
-                <li> @Html.ActionLink(i2, "", "", new { }, new { @class = "Real_estate_ref" })</li>
+                <li> @Html.ActionLink(i2, "list_ad", "Home", new { Count_rooms = char.GetNumericValue(i2[0]) }, new { @class = "Real_estate_ref" })</li>
 
             }
         </ul>
@@ -42,7 +42,7 @@
             @foreach (var i2 in i.Lease.list)
             {
                 <li>
-                    @Html.ActionLink(i2, "", "", new { }, new { @class = "Real_estate_ref" })
+                    @Html.ActionLink(i2, "list_ad", "Home", new { Count_rooms = char.GetNumericValue(i2[0]) }, new { @class = "Real_estate_ref" })
                 </li>
 
             }

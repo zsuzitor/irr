@@ -26,9 +26,10 @@ namespace irr.Controllers
             //List<Entry> tffr = db.Entrys;
 
 
-            
-           // StreamWriter writer = new StreamWriter(@"C:\csharp\asp1\kniga\irr\irr\Content\data.json", true);
-            StreamReader reader = new StreamReader(@"C:\Users\zsuz\Desktop\волгту\парсерPYквартирыirr\data.json");
+
+            // StreamWriter writer = new StreamWriter(@"C:\csharp\asp1\kniga\irr\irr\Content\data.json", true);
+            //StreamReader reader = new StreamReader(@"C:\Users\zsuz\Desktop\волгту\парсерPYквартирыirr\data.json");
+            StreamReader reader = new StreamReader(@"C:\csharp\asp1\kniga\irr\irr\Content\data.json");
             //чтение файла и разбивка по объектам+ добавление
             string next_str = "";
             int id_tmp = 1;
@@ -66,7 +67,7 @@ namespace irr.Controllers
                     }
                     //сделать объект entry
 
-
+                    /*
                     string a123 = arr[0].Substring(0, arr[0].IndexOf("Price")+9);
                     string a1233= arr[0].Substring(arr[0].IndexOf("Price") + 5, 30);
                     string a12333 = "";
@@ -171,10 +172,11 @@ namespace irr.Controllers
 
 
 
-
+    */
                     Entry new_temp = new Entry();
-
+                    
                     new_temp = JsonConvert.DeserializeObject<Entry>(arr[0]);
+                    /*
                     if (a123_int == 0)
                         new_temp.Total_area = null;
                     else
@@ -193,7 +195,7 @@ namespace irr.Controllers
                         new_temp.Residential_area = null;
                     else
                         new_temp.Residential_area = a12344_int;
-                    
+                     */
 
                     new_temp.Id = id_tmp;
                     ++id_tmp;
@@ -247,12 +249,14 @@ namespace irr.Controllers
             return PartialView(res);
         }
 
-        public ActionResult list_ad_ajax_1(bool? price_bool=null,string str ="", string category= "all", string town= "Вся Россия", int Count_ad_on_page=10, string type= "all", string type2= "all-type", int pg=1)
+        public ActionResult list_ad_ajax_1(bool filter=false,string search=null)
         {
-            if (price_bool != null)
-                 price_bool = !price_bool;
+            irr.Models.Search srch = irr.Models.Search.FromString(search);
+            if (filter)
+            if (srch.price_bool != null)
+                    srch.price_bool = !srch.price_bool;
 
-               irr.Models.Search srch = new Models.Search() { price_bool= price_bool, str = str, category = category, town = town, Count_ad_on_page = Count_ad_on_page, type = type, type2 = type2, pg = pg };
+              
 
             //string type = "all", string type2 = "all-type", int pg = 1,
 
@@ -421,7 +425,7 @@ namespace irr.Controllers
 
             
 string serialized = JsonConvert.SerializeObject(a);
-            StreamWriter writer = new StreamWriter(@"C:\Users\zsuz\Desktop\волгту\парсерPYквартирыirr\data.json",true);
+            StreamWriter writer = new StreamWriter(@"C:\csharp\asp1\kniga\irr\irr\Content\data.json", true);
             writer.Write(serialized);
                  writer.Close();
             //UP_nedo_bd();
@@ -455,7 +459,7 @@ string serialized = JsonConvert.SerializeObject(a);
         //отображение списка с объявлениями
         //type= тип объявления type2 тип квартиры
 
-        public ActionResult list_ad(string type="all", string type2 = "all-type", int pg=1)//,Search srch=null
+        public ActionResult list_ad(string type="all", string type2 = "all-type", int pg=1,int ?Count_rooms=null)//,Search srch=null
         {
             // type2   gn kn zn
             //type sale lease
@@ -465,6 +469,8 @@ string serialized = JsonConvert.SerializeObject(a);
             res.srch.pg =pg ;
             res.srch.type = type;
             res.srch.type2 = type2;
+            res.srch.Count_rooms_bot = Count_rooms;
+            res.srch.Count_rooms_top = Count_rooms;
 
 
             return View(res);
@@ -558,7 +564,7 @@ public ActionResult Real_estate()
             }
 
 
-            //цена сортируется не как число а как строка
+            
             var res_1 = main_arr.
                 Where(x1 => srch.type == "all" ? true : x1.Type_ad == srch.type ? true : false).
                 Where(x2 => srch.type2 == "all-type" ? true : x2.Type_of_apartment == srch.type2 ? true : false).
@@ -579,9 +585,61 @@ public ActionResult Real_estate()
                 //res = res_1.ToList();
                 //return res;
             }
-                
 
-            res=res_1.ToList();
+
+
+
+
+
+
+
+            if (srch.Id!=null)
+            {
+                res_1 = res_1.Where(x5 => x5.Id== srch.Id);
+                
+            }
+            if (srch.Price_bot != null|| srch.Price_top != null)//
+            {
+                res_1 = res_1.Where(x5 => (x5.Price >= (srch.Price_bot == null ? 0 : srch.Price_bot)) && ((srch.Price_top == null ? true : x5.Price <= srch.Price_top)));//&& x5.Price >= srch.Price_top);
+
+            }
+            if (srch.Count_rooms_bot != null || srch.Count_rooms_top != null)
+            {
+                res_1 = res_1.Where(x5 => (x5.Count_rooms >= (srch.Count_rooms_bot == null ? 0 : srch.Count_rooms_bot)) && ((srch.Count_rooms_top == null ? true : x5.Count_rooms <= srch.Count_rooms_top)));
+               
+
+            }
+            if (srch.Total_area_bot != null || srch.Total_area_top != null)
+            {
+                res_1 = res_1.Where(x5 => (x5.Total_area >= (srch.Total_area_bot == null ? 0 : srch.Total_area_bot)) && ((srch.Total_area_top == null ? true : x5.Total_area <= srch.Total_area_top)));
+               
+
+            }
+            if (srch.Residential_area_bot != null || srch.Residential_area_top != null)
+            {
+                res_1 = res_1.Where(x5 => (x5.Residential_area >= (srch.Residential_area_bot == null ? 0 : srch.Residential_area_bot)) && ((srch.Residential_area_top == null ? true : x5.Residential_area <= srch.Residential_area_top)));
+
+
+            }
+            if (srch.Floor != null)
+            {
+                res_1 = res_1.Where(x5 => x5.Floor== srch.Floor);
+
+
+            }
+            if (srch.Count_floor != null)
+            {
+                res_1 = res_1.Where(x5 => x5.Count_floor== srch.Count_floor);
+
+            }
+            if (srch.Place != null)
+            {
+                res_1 = res_1.Where(x5 => x5.Place.IndexOf(srch.Place) != -1);
+
+            }
+
+
+            res =res_1.ToList();
 
 
             srch.Count_page = res.Count / srch.Count_ad_on_page + 1;
