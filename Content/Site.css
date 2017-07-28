@@ -30,6 +30,7 @@ textarea{
      text-align: center; /* Выравнивание по центру */
      height: 100%; /* Высота на весь слой */
      color: black; /* Цвет ссылки */
+
 }
 a{
     color: black; /* Цвет ссылки */
@@ -79,6 +80,66 @@ div.start_visual_place{
 
 
 /*main_header*/
+
+#main_header_small_preloader {
+    
+    width: 70px;
+    height: 70px;
+    display:none;
+    position:fixed;
+    z-index: 2;
+    margin-left:50%;
+    margin-top:-50px;
+    border:2px solid black;
+    /*
+    display: inline-block;
+    vertical-align: top;
+    display:none;
+        */
+    background: url('https://www.sstnet.com.br/img/preload.gif') no-repeat center center;
+ }
+div.main_header_small_Extended_search_div{
+    float:right;
+    margin-top:35px;
+    width: 200px;
+    height:30px;
+    font-size: 10pt;
+    border: 1px solid black;
+    display: inline-block;
+    vertical-align: top;
+    /*35*/
+   
+    /*test*/
+   /* display: inline-block;
+    vertical-align: top;
+       */
+}
+/*
+#page-preloader {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background: #000;
+    z-index: 100500;
+}
+
+#page-preloader .spinner {
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    background: url('/images/spinner.gif') no-repeat 50% 50%;
+    margin: -16px 0 0 -16px;
+}*/
+
+
+
+
+
+
 div.main_header_small{
     margin-top:-50px;
     height:70px;
@@ -93,15 +154,23 @@ div.main_header_small_link_Social{
     margin-top:5px;
     margin-left:5px;
     height:60px;
-    width:50%;
+    width:40%;
+    display: inline-block;
+    vertical-align: top;
 }
-div.main_header_small_Extended_search_div{
-    float:right;
+div.main_header_small_link_home{
+    float:left;
     margin-top:35px;
-    width: 200px;
+    margin-left:5px;
     height:30px;
-    font-size: 10pt;
+    width:100px;
+    display: inline-block;
+    vertical-align: top;
+    border: 1px solid black;
+    
+
 }
+
 div.main_header_link_Social{
     
     float:left;
@@ -367,8 +436,36 @@ div.list_ad_ajax_1_price_div{
     margin-left:400px;
     border :1px solid black;
      transition: 3s;
+     display: inline-block;
+    vertical-align: top;
 }
 div.list_ad_ajax_1_price_div:hover {
+    background-color:green;
+     transition: 3s;
+}
+div.list_ad_ajax_1_cancel_div{
+    width:65px;
+    height:30px;
+    margin-left:5px;
+    border :1px solid black;
+     transition: 3s;
+     display: inline-block;
+    vertical-align: top;
+}
+div.list_ad_ajax_1_cancel_div:hover {
+    background-color:green;
+     transition: 3s;
+}
+div.list_ad_ajax_1_rooms_div{
+     width:90px;
+    height:30px;
+    margin-left:5px;
+    border :1px solid black;
+     transition: 3s;
+     display: inline-block;
+    vertical-align: top;
+}
+div.list_ad_ajax_1_rooms_div:hover {
     background-color:green;
      transition: 3s;
 }

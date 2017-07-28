@@ -17,6 +17,8 @@ namespace irr.Models
         public string type2 { get; set; }
         public int pg { get; set; }
         public bool? price_bool { get; set; }
+        public bool? rooms_bool { get; set; }
+        
         public bool VIP { get; set; }
         public int? Id { get; set; }
         public int? Price_bot { get; set; }
@@ -48,7 +50,8 @@ namespace irr.Models
             Place = "";
             VIP = false;
             price_bool = null;
-             str = "";
+            rooms_bool = null;
+            str = "";
          category = "all";
          town = "Вся Россия";
         Count_ad_on_page = 10;
@@ -81,11 +84,13 @@ namespace irr.Models
             type2 = a.type2;
             pg = a.pg;
             price_bool = a.price_bool;
+            rooms_bool = a.rooms_bool;
         }
         public Search copy()
         {
             Search res = new Search() {
                 VIP = this.VIP, price_bool = this.price_bool, str = this.str, category = this.category, town = this.town, Count_ad_on_page = this.Count_ad_on_page,
+                rooms_bool=this.rooms_bool,
                 type = this.type,type2 = this.type2,pg = this.pg,
                 Id = this.Id,
                 Price_bot = this.Price_bot,

@@ -6,25 +6,57 @@
     }
 @{ 
     irr.Models.Search srch_for_price = Model.srch.copy();
+    irr.Models.Search srch_for_rooms = Model.srch.copy();
     srch_for_price.price_bool = Model.srch.price_bool == null ? false : Model.srch.price_bool;
+    srch_for_rooms.rooms_bool = Model.srch.rooms_bool == null ? false : Model.srch.rooms_bool;
 }
 <div class="list_ad_ajax_1_price_div_lg">
     <div id="loading_1" class="list_ad_ajax_1_load" style="display: none">
         <p>Loading Data...</p>
     </div>
-    <div class="list_ad_ajax_1_price_div">
-        @Ajax.ActionLink("Цена", "list_ad_ajax_1", "Home",
-new { filter=true, search= srch_for_price.ToString() },
+    <div><div class="list_ad_ajax_1_price_div">
+    @Ajax.ActionLink("Цена", "list_ad_ajax_1", "Home",
+new { filter = "price", search = srch_for_price.ToString() },
     new AjaxOptions
     {
         UpdateTargetId = "form_for_ajax_1",
-        LoadingElementId = "loading_1",
+        LoadingElementId = "main_header_small_preloader",
         LoadingElementDuration = 1000
 
     }, new { @class = "link_standart_for_div" })
 
 
+</div>
+        <div class="list_ad_ajax_1_rooms_div">
+            @Ajax.ActionLink("Комнаты", "list_ad_ajax_1", "Home",
+new { filter = "rooms", search = srch_for_rooms.ToString() },
+    new AjaxOptions
+    {
+        UpdateTargetId = "form_for_ajax_1",
+        LoadingElementId = "main_header_small_preloader",
+        LoadingElementDuration = 1000
+
+    }, new { @class = "link_standart_for_div" })
+
+
+        </div>
+        <div class="list_ad_ajax_1_cancel_div">
+            @Ajax.ActionLink("Сброс", "list_ad_ajax_1", "Home",
+new { filter = "cancel", search = Model.srch.ToString() },
+    new AjaxOptions
+    {
+        UpdateTargetId = "form_for_ajax_1",
+        LoadingElementId = "main_header_small_preloader",
+        LoadingElementDuration = 1000
+
+    }, new { @class = "link_standart_for_div" })
+
+
+        </div>
+    
+    
     </div>
+    
 </div>
 <div class="list_ad_ajax_1_two_colums">
 <div class="form_for_ajax_1">
@@ -75,11 +107,11 @@ new { filter=true, search= srch_for_price.ToString() },
 
 
                 @Ajax.ActionLink(i.ToString(), "list_ad_ajax_1", "Home",
-new { search = Model.srch.ToString() },
+new { search = new irr.Models.Search(Model.srch) {pg= i }.ToString() },
     new AjaxOptions
     {
         UpdateTargetId = "form_for_ajax_1",
-        LoadingElementId = "loading_2",
+        LoadingElementId = "main_header_small_preloader",
         LoadingElementDuration = 1000
 
     }, new { @class = "link_standart_for_div" })

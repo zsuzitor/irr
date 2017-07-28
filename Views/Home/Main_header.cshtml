@@ -77,7 +77,11 @@
     List<string> category = new List<string>() { "Все типы", "Квартиры", "Телефоны", "Животные", "Машины" };
 
 }
+<div id="main_header_small_preloader"></div>
 <div id="main_header_small_id" class="main_header_small">
+    <div class="main_header_small_link_home">
+        @Html.ActionLink("Главная", "Categories", "Home", null, new { @class = "link_standart_for_div" })
+    </div>
     <div class="main_header_small_link_Social">
         <div class="main_header_vk_follow_div">
             <a title="Vkontakte" class="main_header_vk_follow" href="https://vk.com/zsuzitor">VK</a>
@@ -91,6 +95,8 @@
 
 
     </div>
+    
+    
 
     <div class="main_header_small_Extended_search_div">
         @Html.ActionLink("Расширенный поиск", "Extended_search", "Home", new { }, new { @class = "link_standart_for_div" })

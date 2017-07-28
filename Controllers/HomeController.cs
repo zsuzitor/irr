@@ -249,14 +249,36 @@ namespace irr.Controllers
             return PartialView(res);
         }
 
-        public ActionResult list_ad_ajax_1(bool filter=false,string search=null)
+        public ActionResult list_ad_ajax_1(string filter="",string search=null)
         {
             irr.Models.Search srch = irr.Models.Search.FromString(search);
-            if (filter)
-            if (srch.price_bool != null)
-                    srch.price_bool = !srch.price_bool;
+            
+            if(filter!="cancel")
+            {
+                if (filter == "price")
+                    if (srch.price_bool != null)
+                    {
+                        srch.pg = 1;
+                        srch.price_bool = !srch.price_bool;
+                    }
+                        
+                if (filter == "rooms")
+                    if (srch.rooms_bool != null)
+                    {
+                        srch.pg = 1;
+                        srch.rooms_bool = !srch.rooms_bool;
+                    }
+                        
+            }
+            else
+            {
+                srch.pg = 1;
+                srch.price_bool = null;
+                srch.rooms_bool = null;
+            }
 
-              
+
+
 
             //string type = "all", string type2 = "all-type", int pg = 1,
 
@@ -447,11 +469,11 @@ string serialized = JsonConvert.SerializeObject(a);
             Categories_View categories_View = new Categories_View();
             //блок с продажей
             categories_View.Sale.Name = "Продажа недвижимости";
-            categories_View.Sale.list_cat.AddRange(new string[4] { "1 комнатные", "2 комнатные", "3 комнатные", "4 комнатные" });
+            categories_View.Sale.list_cat.AddRange(new string[5] { "1 комнатные", "2 комнатные", "3 комнатные", "4 комнатные", "5 и более" });
             //блок с арендой
 
             categories_View.Lease.Name = "Аренда недвижимости";
-            categories_View.Lease.list_cat.AddRange(new string[4] { "1 комнатные", "2 комнатные", "3 комнатные", "4 комнатные" });
+            categories_View.Lease.list_cat.AddRange(new string[5] { "1 комнатные", "2 комнатные", "3 комнатные", "4 комнатные", "5 и более" });
 
             return View(categories_View);
         }
@@ -470,6 +492,9 @@ string serialized = JsonConvert.SerializeObject(a);
             res.srch.type = type;
             res.srch.type2 = type2;
             res.srch.Count_rooms_bot = Count_rooms;
+            if (Count_rooms == 5)
+                res.srch.Count_rooms_top = null;
+            else
             res.srch.Count_rooms_top = Count_rooms;
 
 
@@ -484,8 +509,8 @@ public ActionResult Real_estate()
            
             res.list.Add(new Real_estate_block() {Name= "Жилая недвижимость",img= Url.Content("~/Content/img/gn.PNG"),
                 Type2="gn",
-                Sale =new Real_estate_block_lvl_2("Продажа", "sale", new string[4] { "1 комнатные", "2 комнатные", "3 комнатные", "4 комнатные" }) ,
-                Lease =new Real_estate_block_lvl_2("Аренда", "lease", new string[4] { "1 комнатные", "2 комнатные", "3 комнатные", "4 комнатные" })
+                Sale =new Real_estate_block_lvl_2("Продажа", "sale", new string[5] { "1 комнатные", "2 комнатные", "3 комнатные", "4 комнатные", "5 и более" }) ,
+                Lease =new Real_estate_block_lvl_2("Аренда", "lease", new string[5] { "1 комнатные", "2 комнатные", "3 комнатные", "4 комнатные", "5 и более" })
             }); 
 
 
@@ -494,16 +519,16 @@ public ActionResult Real_estate()
             {
                 Name = "Коммерческая недвижимость", img = Url.Content("~/Content/img/kn.PNG"),
                 Type2 = "kn",
-                Sale = new Real_estate_block_lvl_2("Продажа", "sale", new string[4] { "1 комнатные", "2 комнатные", "3 комнатные", "4 комнатные" }),
-                Lease = new Real_estate_block_lvl_2("Аренда", "lease", new string[4] { "1 комнатные", "2 комнатные", "3 комнатные", "4 комнатные" })
+                Sale = new Real_estate_block_lvl_2("Продажа", "sale", new string[5] { "1 комнатные", "2 комнатные", "3 комнатные", "4 комнатные", "5 и более" }),
+                Lease = new Real_estate_block_lvl_2("Аренда", "lease", new string[5] { "1 комнатные", "2 комнатные", "3 комнатные", "4 комнатные", "5 и более" })
             });
             
                  res.list.Add(new Real_estate_block()
                  {
                      Name = "Загородная недвижимость", img = Url.Content("~/Content/img/zn.PNG"),
                      Type2 = "zn",
-                     Sale = new Real_estate_block_lvl_2("Продажа", "sale", new string[4] { "1 комнатные", "2 комнатные", "3 комнатные", "4 комнатные" }),
-                     Lease = new Real_estate_block_lvl_2("Аренда", "lease", new string[4] { "1 комнатные", "2 комнатные", "3 комнатные", "4 комнатные" })
+                     Sale = new Real_estate_block_lvl_2("Продажа", "sale", new string[5] { "1 комнатные", "2 комнатные", "3 комнатные", "4 комнатные", "5 и более" }),
+                     Lease = new Real_estate_block_lvl_2("Аренда", "lease", new string[5] { "1 комнатные", "2 комнатные", "3 комнатные", "4 комнатные", "5 и более" })
                  });
 
             return View(res);
@@ -569,6 +594,13 @@ public ActionResult Real_estate()
                 Where(x1 => srch.type == "all" ? true : x1.Type_ad == srch.type ? true : false).
                 Where(x2 => srch.type2 == "all-type" ? true : x2.Type_of_apartment == srch.type2 ? true : false).
                 Where(x3 => (srch.town == "Вся Россия" ? true : x3.Place.IndexOf(srch.town) != -1) && (x3.search_str(srch.str))) ;//.OrderBy(x4=> int.TryParse(x4.Price))
+            if (srch.VIP)
+            {
+                res_1 = res_1.Where(x5 => x5.VIP);
+                //res = res_1.ToList();
+                //return res;
+            }
+
             if (srch.price_bool != null)
             {
                 res_1 = res_1.OrderBy(x4 => x4.Price);
@@ -579,12 +611,17 @@ public ActionResult Real_estate()
 
                 
             }
-            if(srch.VIP)
+            if (srch.rooms_bool != null)
             {
-                res_1 = res_1.Where(x5 => x5.VIP);
-                //res = res_1.ToList();
-                //return res;
+                res_1 = res_1.OrderBy(x4 => x4.Count_rooms);
+                if (srch.rooms_bool == false)
+                {
+                    res_1 = res_1.Reverse();
+                }
+
+
             }
+            
 
 
 
@@ -605,6 +642,7 @@ public ActionResult Real_estate()
             }
             if (srch.Count_rooms_bot != null || srch.Count_rooms_top != null)
             {
+
                 res_1 = res_1.Where(x5 => (x5.Count_rooms >= (srch.Count_rooms_bot == null ? 0 : srch.Count_rooms_bot)) && ((srch.Count_rooms_top == null ? true : x5.Count_rooms <= srch.Count_rooms_top)));
                
 
