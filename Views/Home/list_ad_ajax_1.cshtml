@@ -11,9 +11,7 @@
     srch_for_rooms.rooms_bool = Model.srch.rooms_bool == null ? false : Model.srch.rooms_bool;
 }
 <div class="list_ad_ajax_1_price_div_lg">
-    <div id="loading_1" class="list_ad_ajax_1_load" style="display: none">
-        <p>Loading Data...</p>
-    </div>
+    
     <div><div class="list_ad_ajax_1_price_div">
     @Ajax.ActionLink("Цена", "list_ad_ajax_1", "Home",
 new { filter = "price", search = srch_for_price.ToString() },
@@ -87,9 +85,7 @@ new { filter = "cancel", search = Model.srch.ToString() },
         @Html.Action("vip_entry", "Home", new { srch = Model.srch.copy() })
     </div>
 </div>
-<div id="loading_2" class="list_ad_ajax_1_load" style="display: none">
-    <p>Loading Data...</p>
-</div>
+
     <div class="list_ad_ajax_1_link_block">
         @foreach (var i in Model.str)
         {

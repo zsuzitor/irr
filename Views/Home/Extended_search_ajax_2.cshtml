@@ -1,0 +1,93 @@
+﻿@model irr.Models.Search
+@section scripts
+    {
+    @Scripts.Render("~/scripts/jquery-1.10.2.js")
+    @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.js")
+    }
+<script>
+    $(document).ready(function () {
+        $('.Extended_search_ajax_2_close').click(function () {
+            var a = document.getElementById("list_ad_form_for_ajax_2");
+             //a.style.display = "none";
+            a.style.width = "60px";
+            a.style.top = "560px";
+        }
+        )
+    });
+    
+
+    function OnSuccess1(data) {
+        var a = document.getElementById("list_ad_form_for_ajax_2");
+        a.style.display = "block";
+    }
+    function OnSuccess2(data) {
+        var a = document.getElementById("list_ad_form_for_ajax_2");
+        //a.style.display = "block";
+        //alert("");
+        a.style.width = "300px";
+        a.style.top = "-235px";
+       /* setTimeout(function () {
+            var a = document.getElementById("list_ad_form_for_ajax_2");
+    a.style.width = "300px";
+        a.style.top = "-235px";
+    }, 1000);*/
+        //a.style.width = "300px";
+        //a.style.top = "-235px";
+
+    }
+
+
+
+
+
+
+
+    //не работает
+    /*$(function () {
+        $(window).scroll(function () {
+            var b = document.getElementById("list_ad_form_for_ajax_2");
+            if (b.style.bottom > document.documentElement.clientHeight)
+            {
+                //alert(b.getBoundingClientRect().bottom);
+                alert(b.style.bottom);
+                b.style.bottom = document.documentElement.clientHeight;
+            }
+            if (b.style.top <60) {
+                alert(b.style.top);
+                b.style.top = "700px";
+            }
+        });
+    });*/
+</script>
+@if (Model.flag == false)
+{
+    <div id="list_ad_extended_search_id" class="list_ad_extended_search">
+        @Ajax.ActionLink("Поиск", "Extended_search_ajax_2", "Home", new { flag = true,  category =Model.category }, new AjaxOptions
+   {
+       UpdateTargetId = "list_ad_form_for_ajax_2",
+       LoadingElementId = "main_header_small_preloader",
+       LoadingElementDuration = 1000,
+       OnSuccess = "OnSuccess2"
+
+
+
+   }, new { @class = "link_standart_for_div" })
+
+    </div>
+}
+@if (Model.flag == true)
+{
+    <div><div class="Extended_search_ajax_2_close">
+        @Ajax.ActionLink("X", "Extended_search_ajax_2", "Home", new { flag = false, category = Model.category }, new AjaxOptions
+   {
+       UpdateTargetId = "list_ad_form_for_ajax_2",
+       LoadingElementId = "main_header_small_preloader",
+       LoadingElementDuration = 1000,
+       OnSuccess = "OnSuccess1"
+
+   }, new { @class = "link_standart_for_div" })
+        </div></div>
+    
+    @Html.Action("Extended_search_ajax_3","Home",new { category = "Квартиры" })
+
+}

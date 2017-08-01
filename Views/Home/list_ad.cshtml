@@ -14,6 +14,10 @@
     <div>
         @Html.Action("Main_header", "Home")
     </div>
+    <div id="list_ad_form_for_ajax_2">
+    @Html.Action("Extended_search_ajax_2", "Home",new { category=Model.srch.category })
+    </div>
+    
     <div  class="list_ad_body">
         <div id="form_for_ajax_1">
             @Html.Action("list_ad_ajax_1", "Home", new { search = Model.srch.ToString()  })

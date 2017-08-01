@@ -19,10 +19,23 @@
     @using (Html.BeginForm("Extended_search", "Home"))
     {
         <div>
+            <h1>@Html.Label(Model.category, new { })</h1>
            <h1>@Html.Label("Все поля не обязательны",new{ })</h1></div>
            @Html.HiddenFor(x1=>x1.category)
+        <div>@Html.Label("Найти конкретную запись?(Id)", new { @class = "Extended_search_ajax_1_line_srch" })<p> @Html.EditorFor(x1=>x1.Id, new { @class = "Extended_search_ajax_1_line_srch" })</p> </div>
+
+        <div>
+            @Html.Label("Цена", new { @class = "Extended_search_ajax_1_line_srch" })
+            @Html.Label("От:", new { @class = "Extended_search_ajax_1_line_srch" })
+            @Html.EditorFor(x1=>x1.Price_bot)
+
+            @Html.Label("До:", new { @class = "Extended_search_ajax_1_line_srch" })
+            @Html.EditorFor(x1 => x1.Price_top)
+        </div>
+
+
         <div>@Html.Label("Ключевое слово", new { @class = "Extended_search_ajax_1_line_srch" })<p> @Html.Editor("str", new { @class = "Extended_search_ajax_1_line_srch" })</p> </div>
-        <div>@Html.Label("Количество объявлений на одной странице", new { @class = "Extended_search_ajax_1_line_srch" }) <p>@Html.Editor("Count_ad_on_page", new { @class = "Extended_search_ajax_1_line_srch" })</p> </div>
+        <div>@Html.Label("Количество объявлений на одной странице", new { @class = "Extended_search_ajax_1_line_srch" }) <p>@Html.EditorFor(x1=>x1.Count_ad_on_page, new { @class = "Extended_search_ajax_1_line_srch" })</p> </div>
 
 
 
@@ -32,8 +45,16 @@
             
             <p>@Html.DropDownList("town", new SelectList(town), new { @class = "Extended_search_ajax_1_line_srch" })</p>
 </div>
+    <div>
+        @Html.Label("Только VIP объявления", new { @class = "Extended_search_ajax_1_line_srch" })
+
+        <p>@Html.EditorFor(x1=>x1.VIP)</p>
+    </div>
 
         <div>
+
+
+
             @if (Model.category == "Квартиры")
             {
                 <div>
@@ -47,7 +68,40 @@
                     <p>@Html.DropDownList("type2", new SelectList(new string[3] { "Жилая недвижимость", "Коммерческая недвижимость", "Загородная недвижимость" }), new { @class = "Extended_search_ajax_1_line_srch" })</p>
 
 </div>
-                
+
+            <div>
+                @Html.Label("Количество комнат", new { @class = "Extended_search_ajax_1_line_srch" })
+                @Html.Label("От:", new { @class = "Extended_search_ajax_1_line_srch" })
+                @Html.EditorFor(x1 => x1.Count_rooms_bot)
+
+                @Html.Label("До:", new { @class = "Extended_search_ajax_1_line_srch" })
+                @Html.EditorFor(x1 => x1.Count_rooms_top)
+            </div>
+            <div>
+                @Html.Label("Жилая площадь", new { @class = "Extended_search_ajax_1_line_srch" })
+                @Html.Label("От:", new { @class = "Extended_search_ajax_1_line_srch" })
+                @Html.EditorFor(x1 => x1.Residential_area_bot)
+
+                @Html.Label("До:", new { @class = "Extended_search_ajax_1_line_srch" })
+                @Html.EditorFor(x1 => x1.Residential_area_top)
+            </div>
+            <div>
+                @Html.Label("Общая площадь", new { @class = "Extended_search_ajax_1_line_srch" })
+                @Html.Label("От:", new { @class = "Extended_search_ajax_1_line_srch" })
+                @Html.EditorFor(x1 => x1.Total_area_bot)
+
+                @Html.Label("До:", new { @class = "Extended_search_ajax_1_line_srch" })
+                @Html.EditorFor(x1 => x1.Total_area_top)
+            </div>
+
+            <div>
+                @Html.Label("Этаж", new { @class = "Extended_search_ajax_1_line_srch" })
+                @Html.EditorFor(x1 => x1.Floor)
+            </div>
+            <div>
+                @Html.Label("Общее количество этажей", new { @class = "Extended_search_ajax_1_line_srch" })
+                @Html.EditorFor(x1 => x1.Count_floor)
+            </div>
                 <div>
                     @Html.Label("Страница поиска", new { @class = "Extended_search_ajax_1_line_srch" })
                     <p> @Html.Editor("pg", new { @class = "Extended_search_ajax_1_line_srch" })</p></div>

@@ -1,0 +1,120 @@
+﻿@model irr.Models.Search
+
+
+@{
+    List<string> town = new List<string>() { "Вся Россия", "Москва", "Петербург", "Пермь", "Воронеж", "Казань", "Сочи", "Саратов" };
+
+
+
+
+}
+@section scripts
+    {
+    @Scripts.Render("~/scripts/jquery-1.10.2.js")
+    @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.js")
+}
+
+
+<div>
+    @using (Html.BeginForm("Extended_search", "Home"))
+    {
+        <div>
+            <h1>@Html.Label("Все поля не обязательны", new { @class = "Extended_search_ajax_3_line_srch" })</h1>
+        </div>
+        @Html.HiddenFor(x1 => x1.category)
+        <div>@Html.Label("Найти конкретную запись?(Id)", new { @class = "Extended_search_ajax_3_line_srch" })<p> @Html.EditorFor(x1 => x1.Id )</p> </div>
+
+        <div>
+
+            @Html.Label("Цена", new { @class = "Extended_search_ajax_3_line_srch" })
+            <div>
+                <div class="Extended_search_ajax_3_div_inline_3_symbol">@Html.Label("От:", new { @class = "Extended_search_ajax_3_line_srch" })</div>
+                <div class="Extended_search_ajax_3_div_inline">@Html.EditorFor(x1 => x1.Price_bot)</div>
+            </div>
+            <div>
+            <div class="Extended_search_ajax_3_div_inline_3_symbol">@Html.Label("До:", new { @class = "Extended_search_ajax_3_line_srch" })</div>
+            <div class="Extended_search_ajax_3_div_inline">@Html.EditorFor(x1 => x1.Price_top)</div>
+        </div>
+
+        </div>
+
+
+        
+
+        <div>
+            @Html.Label("Город", new { @class = "Extended_search_ajax_3_line_srch" })
+
+            <p>@Html.DropDownList("town", new SelectList(town), new { @class = "Extended_search_ajax_3_line_srch" })</p>
+        </div>
+        
+
+        <div>
+
+
+
+            @if (Model.category == "Квартиры")
+            {
+                <div>
+                    @Html.Label("Тип объявления", new { @class = "Extended_search_ajax_3_line_srch" })
+                    <p>@Html.DropDownList("type", new SelectList(new string[2] { "Продажа", "Аренда" }), new { @class = "Extended_search_ajax_3_line_srch" })</p>
+
+
+                </div>
+                <div>
+                    @Html.Label("Тип недвижимости", new { @class = "Extended_search_ajax_3_line_srch" })
+                    <p>@Html.DropDownList("type2", new SelectList(new string[3] { "Жилая недвижимость", "Коммерческая недвижимость", "Загородная недвижимость" }), new { @class = "Extended_search_ajax_3_line_srch" })</p>
+
+                </div>
+
+                <div>
+                    @Html.Label("Количество комнат", new { @class = "Extended_search_ajax_3_line_srch" })
+                    <div>
+                        <div class="Extended_search_ajax_3_div_inline_3_symbol">@Html.Label("От:", new { @class = "Extended_search_ajax_3_line_srch" })</div>
+                        <div class="Extended_search_ajax_3_div_inline">@Html.EditorFor(x1 => x1.Count_rooms_bot)</div>
+                    </div>
+                        <div>
+                            <div class="Extended_search_ajax_3_div_inline_3_symbol">@Html.Label("До:", new { @class = "Extended_search_ajax_3_line_srch" })</div>
+                            <div class="Extended_search_ajax_3_div_inline">@Html.EditorFor(x1 => x1.Count_rooms_top)</div>
+                        </div>
+
+
+                        </div>
+                <div>
+                    @Html.Label("Жилая площадь", new { @class = "Extended_search_ajax_3_line_srch" })
+                    <div>
+                        <div class="Extended_search_ajax_3_div_inline_3_symbol">@Html.Label("От:", new { @class = "Extended_search_ajax_3_line_srch" })</div>
+                        <div class="Extended_search_ajax_3_div_inline">@Html.EditorFor(x1 => x1.Residential_area_bot)</div>
+                    </div>
+                    <div>
+                        <div class="Extended_search_ajax_3_div_inline_3_symbol">@Html.Label("До:", new { @class = "Extended_search_ajax_3_line_srch" })</div>
+                        <div class="Extended_search_ajax_3_div_inline">@Html.EditorFor(x1 => x1.Residential_area_top)</div>
+                    </div>
+
+                        </div>
+                <div>
+                    @Html.Label("Общая площадь", new { @class = "Extended_search_ajax_3_line_srch" })
+                   
+                    <div>
+                        <div class="Extended_search_ajax_3_div_inline_3_symbol">@Html.Label("От:", new { @class = "Extended_search_ajax_3_line_srch" })</div>
+                        <div class="Extended_search_ajax_3_div_inline">@Html.EditorFor(x1 => x1.Total_area_bot)</div>
+                    </div>
+                    <div>
+                        <div class="Extended_search_ajax_3_div_inline_3_symbol">@Html.Label("До:", new { @class = "Extended_search_ajax_3_line_srch" })</div>
+                        <div class="Extended_search_ajax_3_div_inline">@Html.EditorFor(x1 => x1.Total_area_top)</div>
+
+                    </div>
+                        </div>
+
+
+                
+            }
+
+        </div>
+
+
+        <input type="submit" value="Расширенный поиск" class="Extended_search_ajax_1_button_inp" />
+    }
+
+
+</div>
+

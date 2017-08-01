@@ -56,6 +56,7 @@ li {
 line-height:30px;
     height:30px;
     font-size: 14pt;
+    width:100%;
    }
 
 div.for_separation{
@@ -147,6 +148,7 @@ div.main_header_small{
     display:none;
     background-color: #C0C0C0;
     position:fixed;
+    z-index:100;
     
 }
 div.main_header_small_link_Social{
@@ -390,7 +392,41 @@ div.Real_estate_one_block{
     background: #FFFFFF;
 }
 
+
 /*list_ad*/
+/*div.list_ad_extended_search_block{
+    position: absolute;
+    position:fixed;
+    width:300px;
+    height:600px;
+    /*background-color:red;*
+    margin-top:-480px;
+    transition:3s;
+
+}*/
+#list_ad_form_for_ajax_2{
+    /*height:300px;
+    width:300px;*/
+    
+    display:block;
+     position: absolute;
+     background-color:#FFE4E1;
+     transition:2s;
+     position:fixed;
+     margin-top:300px;
+     
+}
+
+div.list_ad_extended_search{
+   
+   
+    width:60px;
+    height:200px;
+    background-color:green;
+   /* margin-top:-300px;*/
+    
+    transition:3s;
+}
 #form_for_ajax_1{
     margin-top:-30px;
 }
@@ -417,11 +453,12 @@ div.list_ad_block_right{
 
 /*list_ad_ajax_1*/
 
-
+/*
 div.list_ad_ajax_1_load{
     border-bottom :2px solid red;
     font-size: 20pt;
 }
+    */
 div.list_ad_ajax_1_two_colums{
     margin-top:20px;
 }
@@ -612,7 +649,7 @@ div.Extended_search_div_form{
     height:200px;
 }
 #Extended_search_id_for_ajax{
-    width:45%;
+    width:35%;
     display: inline-block;
     vertical-align: top;
 }
@@ -647,6 +684,37 @@ div.Extended_search_body{
 .Extended_search_ajax_1_button_inp:hover{
     background-color: green;
      transition: 3s;
+}
+
+
+div.Extended_search_ajax_2_close{
+    float:right;
+    width:25px;
+    height:25px;
+    background-color:white;
+    border: 1px solid black;
+    
+}
+
+
+div.Extended_search_ajax_3_div_inline{
+    display:inline-block;
+    vertical-align: top;
+    width:75%;
+    
+}
+div.Extended_search_ajax_3_div_inline_3_symbol{
+    display:inline-block;
+    vertical-align: top;
+    height:30px;
+    width:30px;
+    
+}
+.Extended_search_ajax_3_line_srch{
+    width:100%;
+   line-height:30px;
+    height:30px;
+    font-size: 14pt;
 }
 
 

@@ -248,6 +248,24 @@ namespace irr.Controllers
             // TO-DO   смотреть какой пункт выбран  и устанавливать флаг для типа расширенного поиска
             return PartialView(res);
         }
+        public ActionResult Extended_search_ajax_3(string category)
+        {
+            Search res = new Models.Search();
+            res.category = category;
+            //partial для ajax
+            // TO-DO   смотреть какой пункт выбран  и устанавливать флаг для типа расширенного поиска
+            return PartialView(res);
+        }
+        public ActionResult Extended_search_ajax_2(bool flag=false,string category="")
+        {
+            Search res = new Models.Search();
+            res.category = category;
+            res.flag = flag;
+            //partial для ajax
+            
+            return PartialView(res);
+        }
+
 
         public ActionResult list_ad_ajax_1(string filter="",string search=null)
         {
