@@ -7,6 +7,24 @@
     {
     @Scripts.Render("~/scripts/jquery-1.10.2.js")
     @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.js")
+<script>
+   /* $(document).ready(function () {
+        $('.Show_one_ad_featured_small_img_div').click(function () {
+            var a = document.getElementById("list_ad_form_for_ajax_2");
+            //a.style.display = "none";
+            a.style.width = "60px";
+            a.style.top = "560px";
+        }
+        )
+    });*/
+    function Show_one_ad_featured_small_img_div_click(a) {
+        var id = a.id + "_img";
+        var res = document.getElementById(id).src;
+        var res1 = document.getElementById("Show_one_ad_featured_small_img_id_main").src=res;
+    }
+
+</script>
+
 }
 
 <div>
@@ -14,14 +32,21 @@
         @Html.Action("Main_header", "Home")
     </div>
     <div class="Show_one_ad_body">
-        <div id="Show_one_ad_featured">
-            @foreach (var i in Model.Images)
-            {
-                <img src=@i  width="50"height="50"/>
-                                
-            }
+        <div id="Show_one_ad_featured_1">
+    <img id="Show_one_ad_featured_small_img_id_main" src=@Model.Images[0] class="Show_one_ad_featured_big_img" />
+    
+</div>
+            <div id="Show_one_ad_featured_2">
+                    @for (int i = 0; i < Model.Images.Count; ++i)
+                    {
+                        <div id=@string.Concat("Show_one_ad_featured_small_img_id_", i.ToString()) class="Show_one_ad_featured_small_img_div" onclick="Show_one_ad_featured_small_img_div_click(this)"><img src=@Model.Images[i] id=@string.Concat("Show_one_ad_featured_small_img_id_", i.ToString(), "_img") class="Show_one_ad_featured_small_img" /></div>
+                    }
 
-        </div>
+
+
+
+
+    </div>
         <div  class="Show_one_ad_body_left">
             <div class="Show_one_ad_header">@Model.Header</div>
             <div class="Show_one_ad_Under_header">@Model.Under_header</div>

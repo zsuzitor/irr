@@ -720,19 +720,64 @@ div.Extended_search_ajax_3_div_inline_3_symbol{
 
 
 /*Show_one_ad*/
+#Show_one_ad_featured_1{
+   height:600px;
+}
+
+.Show_one_ad_featured_small_img{
+
+}
+.Show_one_ad_featured_big_img{
+    max-width:95%;
+    max-height:1000px;
+}
+
+
+
+
 
 div.Show_one_ad_body{
-    width:80%;
+    /*??????????????????
+
+        width:80%;
     padding-left:10%;
+    */
+    margin-top:100px;
+    margin-left:10%;
+
 
 
 }
+#Show_one_ad_featured_2{
+    margin-top:50px;
+   /* border:2px solid black;*/
+
+}
+div.Show_one_ad_featured_small_img_div{
+    width:100px;
+    height:100px;
+    display:inline-block;
+    vertical-align:top;
+    transition:1s;
+
+}
+div.Show_one_ad_featured_small_img_div:hover{
+
+    transform: rotate(15deg);
+}
+
+
+
 div.Show_one_ad_body_left{
+     margin-top:20px;
+
     width:60%;
     display: inline-block;
      vertical-align: top;
 }
 div.Show_one_ad_body_right_1{
+     margin-top:20px;
+
     margin-left:100px;
     min-width:300px;
     width:30%;

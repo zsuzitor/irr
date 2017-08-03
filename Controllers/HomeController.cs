@@ -248,17 +248,7 @@ namespace irr.Controllers
             // TO-DO   смотреть какой пункт выбран  и устанавливать флаг для типа расширенного поиска
             return PartialView(res);
         }
-        public ActionResult Extended_search_ajax_3_list_ad(Search srch)
-        {
-            //Search res = new Models.Search();
-
-            //partial для ajax
-            // TO-DO   смотреть какой пункт выбран  и устанавливать флаг для типа расширенного поиска
-            list_ad_View res = list_ad_ajax_1_function("", srch.ToString());
-            //if (res.list.Count == 1)
-                //return new RedirectResult(string.Concat("/Home/Show_one_ad/?id=",res.list[0].Id.ToString()));
-            return PartialView("list_ad_ajax_1", res);
-        }
+        
         public ActionResult Extended_search_ajax_3(string Search)
         {
             Search res = irr.Models.Search.FromString(Search);
@@ -353,8 +343,18 @@ namespace irr.Controllers
            // int c = 0;
            
         }
-        
-        
+        [HttpPost]
+        public ActionResult Extended_search_ajax_3_list_ad(Search srch)
+        {
+            //Search res = new Models.Search();
+
+            //partial для ajax
+            // TO-DO   смотреть какой пункт выбран  и устанавливать флаг для типа расширенного поиска
+            list_ad_View res = list_ad_ajax_1_function("", srch.ToString());
+            //if (res.list.Count == 1)
+            //return new RedirectResult(string.Concat("/Home/Show_one_ad/?id=",res.list[0].Id.ToString()));
+            return PartialView("list_ad_ajax_1", res);
+        }
         [HttpPost]
         public ActionResult Extended_search(Search a)
         {
