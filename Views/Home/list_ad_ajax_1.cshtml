@@ -58,6 +58,10 @@ new { filter = "cancel", search = Model.srch.ToString() },
 </div>
 <div class="list_ad_ajax_1_two_colums">
 <div class="form_for_ajax_1">
+    @if(Model.list.Count==0)
+    {
+        <h1>По запросу ничего не найдено</h1>
+    }
     @foreach (var i in Model.list)
     {
         string tmp = "list_ad_ajax_1_";

@@ -88,7 +88,7 @@ div.start_visual_place{
     height: 70px;
     display:none;
     position:fixed;
-    z-index: 2;
+    z-index: 101;
     margin-left:50%;
     margin-top:-50px;
     border:2px solid black;
@@ -736,7 +736,7 @@ div.Show_one_ad_body_right_1{
     margin-left:100px;
     min-width:300px;
     width:30%;
-    height:400px;
+    min-height:400px;
     display: inline-block;
      vertical-align: top;
      background-color:#E6E6FA;
@@ -745,7 +745,7 @@ div.Show_one_ad_body_right_2{
     width:80%;
     margin-left:10%;
     margin-top:10%;
-    height:250px;
+    min-height:250px;
      background-color:#DDA0DD;
 }
 div.Show_one_ad_body_right_3{

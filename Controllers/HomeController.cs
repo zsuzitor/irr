@@ -248,18 +248,29 @@ namespace irr.Controllers
             // TO-DO   смотреть какой пункт выбран  и устанавливать флаг для типа расширенного поиска
             return PartialView(res);
         }
-        public ActionResult Extended_search_ajax_3(string category)
+        public ActionResult Extended_search_ajax_3_list_ad(Search srch)
         {
-            Search res = new Models.Search();
-            res.category = category;
+            //Search res = new Models.Search();
+
+            //partial для ajax
+            // TO-DO   смотреть какой пункт выбран  и устанавливать флаг для типа расширенного поиска
+            list_ad_View res = list_ad_ajax_1_function("", srch.ToString());
+            //if (res.list.Count == 1)
+                //return new RedirectResult(string.Concat("/Home/Show_one_ad/?id=",res.list[0].Id.ToString()));
+            return PartialView("list_ad_ajax_1", res);
+        }
+        public ActionResult Extended_search_ajax_3(string Search)
+        {
+            Search res = irr.Models.Search.FromString(Search);
+            //res.category = category;
             //partial для ajax
             // TO-DO   смотреть какой пункт выбран  и устанавливать флаг для типа расширенного поиска
             return PartialView(res);
         }
-        public ActionResult Extended_search_ajax_2(bool flag=false,string category="")
+        public ActionResult Extended_search_ajax_2(bool flag=false, string search=null)
         {
-            Search res = new Models.Search();
-            res.category = category;
+            Search res = irr.Models.Search.FromString(search); ;
+            //TO DO хз мб флан убрать
             res.flag = flag;
             //partial для ajax
             
@@ -269,88 +280,11 @@ namespace irr.Controllers
 
         public ActionResult list_ad_ajax_1(string filter="",string search=null)
         {
-            irr.Models.Search srch = irr.Models.Search.FromString(search);
             
-            if(filter!="cancel")
-            {
-                if (filter == "price")
-                    if (srch.price_bool != null)
-                    {
-                        srch.pg = 1;
-                        srch.price_bool = !srch.price_bool;
-                    }
-                        
-                if (filter == "rooms")
-                    if (srch.rooms_bool != null)
-                    {
-                        srch.pg = 1;
-                        srch.rooms_bool = !srch.rooms_bool;
-                    }
-                        
-            }
-            else
-            {
-                srch.pg = 1;
-                srch.price_bool = null;
-                srch.rooms_bool = null;
-            }
-
-
-
-
-            //string type = "all", string type2 = "all-type", int pg = 1,
-
-
-            //, type=Model.Type, type2=Model.Type2,pg=Model.Current_page
-            //, string type = "all", string type2 = "all-type", int pg = 1
-            // string type = res.Type;
-            //string type2 = res.Type2;
-            //int pg = res.Current_page;
-
-
-
-
-
-            list_ad_View res = new list_ad_View() { Count_ad_on_page=srch.Count_ad_on_page, Type = srch.type, Type2= srch.type2, Current_page= srch.pg};
-            
-
-                //int tmp = pg - i - 1;
-               // res.str[i] = tmp > 1 ? tmp : 1;
-            
-            
-
-            //
-            
-            UP_nedo_bd();
-            res.list = search_bd(srch);
-            res.srch = srch.copy();
-
-
-
-
-
-            //
-            
-            
-            if (true)
-            {
-                res.str.Add(1);
-                int tmp = srch.pg - 2;
-                tmp = tmp > 1 ? tmp : 2;
-                
-                for (int i = 1; i < 5&& tmp < srch.Count_page; ++i)
-                {
-                    res.str.Add(tmp);
-                    ++tmp;
-                }
-            }
-            if(srch.Count_page!=1)
-            {
-                res.str.Add(srch.Count_page);
-            }
-           
-            res.Count_page = srch.Count_page;
-
+            list_ad_View res = list_ad_ajax_1_function(filter, search);
+            //if (res.list.Count == 1)
+                //return new RedirectResult(string.Concat("/Home/Show_one_ad/?id=", res.list[0].Id.ToString()));
+            //return View("Show_one_ad", res.list[0]);
             return PartialView(res);
         }
 
@@ -510,6 +444,7 @@ string serialized = JsonConvert.SerializeObject(a);
             res.srch.type = type;
             res.srch.type2 = type2;
             res.srch.Count_rooms_bot = Count_rooms;
+            res.srch.category = "Квартиры";
             if (Count_rooms == 5)
                 res.srch.Count_rooms_top = null;
             else
@@ -587,14 +522,20 @@ public ActionResult Real_estate()
         public List<Entry> search_bd(Search srch)
         {
             //TODO category нет поиска по категориям и бд без категорий
-             List<Entry> res = new List<Entry>();
-            
+            List<Entry> res = new List<Entry>();
+            //bool out_bool = true;
 
-
+            if (srch.Id != null)
+            {
+                res = main_arr.Where(x5 => x5.Id == srch.Id).ToList();
+                //out_bool = false;
+            }
+            else
+            { 
             if (srch.type != "all")
             {
-                if(srch.type== "sale" || srch.type== "lease")
-                     srch.type = srch.type == "sale" ? "Продажа" : "Аренда";
+                if (srch.type == "sale" || srch.type == "lease")
+                    srch.type = srch.type == "sale" ? "Продажа" : "Аренда";
             }
             if (srch.type2 != "all-type")
             {
@@ -607,11 +548,11 @@ public ActionResult Real_estate()
             }
 
 
-            
+
             var res_1 = main_arr.
                 Where(x1 => srch.type == "all" ? true : x1.Type_ad == srch.type ? true : false).
                 Where(x2 => srch.type2 == "all-type" ? true : x2.Type_of_apartment == srch.type2 ? true : false).
-                Where(x3 => (srch.town == "Вся Россия" ? true : x3.Place.IndexOf(srch.town) != -1) && (x3.search_str(srch.str))) ;//.OrderBy(x4=> int.TryParse(x4.Price))
+                Where(x3 => (srch.town == "Вся Россия" ? true : x3.Place.IndexOf(srch.town) != -1) && (x3.search_str(srch.str)));//.OrderBy(x4=> int.TryParse(x4.Price))
             if (srch.VIP)
             {
                 res_1 = res_1.Where(x5 => x5.VIP);
@@ -627,7 +568,7 @@ public ActionResult Real_estate()
                     res_1 = res_1.Reverse();
                 }
 
-                
+
             }
             if (srch.rooms_bool != null)
             {
@@ -639,7 +580,6 @@ public ActionResult Real_estate()
 
 
             }
-            
 
 
 
@@ -648,27 +588,27 @@ public ActionResult Real_estate()
 
 
 
-            if (srch.Id!=null)
+
+
+            if (srch.Price_bot != null || srch.Price_top != null)//
             {
-                res_1 = res_1.Where(x5 => x5.Id== srch.Id);
-                
-            }
-            if (srch.Price_bot != null|| srch.Price_top != null)//
-            {
-                res_1 = res_1.Where(x5 => (x5.Price >= (srch.Price_bot == null ? 0 : srch.Price_bot)) && ((srch.Price_top == null ? true : x5.Price <= srch.Price_top)));//&& x5.Price >= srch.Price_top);
+                    res_1 = res_1.Where(x5 => (x5.Price >= (srch.Price_bot == null ? 0 : srch.Price_bot)) && ((srch.Price_top == null ? true : x5.Price <= srch.Price_top)));//&& x5.Price >= srch.Price_top);
+                    
+                   // res_1 = res_1.Where(x5 => (x5.Price >= (srch.Price_bot == null ? 0 : srch.Price_bot)));//&& x5.Price >= srch.Price_top);
 
-            }
-            if (srch.Count_rooms_bot != null || srch.Count_rooms_top != null)
+
+                }
+                if (srch.Count_rooms_bot != null || srch.Count_rooms_top != null)
             {
 
                 res_1 = res_1.Where(x5 => (x5.Count_rooms >= (srch.Count_rooms_bot == null ? 0 : srch.Count_rooms_bot)) && ((srch.Count_rooms_top == null ? true : x5.Count_rooms <= srch.Count_rooms_top)));
-               
+
 
             }
             if (srch.Total_area_bot != null || srch.Total_area_top != null)
             {
                 res_1 = res_1.Where(x5 => (x5.Total_area >= (srch.Total_area_bot == null ? 0 : srch.Total_area_bot)) && ((srch.Total_area_top == null ? true : x5.Total_area <= srch.Total_area_top)));
-               
+
 
             }
             if (srch.Residential_area_bot != null || srch.Residential_area_top != null)
@@ -679,13 +619,13 @@ public ActionResult Real_estate()
             }
             if (srch.Floor != null)
             {
-                res_1 = res_1.Where(x5 => x5.Floor== srch.Floor);
+                res_1 = res_1.Where(x5 => x5.Floor == srch.Floor);
 
 
             }
             if (srch.Count_floor != null)
             {
-                res_1 = res_1.Where(x5 => x5.Count_floor== srch.Count_floor);
+                res_1 = res_1.Where(x5 => x5.Count_floor == srch.Count_floor);
 
             }
             if (srch.Place != null)
@@ -695,16 +635,106 @@ public ActionResult Real_estate()
             }
 
 
-            res =res_1.ToList();
-
+            res = res_1.ToList();
+        
 
             srch.Count_page = res.Count / srch.Count_ad_on_page + 1;
             int int_skip = (srch.pg > 0 ? srch.pg - 1 : srch.pg)*srch.Count_ad_on_page;
             res = res.Skip(int_skip< res.Count? int_skip: res.Count- srch.Count_ad_on_page).
                     Take(srch.Count_ad_on_page).
                     ToList();
+            }
+
+            return res;
+        }
+
+
+        public list_ad_View list_ad_ajax_1_function(string filter = "", string search = null)
+        {
+            irr.Models.Search srch = irr.Models.Search.FromString(search);
+            if(!string.IsNullOrEmpty(filter))
+            {
+                if (filter != "cancel")
+                {
+                    if (filter == "price")
+                        if (srch.price_bool != null)
+                        {
+                            srch.pg = 1;
+                            srch.price_bool = !srch.price_bool;
+                        }
+
+                    if (filter == "rooms")
+                        if (srch.rooms_bool != null)
+                        {
+                            srch.pg = 1;
+                            srch.rooms_bool = !srch.rooms_bool;
+                        }
+
+                }
+                else
+                {
+                    srch.pg = 1;
+                    srch.price_bool = null;
+                    srch.rooms_bool = null;
+                }
+            }
             
 
+
+
+
+            //string type = "all", string type2 = "all-type", int pg = 1,
+
+
+            //, type=Model.Type, type2=Model.Type2,pg=Model.Current_page
+            //, string type = "all", string type2 = "all-type", int pg = 1
+            // string type = res.Type;
+            //string type2 = res.Type2;
+            //int pg = res.Current_page;
+
+
+
+
+
+            list_ad_View res = new list_ad_View() { Count_ad_on_page = srch.Count_ad_on_page, Type = srch.type, Type2 = srch.type2, Current_page = srch.pg };
+
+
+            //int tmp = pg - i - 1;
+            // res.str[i] = tmp > 1 ? tmp : 1;
+
+
+
+            //
+
+            UP_nedo_bd();
+            res.list = search_bd(srch);
+            res.srch = srch.copy();
+            
+
+
+
+
+            //
+
+
+            if (true)
+            {
+                res.str.Add(1);
+                int tmp = srch.pg - 2;
+                tmp = tmp > 1 ? tmp : 2;
+
+                for (int i = 1; i < 5 && tmp < srch.Count_page; ++i)
+                {
+                    res.str.Add(tmp);
+                    ++tmp;
+                }
+            }
+            if (srch.Count_page != 1)
+            {
+                res.str.Add(srch.Count_page);
+            }
+
+            res.Count_page = srch.Count_page;
             return res;
         }
     }

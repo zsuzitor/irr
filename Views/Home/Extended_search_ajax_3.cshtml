@@ -3,7 +3,14 @@
 
 @{
     List<string> town = new List<string>() { "Вся Россия", "Москва", "Петербург", "Пермь", "Воронеж", "Казань", "Сочи", "Саратов" };
-
+    AjaxOptions ajaxOpts = new AjaxOptions
+    {
+        UpdateTargetId = "form_for_ajax_1",
+        LoadingElementId = "main_header_small_preloader",
+        Url = Url.Action("Extended_search_ajax_3_list_ad"),
+        LoadingElementDuration = 1000
+        
+    };
 
 
 
@@ -14,9 +21,8 @@
     @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.js")
 }
 
-
 <div>
-    @using (Html.BeginForm("Extended_search", "Home"))
+    @using (Ajax.BeginForm(ajaxOpts))
     {
         <div>
             <h1>@Html.Label("Все поля не обязательны", new { @class = "Extended_search_ajax_3_line_srch" })</h1>
@@ -39,14 +45,14 @@
         </div>
 
 
-        
+
 
         <div>
             @Html.Label("Город", new { @class = "Extended_search_ajax_3_line_srch" })
 
             <p>@Html.DropDownList("town", new SelectList(town), new { @class = "Extended_search_ajax_3_line_srch" })</p>
         </div>
-        
+
 
         <div>
 
@@ -93,7 +99,7 @@
                         </div>
                 <div>
                     @Html.Label("Общая площадь", new { @class = "Extended_search_ajax_3_line_srch" })
-                   
+
                     <div>
                         <div class="Extended_search_ajax_3_div_inline_3_symbol">@Html.Label("От:", new { @class = "Extended_search_ajax_3_line_srch" })</div>
                         <div class="Extended_search_ajax_3_div_inline">@Html.EditorFor(x1 => x1.Total_area_bot)</div>
@@ -106,13 +112,13 @@
                         </div>
 
 
-                
+
             }
 
         </div>
 
 
-        <input type="submit" value="Расширенный поиск" class="Extended_search_ajax_1_button_inp" />
+        <input type="submit" value="Поиск" class="Extended_search_ajax_1_button_inp" />
     }
 
 

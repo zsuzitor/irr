@@ -62,7 +62,7 @@
 @if (Model.flag == false)
 {
     <div id="list_ad_extended_search_id" class="list_ad_extended_search">
-        @Ajax.ActionLink("Поиск", "Extended_search_ajax_2", "Home", new { flag = true,  category =Model.category }, new AjaxOptions
+        @Ajax.ActionLink("Поиск", "Extended_search_ajax_2", "Home", new { flag = true, search = Model.ToString() }, new AjaxOptions
    {
        UpdateTargetId = "list_ad_form_for_ajax_2",
        LoadingElementId = "main_header_small_preloader",
@@ -78,7 +78,7 @@
 @if (Model.flag == true)
 {
     <div><div class="Extended_search_ajax_2_close">
-        @Ajax.ActionLink("X", "Extended_search_ajax_2", "Home", new { flag = false, category = Model.category }, new AjaxOptions
+        @Ajax.ActionLink("X", "Extended_search_ajax_2", "Home", new { flag = false, search = Model.ToString() }, new AjaxOptions
    {
        UpdateTargetId = "list_ad_form_for_ajax_2",
        LoadingElementId = "main_header_small_preloader",
@@ -88,6 +88,6 @@
    }, new { @class = "link_standart_for_div" })
         </div></div>
     
-    @Html.Action("Extended_search_ajax_3","Home",new { category = "Квартиры" })
+    @Html.Action("Extended_search_ajax_3","Home",new { Search = Model.ToString()})
 
 }
