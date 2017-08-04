@@ -684,7 +684,7 @@ public ActionResult Real_estate()
                     {
                         try
                         {
-                            string a = filter.Substring(5, filter.Length);
+                            string a = filter.Substring(5);//, filter.Length
                             int b = Convert.ToInt32(a);
                             if (b < 1)
                                 throw new System.InvalidOperationException("er+-");

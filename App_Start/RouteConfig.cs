@@ -12,6 +12,13 @@ namespace irr
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+
+            routes.MapRoute(
+                          name: "id_1",
+                          url: "/id{id}",
+                          defaults: new { controller = "Home", action = "Show_one_ad",id = UrlParameter.Optional }
+                      );
+
             routes.MapRoute(
                 name: "Up1",
                 url: "up",
