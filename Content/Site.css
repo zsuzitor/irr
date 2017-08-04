@@ -65,13 +65,13 @@ div.for_separation{
 
 div.start_bot{
     height:50px;
-    background-color:#C0C0C0;
+    background-color:grey;
     margin-top:10px;
 }
 div.start_visual_place{
     min-height:200px;
-    
-        background-color:grey;
+    background-color:#C0C0C0;
+        
 
 }
 
@@ -892,12 +892,11 @@ div.Add_new_ad_div_form{
     font-size:20pt;
 }
 .Add_new_ad_ajax_1_text_heigh{
-    /*cols:40; 
-    rows:5;*/
+    max-height:500px;
     min-height:200px;
-    min-width:150px;
-    width:300px;
-    max-width:500px;
+    min-width:350px;
+    
+    max-width:100%;
     
 }
 .Add_new_ad_ajax_1_drop_d_l_inp{

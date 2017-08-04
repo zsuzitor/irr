@@ -12,7 +12,7 @@
         <div class="vip_entry_block_info_1_ad">
             @Html.ActionLink(@i.Header, "Show_one_ad", "Home", new { id = i.Id }, new { @class = "link_standart_for_div" })
             <div class="vip_entry_price_str">
-                @Html.ActionLink(@i.Price.ToString(), "Show_one_ad", "Home", new { id = i.Id }, new { @class = "link_standart_for_div" })
+                @Html.ActionLink(string.Format("{0:###,###,###,###} Руб.", @i.Price), "Show_one_ad", "Home", new { id = i.Id }, new { @class = "link_standart_for_div" })
             </div>
         </div>
     </div>

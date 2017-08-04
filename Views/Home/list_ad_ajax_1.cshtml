@@ -9,6 +9,16 @@
     irr.Models.Search srch_for_rooms = Model.srch.copy();
     srch_for_price.price_bool = Model.srch.price_bool == null ? false : Model.srch.price_bool;
     srch_for_rooms.rooms_bool = Model.srch.rooms_bool == null ? false : Model.srch.rooms_bool;
+
+    AjaxOptions ajaxOpts = new AjaxOptions
+    {
+        UpdateTargetId = "form_for_ajax_1",
+        Url = Url.Action("list_ad_ajax_1_1"),
+        
+        LoadingElementId = "main_header_small_preloader",
+        
+        LoadingElementDuration = 1000
+    };
 }
 <div class="list_ad_ajax_1_price_div_lg">
     
@@ -79,7 +89,7 @@ new { filter = "cancel", search = Model.srch.ToString() },
             <div class=@string.Concat(tmp, "block_info_1_ad")>
                 @Html.ActionLink(@i.Header, "Show_one_ad", "Home", new { id = i.Id }, new { @class = "link_standart_for_div" })
                 <div class=@string.Concat(tmp, "price_str")>
-                    @Html.ActionLink(@i.Price.ToString(), "Show_one_ad", "Home", new { id = i.Id }, new { @class = "link_standart_for_div" })
+                    @Html.ActionLink(string.Format("{0:###,###,###,###} Руб.", @i.Price) , "Show_one_ad", "Home", new { id = i.Id }, new { @class = "link_standart_for_div" })
                 </div>
             </div>
         </div>
@@ -89,7 +99,8 @@ new { filter = "cancel", search = Model.srch.ToString() },
         @Html.Action("vip_entry", "Home", new { srch = Model.srch.copy() })
     </div>
 </div>
-
+@if (Model.Count_page >1)
+{
     <div class="list_ad_ajax_1_link_block">
         @foreach (var i in Model.str)
         {
@@ -107,19 +118,29 @@ new { filter = "cancel", search = Model.srch.ToString() },
 
 
                 @Ajax.ActionLink(i.ToString(), "list_ad_ajax_1", "Home",
-new { search = new irr.Models.Search(Model.srch) {pg= i }.ToString() },
-    new AjaxOptions
-    {
-        UpdateTargetId = "form_for_ajax_1",
-        LoadingElementId = "main_header_small_preloader",
-        LoadingElementDuration = 1000
+new { search = new irr.Models.Search(Model.srch) { pg = i }.ToString() },
+ new AjaxOptions
+ {
+     UpdateTargetId = "form_for_ajax_1",
+     LoadingElementId = "main_header_small_preloader",
+     LoadingElementDuration = 1000
 
-    }, new { @class = "link_standart_for_div" })
+ }, new { @class = "link_standart_for_div" })
             </div>
         }
 
-
+        <div>
+            @using (@Ajax.BeginForm(ajaxOpts))
+            { 
+            
+            @Html.Hidden("search", Model.srch.ToString())
+            <input id="page" name="page" type="text" pattern="^[ 0-9]+$">
+                <input type="submit" value="Выбрать страницу" class="Extended_search_button_inp" />
+            }
+            
+        </div>
     </div>
+}
     <div class="list_ad_ajax_1_down">
         <p> </p>
     </div>

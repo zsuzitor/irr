@@ -10,7 +10,9 @@
     AjaxOptions ajaxOpts = new AjaxOptions
     {
         UpdateTargetId = "Add_new_ad_id_for_ajax",
-        Url = Url.Action("Add_new_ad_ajax_1")
+        Url = Url.Action("Add_new_ad_ajax_1"),
+        LoadingElementId = "main_header_small_preloader",
+        LoadingElementDuration = 1000
     };
 }
 

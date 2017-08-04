@@ -296,7 +296,7 @@ namespace irr.Controllers
             //}
             ViewBag.category = category;
             //
-            return View();
+            return PartialView();
         }
 
         //END-PARTIAL BLOCK--------------------------------------------------------------------------------------------------------------------//
@@ -342,6 +342,17 @@ namespace irr.Controllers
             }
            // int c = 0;
            
+        }
+        [HttpPost]
+        public ActionResult list_ad_ajax_1_1(string page = "", string search = null)
+        {
+            if (page == null)
+                page = "";
+            list_ad_View res = list_ad_ajax_1_function("page="+page, search);
+            //if (res.list.Count == 1)
+            //return new RedirectResult(string.Concat("/Home/Show_one_ad/?id=", res.list[0].Id.ToString()));
+            //return View("Show_one_ad", res.list[0]);
+            return PartialView("list_ad_ajax_1", res);
         }
         [HttpPost]
         public ActionResult Extended_search_ajax_3_list_ad(Search srch)
@@ -669,6 +680,22 @@ public ActionResult Real_estate()
                             srch.pg = 1;
                             srch.rooms_bool = !srch.rooms_bool;
                         }
+                    if (filter.IndexOf("page=")!=-1)
+                    {
+                        try
+                        {
+                            string a = filter.Substring(5, filter.Length);
+                            int b = Convert.ToInt32(a);
+                            if (b < 1)
+                                throw new System.InvalidOperationException("er+-");
+                            srch.pg = b;
+                        }
+                        catch
+                        {
+
+                        }
+                        
+                    }
 
                 }
                 else

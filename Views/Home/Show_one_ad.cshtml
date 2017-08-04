@@ -88,7 +88,7 @@
             </div>
         </div>
         <div class="Show_one_ad_body_right_1">
-            <div  class="Show_one_ad_price"><p>Id:  @Model.Id</p><p>Цена:  @Model.Price</p></div>
+            <div  class="Show_one_ad_price"><p>Id:  @Model.Id</p><p>Цена:  @string.Format("{0:###,###,###,###} Руб.", Model.Price)</p></div>
             <div class="Show_one_ad_body_right_2">
                 <div class="Show_one_ad_body_right_3">
                     <p  class="Show_one_ad_phone_number">@Model.Phone_number</p>
