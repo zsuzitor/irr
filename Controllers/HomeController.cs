@@ -344,6 +344,31 @@ namespace irr.Controllers
            
         }
         [HttpPost]
+        public ActionResult Ad_img_add_ad(HttpPostedFileBase uploadImage,Entry res=null)
+        {
+            //TODO сейчас не работает и ничего не делает нужно в теории для обработки фоток которые загружаются
+
+            //@Html.Hidden(Model.Images_byte,i)
+            if (res == null)
+                res = new Entry();
+            if ( uploadImage != null)//ModelState.IsValid &&
+            {
+                byte[] imageData = null;
+                // считываем переданный файл в массив байтов
+                using (var binaryReader = new BinaryReader(uploadImage.InputStream))
+                {
+                    imageData = binaryReader.ReadBytes(uploadImage.ContentLength);
+                }
+                // установка массива байтов
+                res.Images_byte.Add( imageData);
+                
+                
+
+                //return RedirectToAction("Add_new_ad", res);
+            }
+            return View("Add_new_ad",res);
+        }
+        [HttpPost]
         public ActionResult list_ad_ajax_1_1(string page = "", string search = null)
         {
             if (page == null)
@@ -422,8 +447,8 @@ string serialized = JsonConvert.SerializeObject(a);
         //END-POST/FORM BLOCK--------------------------------------------------------------------------------------------------------------------//
         public ActionResult Add_new_ad()
         {
-            //irr.Models.Entry res = new irr.Models.Entry();
-            return View();
+            irr.Models.Entry res = new irr.Models.Entry();
+            return View(res);
         }
 
         //главная страница с разделами
@@ -499,9 +524,10 @@ public ActionResult Real_estate()
         }
         public ActionResult Show_one_ad(int id=1)
         {
+            //TODO <div title="жилая/общая" не отображает при наведении в представлении
             UP_nedo_bd();
             Entry res = main_arr.First(x1 => x1.Id == id);
-
+            
             return View(res);
         }
         //Extended
@@ -650,6 +676,8 @@ public ActionResult Real_estate()
         
 
             srch.Count_page = res.Count / srch.Count_ad_on_page + 1;
+                if (srch.pg > srch.Count_page)
+                    srch.pg = srch.Count_page;
             int int_skip = (srch.pg > 0 ? srch.pg - 1 : srch.pg)*srch.Count_ad_on_page;
             res = res.Skip(int_skip< res.Count? int_skip: res.Count- srch.Count_ad_on_page).
                     Take(srch.Count_ad_on_page).

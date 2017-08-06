@@ -36,26 +36,55 @@
     <img id="Show_one_ad_featured_small_img_id_main" src=@Model.Images[0] class="Show_one_ad_featured_big_img" />
     
 </div>
+        <div id="Show_one_ad_map">
+            Тут долна быть карта(хз как отображать пока)
+            @Model.Map
+            </div>
             <div id="Show_one_ad_featured_2">
-                    @for (int i = 0; i < Model.Images.Count; ++i)
-                    {
-                        <div id=@string.Concat("Show_one_ad_featured_small_img_id_", i.ToString()) class="Show_one_ad_featured_small_img_div" onclick="Show_one_ad_featured_small_img_div_click(this)"><img src=@Model.Images[i] id=@string.Concat("Show_one_ad_featured_small_img_id_", i.ToString(), "_img") class="Show_one_ad_featured_small_img" /></div>
-                    }
-
-
-
-
-
-    </div>
-        <div  class="Show_one_ad_body_left">
-            <div class="Show_one_ad_header">@Model.Header</div>
-            <div class="Show_one_ad_Under_header">@Model.Under_header</div>
-            <div  class="Show_one_ad_Description">
-            <p class="Show_one_ad_block_name">Описание</p>
-            @Model.Description</div>
-            <div>
-                @if (Model.Info1.Count > 0)
+                @for (int i = 0; i < Model.Images.Count; ++i)
                 {
+                    <div id=@string.Concat("Show_one_ad_featured_small_img_id_", i.ToString()) class="Show_one_ad_featured_small_img_div" onclick="Show_one_ad_featured_small_img_div_click(this)"><img src=@Model.Images[i] id=@string.Concat("Show_one_ad_featured_small_img_id_", i.ToString(), "_img") class="Show_one_ad_featured_small_img" /></div>
+                }
+
+
+
+
+
+            </div>
+            <div class="Show_one_ad_body_left">
+                <div class="Show_one_ad_header">@Model.Header</div>
+                <div class="Show_one_ad_Under_header">
+                    <div><p>Тип недвижимости: @Model.Type_of_apartment </p>      <p>Тип объявления: @Model.Type_ad</p></div>
+                    <hr />
+                    @if (Model.Count_rooms != null)
+                    {
+                        <div  class="Show_one_ad_Under_header_small_block"><p>Количество комнат</p>
+<p>@Model.Count_rooms</p></div>
+                    }
+@if (Model.Residential_area != null|| Model.Total_area!=null)
+{
+    <div title="жилая/общая" class="Show_one_ad_Under_header_small_block"><p>Площадь</p>
+        <p>@Model.Residential_area / @Model.Total_area</p>
+                    </div>
+}
+@if (Model.Floor != null || Model.Count_floor != null)
+{
+    <div class="Show_one_ad_Under_header_small_block">
+        <p>Этаж</p>
+        <p>@Model.Floor / @Model.Count_floor</p>
+    </div>
+}
+                    <hr />      
+        </div>
+        <div class="Show_one_ad_Description">
+            <p class="Show_one_ad_block_name">Описание</p>
+            @Model.Description
+            <hr />
+        </div>
+        <div>
+            @if (Model.Info1.Count > 0)
+            {
+                
                     <div class="Show_one_ad_block_one_info">
                         <p class="Show_one_ad_block_name">Инфо 1</p>
                         @foreach (var i in Model.Info1)
@@ -63,46 +92,57 @@
                             <p>@i</p>
                         }
 
-                    </div>
-                }
-                @if (Model.Info2.Count > 0)
-                {
-                    <div class="Show_one_ad_block_one_info">
-                        <p class="Show_one_ad_block_name">Инфо 2</p>
-                        @foreach (var i in Model.Info2)
-                        {
-                            <p>@i</p>
-                        }
-                    </div>
-                }
-@if (Model.Info3.Count > 0)
-{
-    <div class="Show_one_ad_block_one_info">
-        <p class="Show_one_ad_block_name">Инфо 3</p>
-        @foreach (var i in Model.Info3)
-        {
-            <p>@i</p>
-        }
-    </div>
-}
-            </div>
-        </div>
-        <div class="Show_one_ad_body_right_1">
-            <div  class="Show_one_ad_price"><p>Id:  @Model.Id</p><p>Цена:  @string.Format("{0:###,###,###,###} Руб.", Model.Price)</p></div>
-            <div class="Show_one_ad_body_right_2">
-                <div class="Show_one_ad_body_right_3">
-                    <p  class="Show_one_ad_phone_number">@Model.Phone_number</p>
-                    </div>
-                    
-                   
-                    <div><p class="Show_one_ad_name"> Имя: @Model.Name</p></div>
-                    <div><p  class="Show_one_ad_name">Место:</p>
-                        <p   class="Show_one_ad_name"> @Model.Place</p>
-</div>
-                    
-                </div>
+                    </div>            
+                
+            }
+                    @if (Model.Info2.Count > 0)
+                    {
+                        
+                            <div class="Show_one_ad_block_one_info">
+                                <p class="Show_one_ad_block_name">Инфо 2</p>
+                                @foreach (var i in Model.Info2)
+                                {
+                                    <p>@i</p>
+                                }
 
+                            </div>
+                            
+                        
+                    }
+            <hr /> 
+                    @if (Model.Info3.Count > 0)
+                    {
+                        
+                            <div class="Show_one_ad_block_one_info">
+                                <p class="Show_one_ad_block_name">Инфо 3</p>
+                                @foreach (var i in Model.Info3)
+                                {
+                                    <p>@i</p>
+                                }
+
+                            </div>            
+                       
+                    }
+
+                        </div>
+    </div>
+    <div class="Show_one_ad_body_right_1">
+        <div class="Show_one_ad_price"><p>Id:  @Model.Id</p><p>Цена:  @string.Format("{0:###,###,###,###} Руб.", Model.Price)</p></div>
+        <div class="Show_one_ad_body_right_2">
+            <div class="Show_one_ad_body_right_3">
+                <p class="Show_one_ad_phone_number">@Model.Phone_number</p>
             </div>
+
+
+            <div><p class="Show_one_ad_name"> Имя: @Model.Name</p></div>
+            <div>
+                <p class="Show_one_ad_name">Место:</p>
+                <p class="Show_one_ad_name"> @Model.Place</p>
+            </div>
+
+        </div>
+
+    </div>
     </div>
 </div>
 

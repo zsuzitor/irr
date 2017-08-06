@@ -29,6 +29,7 @@ namespace irr.Models
         public string Link { get; set; }
         public string Description { get; set; }
         public List<string> Images { get; set; }
+        public List<byte[]> Images_byte { get; set; }
         public List<string> Info1 { get; set; }
         public List<string> Info2 { get; set; }
         public List<string> Info3 { get; set; }
@@ -55,7 +56,8 @@ namespace irr.Models
             Info2 = new List<string>();
            Info3 = new List<string>();
             Images = new List<string>();
-           // Images = "";
+            Images_byte=new List< byte[] > ();
+            // Images = "";
             //Info1 = "";
             //Info2 = "";
             //Info3 = "";

@@ -81,7 +81,20 @@ div.start_visual_place{
 
 
 /*main_header*/
+div.main_header_up_div{
+    height:100px;
+    width:100px;
+    display:none;
+    position: absolute;
+  top:85%;
+  margin-left:95%;
+     transition:2s;
+     position:fixed;
 
+}
+div.main_header_up_div:hover {
+    cursor: pointer;
+}
 #main_header_small_preloader {
     
     width: 70px;
@@ -720,8 +733,24 @@ div.Extended_search_ajax_3_div_inline_3_symbol{
 
 
 /*Show_one_ad*/
+div.Show_one_ad_Under_header_small_block{
+     display:inline-block;
+    vertical-align:top;
+    height:150px;
+    width:200px;
+}
+#Show_one_ad_map{
+    display:inline-block;
+    vertical-align:top;
+    width:100px;
+    background-color:green;
+}
 #Show_one_ad_featured_1{
    height:600px;
+   max-width:1200px;
+   /*margin-left:10%;*/
+   display:inline-block;
+    vertical-align:top;
 }
 
 .Show_one_ad_featured_small_img{
@@ -750,6 +779,7 @@ div.Show_one_ad_body{
 }
 #Show_one_ad_featured_2{
     margin-top:50px;
+
    /* border:2px solid black;*/
 
 }
@@ -814,12 +844,12 @@ div.Show_one_ad_header{
     font-weight: 600;
 }
 div.Show_one_ad_Under_header{
-    padding-left:10%;
+    margin-top:50px;
     font-size: 20pt;
 }
 div.Show_one_ad_Description{
-    border-bottom:1px solid black;
-     border-top:1px solid black;
+    /*border-bottom:1px solid black;
+     border-top:1px solid black;*/
 }
 .Show_one_ad_block_name{
     font-size:18pt;
@@ -831,12 +861,13 @@ div.Show_one_ad_block_one_info{
     margin-top:100px;
     width:49%;
     display: inline-block;
-     border-bottom:1px solid black;
+     /*border-bottom:1px solid black;*/
       
      vertical-align: top;
      height:300px;
 
 }
+
 .Show_one_ad_phone_number{
     
 font-size:20pt;

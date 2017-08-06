@@ -1,5 +1,15 @@
 ﻿
 <script>
+    var t;
+    function up() {
+        var top = Math.max(document.body.scrollTop, document.documentElement.scrollTop);
+        if (top > 0) {
+            window.scrollBy(0, -100);
+            t = setTimeout('up()', 20);
+        } else clearTimeout(t);
+        return false;
+    }
+
 
     function isVisible(tag) {
         var t = $(tag);
@@ -16,7 +26,8 @@
             if (!b.prop("shown") && isVisible(b)) {
                 b.prop("shown", true);
                 var o = document.getElementById("main_header_small_id")
-             
+                var o1 = document.getElementById("main_header_up_id")
+                o1.style.display = 'block';
                 o.style.display = 'block';
 
             }
@@ -24,7 +35,8 @@
                 if (b.prop("shown") && !isVisible(b)) {
                     b.prop("shown", false);
                     var o = document.getElementById("main_header_small_id")
-
+                    var o1 = document.getElementById("main_header_up_id")
+                    o1.style.display = 'none';
                     o.style.display = 'none';
                 }
             }
@@ -104,6 +116,13 @@
     </div>
 
 </div>
+
+
+<div id="main_header_up_id" class="main_header_up_div" onclick="return up()">
+     <img src="~/Content/img/go_top.png" />
+</div>
+
+
 <div class="main_header_div_lvl_1">
     <div class="main_header_link_home">
         @Html.ActionLink("Главная", "Categories", "Home", null, new {@class= "link_standart_for_div" ,id="main_header_sr_text"})
