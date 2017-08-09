@@ -13,9 +13,11 @@ namespace irr.Controllers
     public class HomeController : Controller
     {
         List<Entry> main_arr = new List<Entry>();
-        //EntryContext db = new EntryContext();
-
-
+        EntryContext db = new EntryContext();
+        //db.Players.Add(player);
+        //db.SaveChanges();
+        //
+        int ta = 0;
         //TODO список категорий и именно его закидывать уже куда надо List<string> category = new List<string>() { "Квартиры", "Телефоны", "Животные", "Машины" };
 
         //-SETTINGS/ADMIN BLOCK--------------------------------------------------------------------------------------------------------------------//
@@ -221,8 +223,11 @@ namespace irr.Controllers
         public ActionResult Index()
         {
             //представление тоже удалить
+
             UP_nedo_bd();
-          
+           // db.Entrys.Add(main_arr[0]);
+            //db.SaveChanges();
+            var ta = db.Entrys.ToList();
             return View();
         }
         //END-SETTINGS/ADMIN BLOCK--------------------------------------------------------------------------------------------------------------------//
@@ -791,6 +796,11 @@ public ActionResult Real_estate()
 
             res.Count_page = srch.Count_page;
             return res;
+        }
+        protected override void Dispose(bool disposing)
+        {
+            db.Dispose();
+            base.Dispose(disposing);
         }
     }
 

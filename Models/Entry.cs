@@ -11,11 +11,12 @@ namespace irr.Models
         public int Id { get; set; }
         public string Type_of_apartment { get; set; }
         public string Type_ad { get; set; }
-        public string Url_page { get; set; }
+        public string Type { get; set; }
+        // public string Url_page { get; set; }
         public bool VIP { get; set; }
         public string Map { get; set; }
         public string Header { get; set; }
-        public string Under_header { get; set; }
+        //public string Under_header { get; set; }
         public int ?Price { get; set; }
         public int ?Count_rooms{ get; set; }
         public double ?Total_area { get; set; }
@@ -42,10 +43,10 @@ namespace irr.Models
             VIP = false;
             Type_of_apartment = "";
             Type_ad = "";
-            Url_page = "";
+            Type = "";
             Map = "";
             Header = "";
-            Under_header = "";
+            //Under_header = "";
             Price = 0;
             Phone_number = "";
             Name = "";
@@ -72,10 +73,12 @@ namespace irr.Models
                 return true;
             if (Type_ad.IndexOf(str) != -1)
                 return true;
+            if (Type.IndexOf(str) != -1)
+                return true;
             if (Header.IndexOf(str) != -1)
                 return true;
-            if (Under_header.IndexOf(str) != -1)
-                return true;
+            //if (Under_header.IndexOf(str) != -1)
+                //return true;
             if (Price.ToString().IndexOf(str) != -1)
                 return true;
             if (Phone_number.IndexOf(str) != -1)

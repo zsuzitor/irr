@@ -47,7 +47,7 @@ namespace irr.Models
             Residential_area_top = null;
             Floor = null;
             Count_floor = null;
-            Place = "";
+            Place = null;
             VIP = false;
             price_bool = null;
             rooms_bool = null;
