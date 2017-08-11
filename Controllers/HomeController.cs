@@ -12,7 +12,7 @@ namespace irr.Controllers
 {
     public class HomeController : Controller
     {
-        List<Entry> main_arr = new List<Entry>();
+       // List<Entry> main_arr = new List<Entry>();
         EntryContext db = new EntryContext();
         //db.Players.Add(player);
         //db.SaveChanges();
@@ -23,7 +23,7 @@ namespace irr.Controllers
         //-SETTINGS/ADMIN BLOCK--------------------------------------------------------------------------------------------------------------------//
         public void UP_nedo_bd()
         {
-
+            /*
 
             //List<Entry> tffr = db.Entrys;
 
@@ -174,7 +174,7 @@ namespace irr.Controllers
 
 
 
-    */
+    /
                     Entry new_temp = new Entry();
                     
                     new_temp = JsonConvert.DeserializeObject<Entry>(arr[0]);
@@ -197,11 +197,11 @@ namespace irr.Controllers
                         new_temp.Residential_area = null;
                     else
                         new_temp.Residential_area = a12344_int;
-                     */
+                     /
 
                     new_temp.Id = id_tmp;
                     ++id_tmp;
-                    main_arr.Add(new_temp);
+                    //!!!это при commit parse  main_arr.Add(new_temp);
 
                     //string serialized = JsonConvert.SerializeObject(new_temp);
 
@@ -215,14 +215,14 @@ namespace irr.Controllers
             {
                
             }
-
+            */
 
 
            // writer.Close();
         }
         public ActionResult Index()
         {
-            //представление тоже удалить
+           /* //представление тоже удалить
             var tt = db.Entries.Count();
             var tt1 = db.Images.Count();
             var tt2 = db.Info.Count();
@@ -376,6 +376,7 @@ namespace irr.Controllers
 
 
             }
+            */
             //var ta = db.Entrys.ToList();
             //var ta = db.Entrys;
             return View();
@@ -438,7 +439,7 @@ namespace irr.Controllers
         {
             srch.VIP = true;
 
-            UP_nedo_bd();
+            //!!!это при commit parse UP_nedo_bd();
             return PartialView(search_bd(srch));
         }
         
@@ -680,9 +681,9 @@ public ActionResult Real_estate()
         public ActionResult Show_one_ad(int id=1)
         {
             //TODO <div title="жилая/общая" не отображает при наведении в представлении
-            UP_nedo_bd();
-            Entry res = main_arr.First(x1 => x1.Id == id);
-            
+            //!!!это при commit parse UP_nedo_bd();
+            Entry res = db.Entries.First(x1 => x1.Id == id);
+            Record(res);
             return View(res);
         }
         //Extended
@@ -719,7 +720,7 @@ public ActionResult Real_estate()
 
             if (srch.Id != null)
             {
-                res = main_arr.Where(x5 => x5.Id == srch.Id).ToList();
+                res = db.Entries.Where(x5 => x5.Id == srch.Id).ToList();
                 //out_bool = false;
             }
             else
@@ -741,37 +742,18 @@ public ActionResult Real_estate()
 
 
 
-            var res_1 = main_arr.
+            var res_1 = db.Entries.
                 Where(x1 => srch.type == "all" ? true : x1.Type_ad == srch.type ? true : false).
                 Where(x2 => srch.type2 == "all-type" ? true : x2.Type_of_apartment == srch.type2 ? true : false).
-                Where(x3 => (srch.town == "Вся Россия" ? true : x3.Place.IndexOf(srch.town) != -1) && (x3.search_str(srch.str)));//.OrderBy(x4=> int.TryParse(x4.Price))
-            if (srch.VIP)
+                Where(x3 => (srch.town == "Вся Россия" ? true : x3.Place.IndexOf(srch.town) != -1));// && (x3.search_str(srch.str))
+                if (srch.VIP)
             {
                 res_1 = res_1.Where(x5 => x5.VIP);
                 //res = res_1.ToList();
                 //return res;
             }
 
-            if (srch.price_bool != null)
-            {
-                res_1 = res_1.OrderBy(x4 => x4.Price);
-                if (srch.price_bool == false)
-                {
-                    res_1 = res_1.Reverse();
-                }
-
-
-            }
-            if (srch.rooms_bool != null)
-            {
-                res_1 = res_1.OrderBy(x4 => x4.Count_rooms);
-                if (srch.rooms_bool == false)
-                {
-                    res_1 = res_1.Reverse();
-                }
-
-
-            }
+            
 
 
 
@@ -827,10 +809,31 @@ public ActionResult Real_estate()
             }
 
 
-            res = res_1.ToList();
-        
+                res = res_1.ToList();//ToList();???????????????????????????
 
-            srch.Count_page = res.Count / srch.Count_ad_on_page + 1;
+                if (srch.price_bool != null)
+                {
+                    res = res.OrderBy(x4 => x4.Price).ToList();
+                    if (srch.price_bool == false)
+                    {
+                        //TODO костыль ревеса хз не работает
+                         res.Reverse();// res_1.Reverse();
+                    }
+
+
+                }
+                if (srch.rooms_bool != null)
+                {
+                    res = res.OrderBy(x4 => x4.Count_rooms).ToList();
+                    if (srch.rooms_bool == false)
+                    {
+                        res.Reverse();
+                    }
+
+
+                }
+                
+                srch.Count_page = res.Count / srch.Count_ad_on_page + 1;
                 if (srch.pg > srch.Count_page)
                     srch.pg = srch.Count_page;
             int int_skip = (srch.pg > 0 ? srch.pg - 1 : srch.pg)*srch.Count_ad_on_page;
@@ -839,6 +842,10 @@ public ActionResult Real_estate()
                     ToList();
             }
 
+            for(int i=0;i<res.Count;++i)
+            {
+                Record(res[i]);
+            }
             return res;
         }
 
@@ -916,7 +923,7 @@ public ActionResult Real_estate()
 
             //
 
-            UP_nedo_bd();
+            //!!!это при commit parse UP_nedo_bd();
             res.list = search_bd(srch);
             res.srch = srch.copy();
             
@@ -951,6 +958,327 @@ public ActionResult Real_estate()
         {
             db.Dispose();
             base.Dispose(disposing);
+        }
+
+        public Entry Record(Entry a)
+        {
+            Entry_info info= db.Info.First(x1 => x1.Id == a.Info1_id);
+            Entry_img img = db.Images.First(x1 => x1.Id == a.Images_id);
+            //7377;
+            //db.Entries.Remove(db.Entries.First(x1=>x1.Id==7377));
+            //db.SaveChanges();
+            try
+            {
+                if (info.info_1 != null)
+                    a.Info1.Add(info.info_1);
+                else
+                    throw new IndexOutOfRangeException();
+                if (info.info_2 != null)
+                    a.Info1.Add(info.info_2);
+                else
+                    throw new IndexOutOfRangeException();
+                if (info.info_3 != null)
+                    a.Info1.Add(info.info_3);
+                else
+                    throw new IndexOutOfRangeException();
+                if (info.info_4 != null)
+                    a.Info1.Add(info.info_4);
+                else
+                    throw new IndexOutOfRangeException();
+                if (info.info_5 != null)
+                    a.Info1.Add(info.info_5);
+                else
+                    throw new IndexOutOfRangeException();
+                if (info.info_6 != null)
+                    a.Info1.Add(info.info_6);
+                else
+                    throw new IndexOutOfRangeException();
+                if (info.info_7 != null)
+                    a.Info1.Add(info.info_7);
+                else
+                    throw new IndexOutOfRangeException();
+                if (info.info_8 != null)
+                    a.Info1.Add(info.info_8);
+                else
+                    throw new IndexOutOfRangeException();
+                if (info.info_9 != null)
+                    a.Info1.Add(info.info_9);
+                else
+                    throw new IndexOutOfRangeException();
+                if (info.info_10 != null)
+                    a.Info1.Add(info.info_10);
+                else
+                    throw new IndexOutOfRangeException();
+            }
+            catch
+            {
+
+            }
+            info = db.Info.First(x1 => x1.Id == a.Info2_id);
+
+            try
+            {
+                if (info.info_1 != null)
+                    a.Info2.Add(info.info_1);
+                else
+                    throw new IndexOutOfRangeException();
+                if (info.info_2 != null)
+                    a.Info2.Add(info.info_2);
+                else
+                    throw new IndexOutOfRangeException();
+                if (info.info_3 != null)
+                    a.Info2.Add(info.info_3);
+                else
+                    throw new IndexOutOfRangeException();
+                if (info.info_4 != null)
+                    a.Info2.Add(info.info_4);
+                else
+                    throw new IndexOutOfRangeException();
+                if (info.info_5 != null)
+                    a.Info2.Add(info.info_5);
+                else
+                    throw new IndexOutOfRangeException();
+                if (info.info_6 != null)
+                    a.Info2.Add(info.info_6);
+                else
+                    throw new IndexOutOfRangeException();
+                if (info.info_7 != null)
+                    a.Info2.Add(info.info_7);
+                else
+                    throw new IndexOutOfRangeException();
+                if (info.info_8 != null)
+                    a.Info2.Add(info.info_8);
+                else
+                    throw new IndexOutOfRangeException();
+                if (info.info_9 != null)
+                    a.Info2.Add(info.info_9);
+                else
+                    throw new IndexOutOfRangeException();
+                if (info.info_10 != null)
+                    a.Info2.Add(info.info_10);
+                else
+                    throw new IndexOutOfRangeException();
+            }
+            catch
+            {
+
+            }
+            info = db.Info.First(x1 => x1.Id == a.Info3_id);
+
+            try
+            {
+                if (info.info_1 != null)
+                    a.Info3.Add(info.info_1);
+                else
+                    throw new IndexOutOfRangeException();
+                if (info.info_2 != null)
+                    a.Info3.Add(info.info_2);
+                else
+                    throw new IndexOutOfRangeException();
+                if (info.info_3 != null)
+                    a.Info3.Add(info.info_3);
+                else
+                    throw new IndexOutOfRangeException();
+                if (info.info_4 != null)
+                    a.Info3.Add(info.info_4);
+                else
+                    throw new IndexOutOfRangeException();
+                if (info.info_5 != null)
+                    a.Info3.Add(info.info_5);
+                else
+                    throw new IndexOutOfRangeException();
+                if (info.info_6 != null)
+                    a.Info3.Add(info.info_6);
+                else
+                    throw new IndexOutOfRangeException();
+                if (info.info_7 != null)
+                    a.Info3.Add(info.info_7);
+                else
+                    throw new IndexOutOfRangeException();
+                if (info.info_8 != null)
+                    a.Info3.Add(info.info_8);
+                else
+                    throw new IndexOutOfRangeException();
+                if (info.info_9 != null)
+                    a.Info3.Add(info.info_9);
+                else
+                    throw new IndexOutOfRangeException();
+                if (info.info_10 != null)
+                    a.Info3.Add(info.info_10);
+                else
+                    throw new IndexOutOfRangeException();
+            }
+            catch
+            {
+
+            }
+            info = db.Info.First(x1 => x1.Id == a.Info4_id);
+
+            try
+            {
+                if (info.info_1 != null)
+                    a.Info4.Add(info.info_1);
+                else
+                    throw new IndexOutOfRangeException();
+                if (info.info_2 != null)
+                    a.Info4.Add(info.info_2);
+                else
+                    throw new IndexOutOfRangeException();
+                if (info.info_3 != null)
+                    a.Info4.Add(info.info_3);
+                else
+                    throw new IndexOutOfRangeException();
+                if (info.info_4 != null)
+                    a.Info4.Add(info.info_4);
+                else
+                    throw new IndexOutOfRangeException();
+                if (info.info_5 != null)
+                    a.Info4.Add(info.info_5);
+                else
+                    throw new IndexOutOfRangeException();
+                if (info.info_6 != null)
+                    a.Info4.Add(info.info_6);
+                else
+                    throw new IndexOutOfRangeException();
+                if (info.info_7 != null)
+                    a.Info4.Add(info.info_7);
+                else
+                    throw new IndexOutOfRangeException();
+                if (info.info_8 != null)
+                    a.Info4.Add(info.info_8);
+                else
+                    throw new IndexOutOfRangeException();
+                if (info.info_9 != null)
+                    a.Info4.Add(info.info_9);
+                else
+                    throw new IndexOutOfRangeException();
+                if (info.info_10 != null)
+                    a.Info4.Add(info.info_10);
+                else
+                    throw new IndexOutOfRangeException();
+            }
+            catch
+            {
+
+            }
+
+
+
+
+
+
+            try
+            {
+                if (img.s_1 != null)
+                    a.Images.Add(img.s_1);
+                else
+                    throw new IndexOutOfRangeException();
+                if (img.s_2 != null)
+                    a.Images.Add(img.s_2);
+                else
+                    throw new IndexOutOfRangeException();
+                if (img.s_3 != null)
+                    a.Images.Add(img.s_3);
+                else
+                    throw new IndexOutOfRangeException();
+                if (img.s_4 != null)
+                    a.Images.Add(img.s_4);
+                else
+                    throw new IndexOutOfRangeException();
+                if (img.s_5 != null)
+                    a.Images.Add(img.s_5);
+                else
+                    throw new IndexOutOfRangeException();
+                if (img.s_6 != null)
+                    a.Images.Add(img.s_6);
+                else
+                    throw new IndexOutOfRangeException();
+                if (img.s_7 != null)
+                    a.Images.Add(img.s_7);
+                else
+                    throw new IndexOutOfRangeException();
+                if (img.s_8 != null)
+                    a.Images.Add(img.s_8);
+                else
+                    throw new IndexOutOfRangeException();
+                if (img.s_9 != null)
+                    a.Images.Add(img.s_9);
+                else
+                    throw new IndexOutOfRangeException();
+                if (img.s_10 != null)
+                    a.Images.Add(img.s_10);
+                else
+                    throw new IndexOutOfRangeException();
+
+
+
+
+
+
+            }
+            catch
+            {
+
+            }
+            try
+            {
+                if (img.b_1 != null)
+                    a.Images_byte.Add(img.b_1);
+                else
+                    throw new IndexOutOfRangeException();
+                if (img.b_2 != null)
+                    a.Images_byte.Add(img.b_2);
+                else
+                    throw new IndexOutOfRangeException();
+                if (img.b_3 != null)
+                    a.Images_byte.Add(img.b_3);
+                else
+                    throw new IndexOutOfRangeException();
+                if (img.b_4 != null)
+                    a.Images_byte.Add(img.b_4);
+                else
+                    throw new IndexOutOfRangeException();
+                if (img.b_5 != null)
+                    a.Images_byte.Add(img.b_5);
+                else
+                    throw new IndexOutOfRangeException();
+                if (img.b_6 != null)
+                    a.Images_byte.Add(img.b_6);
+                else
+                    throw new IndexOutOfRangeException();
+                if (img.b_7 != null)
+                    a.Images_byte.Add(img.b_7);
+                else
+                    throw new IndexOutOfRangeException();
+                if (img.b_8 != null)
+                    a.Images_byte.Add(img.b_8);
+                else
+                    throw new IndexOutOfRangeException();
+                if (img.b_9 != null)
+                    a.Images_byte.Add(img.b_9);
+                else
+                    throw new IndexOutOfRangeException();
+                if (img.b_10 != null)
+                    a.Images_byte.Add(img.b_10);
+                else
+                    throw new IndexOutOfRangeException();
+
+
+
+
+
+
+
+            }
+            catch
+            {
+
+            }
+
+
+
+
+            return a;
         }
     }
 

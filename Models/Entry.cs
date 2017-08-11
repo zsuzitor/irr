@@ -77,6 +77,7 @@ namespace irr.Models
 
 
         }
+        
         public bool search_str(string str)
         {
             if (string.IsNullOrEmpty(str))
