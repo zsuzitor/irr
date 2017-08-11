@@ -8,7 +8,7 @@ namespace irr.Models
 {
     public class EntryContext : DbContext
     {
-        public DbSet<Entry> Entrys { get; set; }
+        public DbSet<Entry> Entries { get; set; }
         public DbSet<Entry_img> Images { get; set; }
         public DbSet<Entry_info> Info { get; set; }
 
