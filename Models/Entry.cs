@@ -29,21 +29,32 @@ namespace irr.Models
         public string Place { get; set; }
         public string Link { get; set; }
         public string Description { get; set; }
+        public int? Images_id { get; set; }
         public List<string> Images { get; set; }
         public List<byte[]> Images_byte { get; set; }
+        public int? Info1_id { get; set; }
         public List<string> Info1 { get; set; }
+        public int? Info2_id { get; set; }
         public List<string> Info2 { get; set; }
+        public int? Info3_id { get; set; }
         public List<string> Info3 { get; set; }
+        public int? Info4_id { get; set; }
+        public List<string> Info4 { get; set; }
         //public string Images;
         // public string Info1;
         // public string Info2;
         //public string Info3;
         public Entry()
         {
+            Images_id = null;
+            Info1_id = null;
+            Info2_id = null;
+            Info3_id = null;
+            Info4_id = null;
             VIP = false;
             Type_of_apartment = "";
             Type_ad = "";
-            Type = "";
+            Type = "Квартиры";
             Map = "";
             Header = "";
             //Under_header = "";
@@ -56,6 +67,7 @@ namespace irr.Models
             Info1 = new List<string>();
             Info2 = new List<string>();
            Info3 = new List<string>();
+            Info4 = new List<string>();
             Images = new List<string>();
             Images_byte=new List< byte[] > ();
             // Images = "";
@@ -100,7 +112,10 @@ namespace irr.Models
             foreach (var i in Info3)
                 if (i.IndexOf(str) != -1)
                     return true;
-            
+            foreach (var i in Info4)
+                if (i.IndexOf(str) != -1)
+                    return true;
+
 
 
 
@@ -108,4 +123,44 @@ namespace irr.Models
         }
 
     }
-}
+
+
+    public class Entry_img
+    {
+        public int Id { get; set; }
+        public string s_1 { get; set; } // название картинки
+        public string s_2 { get; set; }
+        public string s_3 { get; set; }
+        public string s_4 { get; set; }
+        public string s_5 { get; set; }
+        public string s_6 { get; set; }
+        public string s_7 { get; set; }
+        public string s_8 { get; set; }
+        public string s_9 { get; set; }
+        public string s_10 { get; set; }
+        public byte[] b_1 { get; set; }
+        public byte[] b_2 { get; set; }
+        public byte[] b_3 { get; set; }
+        public byte[] b_4 { get; set; }
+        public byte[] b_5 { get; set; }
+        public byte[] b_6 { get; set; }
+        public byte[] b_7 { get; set; }
+        public byte[] b_8 { get; set; }
+        public byte[] b_9 { get; set; }
+        public byte[] b_10 { get; set; }
+    }
+    public class Entry_info
+    {
+        public int Id { get; set; }
+        public string info_1 { get; set; } // название картинки
+        public string info_2 { get; set; }
+        public string info_3 { get; set; }
+        public string info_4 { get; set; }
+        public string info_5 { get; set; }
+        public string info_6 { get; set; }
+        public string info_7 { get; set; }
+        public string info_8 { get; set; }
+        public string info_9 { get; set; }
+        public string info_10 { get; set; }
+    }
+    }

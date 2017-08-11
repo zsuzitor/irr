@@ -225,9 +225,133 @@ namespace irr.Controllers
             //представление тоже удалить
 
             UP_nedo_bd();
-           // db.Entrys.Add(main_arr[0]);
+            // db.Entrys.Add(main_arr[0]);
             //db.SaveChanges();
-            var ta = db.Entrys.ToList();
+            
+            foreach(var i in main_arr)
+            {
+                Entry_img a_img = new Entry_img();
+                Entry_info a_info_1 = new Entry_info();
+                Entry_info a_info_2 = new Entry_info();
+                Entry_info a_info_3 = new Entry_info();
+                Entry_info a_info_4 = new Entry_info();
+                try
+                {
+                    a_img.s_1 = i.Images[0];
+                    a_img.s_2 = i.Images[1];
+                    a_img.s_3 = i.Images[2];
+                    a_img.s_4 = i.Images[3];
+                    a_img.s_5 = i.Images[4];
+                    a_img.s_6 = i.Images[5];
+                    a_img.s_7 = i.Images[6];
+                    a_img.s_8 = i.Images[7];
+                    a_img.s_9 = i.Images[8];
+                    a_img.s_10 = i.Images[9];
+                }
+                catch
+                {
+
+                }
+                try
+                {
+                    a_info_1.info_1 = i.Info1[0];
+                    a_info_1.info_2 = i.Info1[1];
+                    a_info_1.info_3 = i.Info1[2];
+                    a_info_1.info_4 = i.Info1[3];
+                    a_info_1.info_5 = i.Info1[4];
+                    a_info_1.info_6 = i.Info1[5];
+                    a_info_1.info_7 = i.Info1[6];
+                    a_info_1.info_8 = i.Info1[7];
+                    a_info_1.info_9 = i.Info1[8];
+                    a_info_1.info_10 = i.Info1[9];
+                }
+                catch
+                {
+
+                }
+                try
+                {
+                    a_info_2.info_1 = i.Info2[0];
+                    a_info_2.info_2 = i.Info2[1];
+                    a_info_2.info_3 = i.Info2[2];
+                    a_info_2.info_4 = i.Info2[3];
+                    a_info_2.info_5 = i.Info2[4];
+                    a_info_2.info_6 = i.Info2[5];
+                    a_info_2.info_7 = i.Info2[6];
+                    a_info_2.info_8 = i.Info2[7];
+                    a_info_2.info_9 = i.Info2[8];
+                    a_info_2.info_10 = i.Info2[9];
+                }
+                catch
+                {
+
+                }
+                try
+                {
+                    a_info_3.info_1 = i.Info3[0];
+                    a_info_3.info_2 = i.Info3[1];
+                    a_info_3.info_3 = i.Info3[2];
+                    a_info_3.info_4 = i.Info3[3];
+                    a_info_3.info_5 = i.Info3[4];
+                    a_info_3.info_6 = i.Info3[5];
+                    a_info_3.info_7 = i.Info3[6];
+                    a_info_3.info_8 = i.Info3[7];
+                    a_info_3.info_9 = i.Info3[8];
+                    a_info_3.info_10 = i.Info3[9];
+                }
+                catch
+                {
+
+                }
+                try
+                {
+                    a_info_4.info_1 = i.Info4[0];
+                    a_info_4.info_2 = i.Info4[1];
+                    a_info_4.info_3 = i.Info4[2];
+                    a_info_4.info_4 = i.Info4[3];
+                    a_info_4.info_5 = i.Info4[4];
+                    a_info_4.info_6 = i.Info4[5];
+                    a_info_4.info_7 = i.Info4[6];
+                    a_info_4.info_8 = i.Info4[7];
+                    a_info_4.info_9 = i.Info4[8];
+                    a_info_4.info_10 = i.Info4[9];
+                }
+                catch
+                {
+
+                }
+                db.Info.Add(a_info_1);
+                db.SaveChanges();
+                i.Info1_id = a_info_1.Id;
+
+                db.Info.Add(a_info_2);
+                db.SaveChanges();
+                i.Info2_id = a_info_2.Id;
+
+                db.Info.Add(a_info_3);
+                db.SaveChanges();
+                i.Info3_id = a_info_3.Id;
+
+                db.Info.Add(a_info_4);
+                db.SaveChanges();
+                i.Info4_id = a_info_4.Id;
+
+                db.Images.Add(a_img);
+                db.SaveChanges();
+                i.Images_id = a_img.Id;
+
+
+                db.Entrys.Add(i);
+                db.SaveChanges();
+               
+
+
+
+
+
+            }
+            //var ta = db.Entrys.ToList();
+            //var ta = db.Entrys;
             return View();
         }
         //END-SETTINGS/ADMIN BLOCK--------------------------------------------------------------------------------------------------------------------//
