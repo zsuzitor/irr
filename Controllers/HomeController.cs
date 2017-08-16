@@ -745,7 +745,9 @@ public ActionResult Real_estate()
             var res_1 = db.Entries.
                 Where(x1 => srch.type == "all" ? true : x1.Type_ad == srch.type ? true : false).
                 Where(x2 => srch.type2 == "all-type" ? true : x2.Type_of_apartment == srch.type2 ? true : false).
-                Where(x3 => (srch.town == "Вся Россия" ? true : x3.Place.IndexOf(srch.town) != -1));// && (x3.search_str(srch.str))
+                Where(x3 => (srch.town == "Вся Россия" ? true : x3.Place.IndexOf(srch.town) != -1));
+                
+    // && (x3.search_str(srch.str))
                 if (srch.VIP)
             {
                 res_1 = res_1.Where(x5 => x5.VIP);
