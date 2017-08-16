@@ -102,20 +102,20 @@ namespace irr.Models
                 return true;
             if (Description.IndexOf(str) != -1)
                 return true;
-            foreach(var i in Info1)
-                if (i.IndexOf(str) != -1)
-                    return true;
+            //foreach(var i in Info1)
+                //if (i.IndexOf(str) != -1)
+                    //return true;
             
-            foreach (var i in Info2)
-                if (i.IndexOf(str) != -1)
-                    return true;
+            //foreach (var i in Info2)
+               // if (i.IndexOf(str) != -1)
+                    //return true;
             
-            foreach (var i in Info3)
-                if (i.IndexOf(str) != -1)
-                    return true;
-            foreach (var i in Info4)
-                if (i.IndexOf(str) != -1)
-                    return true;
+            //foreach (var i in Info3)
+                //if (i.IndexOf(str) != -1)
+                   // return true;
+            //foreach (var i in Info4)
+                //if (i.IndexOf(str) != -1)
+                  //  return true;
 
 
 

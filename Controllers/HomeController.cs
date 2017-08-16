@@ -12,7 +12,7 @@ namespace irr.Controllers
 {
     public class HomeController : Controller
     {
-       // List<Entry> main_arr = new List<Entry>();
+      
         EntryContext db = new EntryContext();
         //db.Players.Add(player);
         //db.SaveChanges();
@@ -21,364 +21,10 @@ namespace irr.Controllers
         //TODO список категорий и именно его закидывать уже куда надо List<string> category = new List<string>() { "Квартиры", "Телефоны", "Животные", "Машины" };
 
         //-SETTINGS/ADMIN BLOCK--------------------------------------------------------------------------------------------------------------------//
-        public void UP_nedo_bd()
-        {
-            /*
-
-            //List<Entry> tffr = db.Entrys;
-
-
-
-            // StreamWriter writer = new StreamWriter(@"C:\csharp\asp1\kniga\irr\irr\Content\data.json", true);
-            //StreamReader reader = new StreamReader(@"C:\Users\zsuz\Desktop\волгту\парсерPYквартирыirr\data.json");
-            StreamReader reader = new StreamReader(@"C:\csharp\asp1\kniga\irr\irr\Content\data.json");
-            //чтение файла и разбивка по объектам+ добавление
-            string next_str = "";
-            int id_tmp = 1;
-            try
-            {
-                int i = 0;
-                bool tr = true;
-                while (tr)
-                {
-                    char[] b = new char[10];
-                    reader.Read(b, i * 0, 10);
-                    string str = next_str + string.Concat(b);
-
-                    b = new char[10];
-                    ++i;
-                    while ((str.IndexOf('}') == -1)&&tr)
-                    {
-                        reader.Read(b, i * 0, 10);
-                        str += string.Concat(b);
-                        b = new char[10];
-                        ++i;
-                        if (str.IndexOf('\0') != -1)
-                            tr = false;
-                    }
-                    string[] arr = str.Split('}');
-                    try
-                    {
-                        arr[0] += "}";
-                        next_str = arr[1];
-                    }
-                    catch
-                    {
-
-
-                    }
-                    //сделать объект entry
-
-                    /*
-                    string a123 = arr[0].Substring(0, arr[0].IndexOf("Price")+9);
-                    string a1233= arr[0].Substring(arr[0].IndexOf("Price") + 5, 30);
-                    string a12333 = "";
-                    var a12334 = a1233.ToCharArray();
-                    for (int i44=0;i44< a12334.Length;++i44)
-                    {
-                        if (char.IsDigit(a12334[i44]))
-                        {
-                            a12333 += a12334[i44];
-                        }
-                    }
-                    a123 += a12333+ arr[0].Substring(arr[0].IndexOf("Phone_number") -4);
-                    arr[0] = a123;
-                    a123 = arr[0].Substring(arr[0].IndexOf("\"Общая площадь\":")+18,20);
-                    double a123_int = 0;
-                    string tmp123 = "";
-                    bool flag = true;
-                    foreach(var i44 in a123.ToCharArray())
-                    {
-                        if(flag&&(i44=='.'||char.IsDigit(i44)))
-                        {
-                            tmp123 += i44;
-                        }
-                        else
-                        {
-                            flag = false;
-                        }
-                            
-                    }
-                    double.TryParse(tmp123, out a123_int);
-
-
-
-
-                    a123 = arr[0].Substring(arr[0].IndexOf("\"Жилая площадь\": ") + 18, 20);
-                    double a12344_int = 0;
-                     tmp123 = "";
-                     flag = true;
-                    foreach (var i44 in a123.ToCharArray())
-                    {
-                        if (flag && (i44 == '.' || char.IsDigit(i44)))
-                        {
-                            tmp123 += i44;
-                        }
-                        else
-                        {
-                            flag = false;
-                        }
-
-                    }
-                    double.TryParse(tmp123, out a12344_int);
-
-
-
-
-
-
-                    flag = true;
-                    tmp123 = "";
-                    string tmp1234 = "";
-                    a123 = arr[0].Substring(arr[0].IndexOf(" \"Этаж\":")+10, 20);
-                    foreach (var i44 in a123.ToCharArray())
-                    {
-                        if (flag)
-                        {
-                            if (char.IsDigit(i44))
-                            {
-                                tmp123 += i44;
-                                
-                            }
-                            else
-                            flag = false;
-                        }
-                        else
-                        {
-                            if (char.IsDigit(i44))
-                            {
-                                tmp1234 += i44;
-                                
-                            }
-                           
-                        }
-
-                    }
-
-
-                    int a1234_int = 0;
-                    int.TryParse(tmp123, out a1234_int);
-                    int a12345_int = 0;
-                    int.TryParse(tmp1234, out a12345_int);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /
-                    Entry new_temp = new Entry();
-                    
-                    new_temp = JsonConvert.DeserializeObject<Entry>(arr[0]);
-                    /*
-                    if (a123_int == 0)
-                        new_temp.Total_area = null;
-                    else
-                        new_temp.Total_area = a123_int;
-                    if (a1234_int == 0)
-                        new_temp.Floor = null;
-                    else
-                        new_temp.Floor = a1234_int;
-
-                    if (a12345_int == 0)
-                        new_temp.Count_floor = null;
-                    else
-                        new_temp.Count_floor = a12345_int;
-
-                    if (a12344_int == 0)
-                        new_temp.Residential_area = null;
-                    else
-                        new_temp.Residential_area = a12344_int;
-                     /
-
-                    new_temp.Id = id_tmp;
-                    ++id_tmp;
-                    //!!!это при commit parse  main_arr.Add(new_temp);
-
-                    //string serialized = JsonConvert.SerializeObject(new_temp);
-
-                    //writer.Write(serialized);
-                    
-
-                }
-                    
-                    }
-            catch
-            {
-               
-            }
-            */
-
-
-           // writer.Close();
-        }
+        
         public ActionResult Index()
         {
-           /* //представление тоже удалить
-            var tt = db.Entries.Count();
-            var tt1 = db.Images.Count();
-            var tt2 = db.Info.Count();
-            //db.Entrys.RemoveRange(db.Entrys);
-            //db.Images.RemoveRange(db.Images);
-            //db.Info.RemoveRange(db.Info);
-            //db.SaveChanges();
-             //tt = db.Entrys.Count();
-             //tt1 = db.Images.Count();
-             //tt2 = db.Info.Count();
-            UP_nedo_bd();
-            // db.Entrys.Add(main_arr[0]);
-            //db.SaveChanges();
-            
-            for(int i=0;i<main_arr.Count;++i)
-            {
-                if (i == 500)
-                {
-                    int g1 = 0;
-                }
-                if (i == 1000)
-                {
-                    int g1 = 0;
-                }
-                if (i == 1500)
-                {
-                    int g1 = 0;
-                }
-                if (i == 2000)
-                {
-                    int g1 = 0;
-                }
-                if (i == 3000)
-                {
-                    int g1 = 0;
-                }
-                if (i == 4000)
-                {
-                    int g1 = 0;
-                }
-
-                Entry_img a_img = new Entry_img();
-                Entry_info a_info_1 = new Entry_info();
-                Entry_info a_info_2 = new Entry_info();
-                Entry_info a_info_3 = new Entry_info();
-                Entry_info a_info_4 = new Entry_info();
-                try
-                {
-                    a_img.s_1 = main_arr[i].Images[0];
-                    a_img.s_2 = main_arr[i].Images[1];
-                    a_img.s_3 = main_arr[i].Images[2];
-                    a_img.s_4 = main_arr[i].Images[3];
-                    a_img.s_5 = main_arr[i].Images[4];
-                    a_img.s_6 = main_arr[i].Images[5];
-                    a_img.s_7 = main_arr[i].Images[6];
-                    a_img.s_8 = main_arr[i].Images[7];
-                    a_img.s_9 = main_arr[i].Images[8];
-                    a_img.s_10 = main_arr[i].Images[9];
-                }
-                catch
-                {
-
-                }
-                try
-                {
-                    a_info_1.info_1 = main_arr[i].Info1[0];
-                    a_info_1.info_2 = main_arr[i].Info1[1];
-                    a_info_1.info_3 = main_arr[i].Info1[2];
-                    a_info_1.info_4 = main_arr[i].Info1[3];
-                    a_info_1.info_5 = main_arr[i].Info1[4];
-                    a_info_1.info_6 = main_arr[i].Info1[5];
-                    a_info_1.info_7 = main_arr[i].Info1[6];
-                    a_info_1.info_8 = main_arr[i].Info1[7];
-                    a_info_1.info_9 = main_arr[i].Info1[8];
-                    a_info_1.info_10 = main_arr[i].Info1[9];
-                }
-                catch
-                {
-
-                }
-                try
-                {
-                    a_info_2.info_1 = main_arr[i].Info2[0];
-                    a_info_2.info_2 = main_arr[i].Info2[1];
-                    a_info_2.info_3 = main_arr[i].Info2[2];
-                    a_info_2.info_4 = main_arr[i].Info2[3];
-                    a_info_2.info_5 = main_arr[i].Info2[4];
-                    a_info_2.info_6 = main_arr[i].Info2[5];
-                    a_info_2.info_7 = main_arr[i].Info2[6];
-                    a_info_2.info_8 = main_arr[i].Info2[7];
-                    a_info_2.info_9 = main_arr[i].Info2[8];
-                    a_info_2.info_10 = main_arr[i].Info2[9];
-                }
-                catch
-                {
-
-                }
-                try
-                {
-                    a_info_3.info_1 = main_arr[i].Info3[0];
-                    a_info_3.info_2 = main_arr[i].Info3[1];
-                    a_info_3.info_3 = main_arr[i].Info3[2];
-                    a_info_3.info_4 = main_arr[i].Info3[3];
-                    a_info_3.info_5 = main_arr[i].Info3[4];
-                    a_info_3.info_6 = main_arr[i].Info3[5];
-                    a_info_3.info_7 = main_arr[i].Info3[6];
-                    a_info_3.info_8 = main_arr[i].Info3[7];
-                    a_info_3.info_9 = main_arr[i].Info3[8];
-                    a_info_3.info_10 = main_arr[i].Info3[9];
-                }
-                catch
-                {
-
-                }
-                try
-                {
-                    a_info_4.info_1 = main_arr[i].Info4[0];
-                    a_info_4.info_2 = main_arr[i].Info4[1];
-                    a_info_4.info_3 = main_arr[i].Info4[2];
-                    a_info_4.info_4 = main_arr[i].Info4[3];
-                    a_info_4.info_5 = main_arr[i].Info4[4];
-                    a_info_4.info_6 = main_arr[i].Info4[5];
-                    a_info_4.info_7 = main_arr[i].Info4[6];
-                    a_info_4.info_8 = main_arr[i].Info4[7];
-                    a_info_4.info_9 = main_arr[i].Info4[8];
-                    a_info_4.info_10 = main_arr[i].Info4[9];
-                }
-                catch
-                {
-
-                }
-                db.Info.Add(a_info_1);
-                db.Info.Add(a_info_2);
-                db.Info.Add(a_info_3);
-                db.Info.Add(a_info_4);
-                db.Images.Add(a_img);
-                db.SaveChanges();
-                main_arr[i].Info1_id = a_info_1.Id;
-                main_arr[i].Info2_id = a_info_2.Id;
-                main_arr[i].Info3_id = a_info_3.Id;
-                main_arr[i].Info4_id = a_info_4.Id;
-                main_arr[i].Images_id = a_img.Id;
-
-
-                db.Entries.Add(main_arr[i]);
-                db.SaveChanges();
-               
-
-
-
-
-
-            }
-            */
-            //var ta = db.Entrys.ToList();
-            //var ta = db.Entrys;
+            db.Entries.RemoveRange(db.Entries.Where(x1=>x1.Header.IndexOf("test322")!=-1).ToList());
             return View();
         }
         //END-SETTINGS/ADMIN BLOCK--------------------------------------------------------------------------------------------------------------------//
@@ -401,22 +47,22 @@ namespace irr.Controllers
             Search res = new Models.Search();
             res.category = category;
             //partial для ajax
-            // TO-DO   смотреть какой пункт выбран  и устанавливать флаг для типа расширенного поиска
+            
             return PartialView(res);
         }
         
         public ActionResult Extended_search_ajax_3(string Search)
         {
             Search res = irr.Models.Search.FromString(Search);
-            //res.category = category;
+            
             //partial для ajax
-            // TO-DO   смотреть какой пункт выбран  и устанавливать флаг для типа расширенного поиска
+           
             return PartialView(res);
         }
         public ActionResult Extended_search_ajax_2(bool flag=false, string search=null)
         {
             Search res = irr.Models.Search.FromString(search); ;
-            //TO DO хз мб флан убрать
+           
             res.flag = flag;
             //partial для ajax
             
@@ -428,9 +74,7 @@ namespace irr.Controllers
         {
             
             list_ad_View res = list_ad_ajax_1_function(filter, search);
-            //if (res.list.Count == 1)
-                //return new RedirectResult(string.Concat("/Home/Show_one_ad/?id=", res.list[0].Id.ToString()));
-            //return View("Show_one_ad", res.list[0]);
+           
             return PartialView(res);
         }
 
@@ -439,19 +83,15 @@ namespace irr.Controllers
         {
             srch.VIP = true;
 
-            //!!!это при commit parse UP_nedo_bd();
+            
             return PartialView(search_bd(srch));
         }
         
         public ActionResult Add_new_ad_ajax_1(string category)
         {
-            //if (category == "Квартиры")
-            //{
-            //   irr.Models.Entry res = new irr.Models.Entry();
-            //  return View(res);
-            //}
+            
             ViewBag.category = category;
-            //
+            
             return PartialView();
         }
 
@@ -463,8 +103,7 @@ namespace irr.Controllers
         [HttpPost]
         public ActionResult Search(string str, string category, string town)
         {
-            //UP_nedo_bd();
-            //квартиры  list_ad(string type="all", string type2 = "all-type", int pg=1)
+            
             Search srch = new Models.Search();
             srch.str = str;
             srch.category = category;
@@ -481,7 +120,7 @@ namespace irr.Controllers
                     list_ad_View res = new list_ad_View() { Current_page = 1, Type = "all", Type2 = "all-type" };
                     res.srch = srch;
                     return View("list_ad",res);
-                    //int b = 0;
+                    
                     
                 case "Телефоны":
                     return View();
@@ -496,33 +135,79 @@ namespace irr.Controllers
                     return View();
                     
             }
-           // int c = 0;
+          
            
         }
         [HttpPost]
-        public ActionResult Ad_img_add_ad(HttpPostedFileBase uploadImage,Entry res=null)
+        public ActionResult Ad_img_add_ad(HttpPostedFileBase[] uploadImage,string obg=null)
         {
             //TODO сейчас не работает и ничего не делает нужно в теории для обработки фоток которые загружаются
 
             //@Html.Hidden(Model.Images_byte,i)
-            if (res == null)
-                res = new Entry();
+            irr.Models.Entry res = new Entry();
+            Entry_img img = new Entry_img();
+            if (obg != null)
+                res = JsonConvert.DeserializeObject<Entry>(obg);
             if ( uploadImage != null)//ModelState.IsValid &&
             {
-                byte[] imageData = null;
-                // считываем переданный файл в массив байтов
-                using (var binaryReader = new BinaryReader(uploadImage.InputStream))
+                foreach(var i in uploadImage)
                 {
-                    imageData = binaryReader.ReadBytes(uploadImage.ContentLength);
-                }
-                // установка массива байтов
-                res.Images_byte.Add( imageData);
-                
-                
+                    try
+                    {
+                        byte[] imageData = null;
+                        // считываем переданный файл в массив байтов
+                        using (var binaryReader = new BinaryReader(i.InputStream))
+                        {
+                            imageData = binaryReader.ReadBytes(i.ContentLength);
+                        }
+                        // установка массива байтов
+                        res.Images_byte.Add(imageData);
 
-                //return RedirectToAction("Add_new_ad", res);
+
+
+                        //return RedirectToAction("Add_new_ad", res);
+
+                    }
+                    catch
+                    {
+
+                    }
+
+
+                }
+
+
+
+                try
+                {
+                    img.b_1=res.Images_byte[0];
+                    img.b_2 = res.Images_byte[1];
+                    img.b_3 = res.Images_byte[2];
+                    img.b_4 = res.Images_byte[3];
+                    img.b_5 = res.Images_byte[4];
+                    img.b_6 = res.Images_byte[5];
+                    img.b_7 = res.Images_byte[6];
+                    img.b_8 = res.Images_byte[7];
+                    img.b_9 = res.Images_byte[8];
+                    img.b_10 = res.Images_byte[9];
+
+
+                }
+                catch
+                {
+
+                }
+                finally
+                {
+                    db.Images.Add(img);
+                    db.SaveChanges();
+                }
+                res.Images_id = img.Id;
+
+
+
             }
-            return View("Add_new_ad",res);
+            return View("Show_one_ad", res);
         }
         [HttpPost]
         public ActionResult list_ad_ajax_1_1(string page = "", string search = null)
@@ -530,21 +215,18 @@ namespace irr.Controllers
             if (page == null)
                 page = "";
             list_ad_View res = list_ad_ajax_1_function("page="+page, search);
-            //if (res.list.Count == 1)
-            //return new RedirectResult(string.Concat("/Home/Show_one_ad/?id=", res.list[0].Id.ToString()));
-            //return View("Show_one_ad", res.list[0]);
+            
             return PartialView("list_ad_ajax_1", res);
         }
         [HttpPost]
         public ActionResult Extended_search_ajax_3_list_ad(Search srch)
         {
-            //Search res = new Models.Search();
+            
 
             //partial для ajax
-            // TO-DO   смотреть какой пункт выбран  и устанавливать флаг для типа расширенного поиска
+            
             list_ad_View res = list_ad_ajax_1_function("", srch.ToString());
-            //if (res.list.Count == 1)
-            //return new RedirectResult(string.Concat("/Home/Show_one_ad/?id=",res.list[0].Id.ToString()));
+            
             return PartialView("list_ad_ajax_1", res);
         }
         [HttpPost]
@@ -565,7 +247,7 @@ namespace irr.Controllers
                     list_ad_View res = new list_ad_View() { Current_page = a.pg, Type = a.type, Type2 = a.type2};
                     res.srch = a.copy();
                     return View("list_ad", res);
-                    //int b = 0;
+                    
                     
                 case "Телефоны":
                     return View();
@@ -586,19 +268,182 @@ namespace irr.Controllers
         [HttpPost]
         public ActionResult Add_new_ad(Entry a)
         {
-            //irr.Models.Entry res = new irr.Models.Entry();
-            //
+            if(a.Type== "Квартиры")
+            {
+                if(a.Info1.Count>0&&!string.IsNullOrEmpty( a.Info1[0]))//!string.IsNullOrEmpty
+                {
+                    //\r\n
+                    string[] mas = a.Info1[0].Split(new char[] { '\r' ,'\n'});
+                    a.Info1.Clear();
+                    Entry_info info = new Entry_info();
+                    try
+                    {
+                        info.info_1 = mas[0];
+                        a.Info1.Add(mas[0]);
+                        info.info_2 = mas[2];
+                        a.Info1.Add(mas[2]);
+                        info.info_3 = mas[4];
+                        a.Info1.Add(mas[4]);
+                        info.info_4 = mas[6];
+                        a.Info1.Add(mas[6]);
+                        info.info_5 = mas[8];
+                        a.Info1.Add(mas[8]);
+                        info.info_6 = mas[10];
+                        a.Info1.Add(mas[10]);
+                        info.info_7 = mas[12];
+                        a.Info1.Add(mas[12]);
+                        info.info_8 = mas[14];
+                        a.Info1.Add(mas[14]);
+                        info.info_9 = mas[16];
+                        a.Info1.Add(mas[16]);
+                        info.info_10 = mas[18];
+                        a.Info1.Add(mas[18]);
+                    }
+                    catch
+                    {
 
+                    }
+                    finally
+                    {
+                        db.Info.Add(info);
+                        db.SaveChanges();
+                        a.Info1_id = info.Id;
+                    }
+
+                }
+                if (a.Info2.Count > 0 && !string.IsNullOrEmpty(a.Info2[0]))//!string.IsNullOrEmpty
+                {
+                    //\r\n
+                    string[] mas = a.Info2[0].Split(new char[] { '\r', '\n' });
+                    a.Info2.Clear();
+                    Entry_info info = new Entry_info();
+                    try
+                    {
+                        info.info_1 = mas[0];
+                        a.Info2.Add(mas[0]);
+                        info.info_2 = mas[2];
+                        a.Info2.Add(mas[2]);
+                        info.info_3 = mas[4];
+                        a.Info2.Add(mas[4]);
+                        info.info_4 = mas[6];
+                        a.Info2.Add(mas[6]);
+                        info.info_5 = mas[8];
+                        a.Info2.Add(mas[8]);
+                        info.info_6 = mas[10];
+                        a.Info2.Add(mas[10]);
+                        info.info_7 = mas[12];
+                        a.Info2.Add(mas[12]);
+                        info.info_8 = mas[14];
+                        a.Info2.Add(mas[14]);
+                        info.info_9 = mas[16];
+                        a.Info2.Add(mas[16]);
+                        info.info_10 = mas[18];
+                        a.Info2.Add(mas[18]);
+                    }
+                    catch
+                    {
+
+                    }
+                    finally
+                    {
+                        db.Info.Add(info);
+                        db.SaveChanges();
+                        a.Info2_id = info.Id;
+                    }
+
+                }
+                if (a.Info3.Count > 0 && !string.IsNullOrEmpty(a.Info3[0]))//!string.IsNullOrEmpty
+                {
+                    //\r\n
+                    string[] mas = a.Info3[0].Split(new char[] { '\r', '\n' });
+                    a.Info3.Clear();
+                    Entry_info info = new Entry_info();
+                    try
+                    {
+                        info.info_1 = mas[0];
+                        a.Info3.Add(mas[0]);
+                        info.info_2 = mas[2];
+                        a.Info3.Add(mas[2]);
+                        info.info_3 = mas[4];
+                        a.Info3.Add(mas[4]);
+                        info.info_4 = mas[6];
+                        a.Info3.Add(mas[6]);
+                        info.info_5 = mas[8];
+                        a.Info3.Add(mas[8]);
+                        info.info_6 = mas[10];
+                        a.Info3.Add(mas[10]);
+                        info.info_7 = mas[12];
+                        a.Info3.Add(mas[12]);
+                        info.info_8 = mas[14];
+                        a.Info3.Add(mas[14]);
+                        info.info_9 = mas[16];
+                        a.Info3.Add(mas[16]);
+                        info.info_10 = mas[18];
+                        a.Info3.Add(mas[18]);
+                    }
+                    catch
+                    {
+
+                    }
+                    finally
+                    {
+                        db.Info.Add(info);
+                        db.SaveChanges();
+                        a.Info3_id = info.Id;
+                    }
+
+                }
+                if (a.Info4.Count > 0 && !string.IsNullOrEmpty(a.Info4[0]))//!string.IsNullOrEmpty
+                {
+                    //\r\n
+                    string[] mas = a.Info4[0].Split(new char[] { '\r', '\n' });
+                    a.Info4.Clear();
+                    Entry_info info = new Entry_info();
+                    try
+                    {
+                        info.info_1 = mas[0];
+                        a.Info4.Add(mas[0]);
+                        info.info_2 = mas[2];
+                        a.Info4.Add(mas[2]);
+                        info.info_3 = mas[4];
+                        a.Info4.Add(mas[4]);
+                        info.info_4 = mas[6];
+                        a.Info4.Add(mas[6]);
+                        info.info_5 = mas[8];
+                        a.Info4.Add(mas[8]);
+                        info.info_6 = mas[10];
+                        a.Info4.Add(mas[10]);
+                        info.info_7 = mas[12];
+                        a.Info4.Add(mas[12]);
+                        info.info_8 = mas[14];
+                        a.Info4.Add(mas[14]);
+                        info.info_9 = mas[16];
+                        a.Info4.Add(mas[16]);
+                        info.info_10 = mas[18];
+                        a.Info4.Add(mas[18]);
+                    }
+                    catch
+                    {
+
+                    }
+                    finally
+                    {
+                        db.Info.Add(info);
+                        db.SaveChanges();
+                        a.Info4_id = info.Id;
+                    }
+
+                }
+                db.Entries.Add(a);
+                db.SaveChanges();
+            }
+           
+
+           
+           
+
+            return View("Add_new_ad_img_step", a);
             
-string serialized = JsonConvert.SerializeObject(a);
-            StreamWriter writer = new StreamWriter(@"C:\csharp\asp1\kniga\irr\irr\Content\data.json", true);
-            writer.Write(serialized);
-                 writer.Close();
-            //UP_nedo_bd();
-            //Entry res = main_arr.First(x1 => x1.Id == main_arr.Count+1);
-
-            return View("Show_one_ad", a);
-            //return View();
         }
         //END-POST/FORM BLOCK--------------------------------------------------------------------------------------------------------------------//
         public ActionResult Add_new_ad()
@@ -680,8 +525,8 @@ public ActionResult Real_estate()
         }
         public ActionResult Show_one_ad(int id=1)
         {
-            //TODO <div title="жилая/общая" не отображает при наведении в представлении
-            //!!!это при commit parse UP_nedo_bd();
+            
+            
             Entry res = db.Entries.First(x1 => x1.Id == id);
             Record(res);
             return View(res);
@@ -690,7 +535,7 @@ public ActionResult Real_estate()
         public ActionResult Extended_search()
         {
             Search res = new Models.Search();
-           // res.srch = srch;
+           
             return View(res);
 
            
@@ -716,12 +561,12 @@ public ActionResult Real_estate()
         {
             //TODO category нет поиска по категориям и бд без категорий
             List<Entry> res = new List<Entry>();
-            //bool out_bool = true;
+           
 
             if (srch.Id != null)
             {
                 res = db.Entries.Where(x5 => x5.Id == srch.Id).ToList();
-                //out_bool = false;
+               
             }
             else
             { 
@@ -747,14 +592,13 @@ public ActionResult Real_estate()
                 Where(x2 => srch.type2 == "all-type" ? true : x2.Type_of_apartment == srch.type2 ? true : false).
                 Where(x3 => (srch.town == "Вся Россия" ? true : x3.Place.IndexOf(srch.town) != -1));
                 
-    // && (x3.search_str(srch.str))
+    
                 if (srch.VIP)
             {
                 res_1 = res_1.Where(x5 => x5.VIP);
-                //res = res_1.ToList();
-                //return res;
+                
             }
-
+                
             
 
 
@@ -770,8 +614,7 @@ public ActionResult Real_estate()
             {
                     res_1 = res_1.Where(x5 => (x5.Price >= (srch.Price_bot == null ? 0 : srch.Price_bot)) && ((srch.Price_top == null ? true : x5.Price <= srch.Price_top)));//&& x5.Price >= srch.Price_top);
                     
-                   // res_1 = res_1.Where(x5 => (x5.Price >= (srch.Price_bot == null ? 0 : srch.Price_bot)));//&& x5.Price >= srch.Price_top);
-
+                  
 
                 }
                 if (srch.Count_rooms_bot != null || srch.Count_rooms_top != null)
@@ -811,14 +654,30 @@ public ActionResult Real_estate()
             }
 
 
-                res = res_1.ToList();//ToList();???????????????????????????
+                res = res_1.ToList();
+                if (!string.IsNullOrEmpty(srch.str))
+                {
+                    List<Entry> temp_res = new List<Entry>();
+                    Entry[] tmp = null;
+                    foreach (var i in res)
+                    {
+                        if(i.search_str(srch.str))
+                        {
+                            temp_res.Add(i);
+                        }
+                         
 
+                    }
+                    tmp =new Entry[temp_res.Count];
+                     temp_res.CopyTo(tmp);
+                    res = tmp.ToList();
+                }
                 if (srch.price_bool != null)
                 {
                     res = res.OrderBy(x4 => x4.Price).ToList();
                     if (srch.price_bool == false)
                     {
-                        //TODO костыль ревеса хз не работает
+                        //TO DO костыль ревеса хз не работает вроде +
                          res.Reverse();// res_1.Reverse();
                     }
 
@@ -900,40 +759,13 @@ public ActionResult Real_estate()
             
 
 
-
-
-            //string type = "all", string type2 = "all-type", int pg = 1,
-
-
-            //, type=Model.Type, type2=Model.Type2,pg=Model.Current_page
-            //, string type = "all", string type2 = "all-type", int pg = 1
-            // string type = res.Type;
-            //string type2 = res.Type2;
-            //int pg = res.Current_page;
-
-
-
-
-
             list_ad_View res = new list_ad_View() { Count_ad_on_page = srch.Count_ad_on_page, Type = srch.type, Type2 = srch.type2, Current_page = srch.pg };
 
 
-            //int tmp = pg - i - 1;
-            // res.str[i] = tmp > 1 ? tmp : 1;
 
-
-
-            //
-
-            //!!!это при commit parse UP_nedo_bd();
             res.list = search_bd(srch);
             res.srch = srch.copy();
             
-
-
-
-
-            //
 
 
             if (true)
@@ -966,9 +798,7 @@ public ActionResult Real_estate()
         {
             Entry_info info= db.Info.First(x1 => x1.Id == a.Info1_id);
             Entry_img img = db.Images.First(x1 => x1.Id == a.Images_id);
-            //7377;
-            //db.Entries.Remove(db.Entries.First(x1=>x1.Id==7377));
-            //db.SaveChanges();
+
             try
             {
                 if (info.info_1 != null)

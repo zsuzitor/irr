@@ -192,6 +192,7 @@
     <Content Include="Views\Home\Add_new_ad_ajax_1.cshtml" />
     <Content Include="Views\Home\Extended_search_ajax_2.cshtml" />
     <Content Include="Views\Home\Extended_search_ajax_3.cshtml" />
+    <Content Include="Views\Home\Add_new_ad_img_step.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
