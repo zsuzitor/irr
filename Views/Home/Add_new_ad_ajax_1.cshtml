@@ -16,94 +16,150 @@
 
 
     <div>
-        <ul>
-            <li>
-                @Html.Label("Платные услуги", new { @class = "Add_new_ad_ajax_1_text_small" })
-                <p>
-                    @Html.CheckBox("VIP", new { @class = "Add_new_ad_ajax_1_check_box" })
+        
 
 
-                </p>
-            </li>
-            <li>
-                @Html.Label("Хедер", new { @class = "Add_new_ad_ajax_1_text_small" })
-                <p> @Html.Editor("Header", new { })</p>
-            </li>
-            <li>
-                @Html.Label("Под Хедер", new { @class = "Add_new_ad_ajax_1_text_small" })
-                <p> @Html.Editor("Under_header", new { })</p>
-            </li>
-            <li>
-                @Html.Label("Цена", new { @class = "Add_new_ad_ajax_1_text_small" })
-                <p> @Html.Editor("Price", new { })</p>
-            </li>
-            <li>
-                @Html.Label("Номер телефона", new { @class = "Add_new_ad_ajax_1_text_small" })
-                <p> @Html.Editor("Phone_number", new { })</p>
-            </li>
-            <li>
-                @Html.Label("Имя", new { @class = "Add_new_ad_ajax_1_text_small" })
-                <p> @Html.Editor("Name", new { })</p>
-            </li>
-            <li>
-                @Html.Label("Адрес", new { @class = "Add_new_ad_ajax_1_text_small" })
-                <p> @Html.Editor("Place", new { })</p>
-            </li>
-            <li>
-                @Html.Label("Описание", new { @class = "Add_new_ad_ajax_1_text_small" })
-                <p> @Html.TextArea("Description", new { @class = "Add_new_ad_ajax_1_text_heigh" })</p>
 
-            </li>
-            <li>
-          
-                
-                @Html.Label("ссылки на картинки", new { @class = "Add_new_ad_ajax_1_text_small" })
-                
-
-                
-
-</li>
-
-                
-            @if ((string)@ViewBag.category == "Квартиры")
-            {
-                <li>
-                    @Html.Label("Тип жилья", new { @class = "Add_new_ad_ajax_1_text_small" })
-                    <p>@Html.DropDownList("Type_of_apartment", new SelectList(new string[3] { "Жилая недвижимость", "Коммерческая недвижимость", "Загородная недвижимость" }), new { @class = "Add_new_ad_ajax_1_drop_d_l_inp" })</p>
-                </li>
+        <div class="Add_new_ad_ajax_1_body_left">
+            @{//<div class="Add_new_ad_ajax_1_header">Хедер: @Html.Editor("Header", new { })</div>
             }
-            <li>
-    @Html.Label("Тип объявления", new { @class = "Add_new_ad_ajax_1_text_small" })
-    <p>@Html.DropDownList("Type_ad", new SelectList(new string[2] { "Продажа", "Аренда" }), new { @class = "Add_new_ad_ajax_1_drop_d_l_inp" })</p>
-</li><li>
-    @Html.Label("Ссылка на крату", new { @class = "Add_new_ad_ajax_1_text_small" })
-    <p> @Html.Editor("Map", new { })</p>
+            
+            <div class="Add_new_ad_ajax_1_Under_header">
+                <div>
+                    @if ((string)@ViewBag.category == "Квартиры")
+                    {
+                        @Html.Label("Тип жилья", new { @class = "Add_new_ad_ajax_1_text_small" })
+                        <p>@Html.DropDownList("Type_of_apartment", new SelectList(new string[3] { "Жилая недвижимость", "Коммерческая недвижимость", "Загородная недвижимость" }), new { @class = "Add_new_ad_ajax_1_drop_d_l_inp" })</p>
+                    }
+
+                    @Html.Label("Тип объявления:", new { @class = "Add_new_ad_ajax_1_text_small" })
+                    <p>@Html.DropDownList("Type_ad", new SelectList(new string[2] { "Продажа", "Аренда" }), new { @class = "Add_new_ad_ajax_1_drop_d_l_inp" })</p>
+                </div>
+                <div>
+                    @Html.Label("Ссылка на карту:", new { @class = "Add_new_ad_ajax_1_text_small" })
+                <p> @Html.Editor("Map", new { })</p>
+            </div>
+
+            <div>
+                @Html.Label("Платные услуги:", new { @class = "Add_new_ad_ajax_1_text_small" })
+            <p>
+                @Html.CheckBox("VIP:", new { @class = "Add_new_ad_ajax_1_check_box" })
+
+
+            </p>
+        </div>
+        <hr />
+                <div class="Add_new_ad_ajax_1_Under_header_small_block_all_under_h">
+                    <div class="Add_new_ad_ajax_1_Under_header_small_block">
+                        <p class="Add_new_ad_ajax_1_p_block_under_header">Количество комнат:</p>
+                        <p>@Html.EditorFor(x1 => x1.Count_rooms)</p>
+                    </div>
+
+
+                    <div title="жилая/общая" class="Add_new_ad_ajax_1_Under_header_small_block">
+                        <p class="Add_new_ad_ajax_1_p_block_under_header">Жилая площадь:</p>
+                        <p>@Html.EditorFor(x1 => x1.Residential_area)</p>
+                        <p class="Add_new_ad_ajax_1_p_block_under_header">Общая площадь:</p>
+                        <p>@Html.EditorFor(x1 => x1.Total_area)</p>
+
+                    </div>
+
+
+                    <div class="Add_new_ad_ajax_1_Under_header_small_block">
+                        <p class="Add_new_ad_ajax_1_p_block_under_header">Этаж:</p>
+                        <p>@Html.EditorFor(x1 => x1.Floor)</p>
+                        <p class="Add_new_ad_ajax_1_p_block_under_header">Всего этажей:</p>
+                        <p>@Html.EditorFor(x1 => x1.Count_floor)</p>
+                    </div>
+                </div>
+                    <hr />
+                </div>
+    <div class="Add_new_ad_ajax_1_Description">
+        @Html.Label("Описание:", new { @class = "Add_new_ad_ajax_1_text_small" })
+        <p> @Html.TextArea("Description", new { @class = "Add_new_ad_ajax_1_text_heigh" })</p>
+        <hr />
+    </div>
+    <div>
+
+
+        <div class="Add_new_ad_ajax_1_block_one_info">
+            <p class="Add_new_ad_ajax_1_block_name">Инфо 1</p>
+
+            <p> @Html.TextArea("Info1", "", new { @class = "Add_new_ad_ajax_1_text_heigh" })</p>
+
+        </div>
 
 
 
-</li> <li>
-    @Html.Label("Инфо1", new { @class = "Add_new_ad_ajax_1_text_small" })
-    <p> @Html.TextArea("Info1","", new { @class = "Add_new_ad_ajax_1_text_heigh" })</p>
 
-</li> <li>
-    @Html.Label("Инфо2", new { @class = "Add_new_ad_ajax_1_text_small" })
-    <p> @Html.TextArea("Info2", "", new { @class = "Add_new_ad_ajax_1_text_heigh" })</p>
-</li><li>
-    @Html.Label("Инфо3", new { @class = "Add_new_ad_ajax_1_text_small" })
-    <p> @Html.TextArea("Info3", "", new { @class = "Add_new_ad_ajax_1_text_heigh" })</p>
+        <div class="Add_new_ad_ajax_1_block_one_info">
+            <p class="Add_new_ad_ajax_1_block_name">Инфо 2</p>
+            <p> @Html.TextArea("Info2", "", new { @class = "Add_new_ad_ajax_1_text_heigh" })</p>
+
+        </div>
 
 
-</li>
-            <li>
-                @Html.Label("Инфо4", new { @class = "Add_new_ad_ajax_1_text_small" })
-                <p> @Html.TextArea("Info4", "", new { @class = "Add_new_ad_ajax_1_text_heigh" })</p>
+
+        <hr />
 
 
-            </li>
-</ul>
+        <div class="Add_new_ad_ajax_1_block_one_info">
+            <p class="Add_new_ad_ajax_1_block_name">Инфо 3</p>
+            <p> @Html.TextArea("Info3", "", new { @class = "Add_new_ad_ajax_1_text_heigh" })</p>
+
+        </div>
+
+
+
+
+        <div class="Add_new_ad_ajax_1_block_one_info">
+            <p class="Add_new_ad_ajax_1_block_name">Инфо 4</p>
+            <p> @Html.TextArea("Info4", "", new { @class = "Add_new_ad_ajax_1_text_heigh" })</p>
+
+        </div>
+
+
+
+    </div>
+    </div>
+    <div class="Add_new_ad_ajax_1_body_right_1">
+        <div class="Add_new_ad_ajax_1_price"><p></p><p>Цена:  @Html.Editor("Price", new { })</p></div>
+        <div class="Add_new_ad_ajax_1_body_right_2">
+            <div class="Add_new_ad_ajax_1_body_right_3">
+                <p class="Add_new_ad_ajax_1_phone_number">Номер телефона: @Html.Editor("Phone_number", new { })</p>
+            </div>
+
+
+            <div><p class="Add_new_ad_ajax_1_name"> Имя:@Html.Editor("Name", new { })</p></div>
+            <div>
+                <p class="Add_new_ad_ajax_1_name">Адрес:</p>
+                <p class="Add_new_ad_ajax_1_name"> @Html.Editor("Place", new { })</p>
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
     
 
         <input type="submit" value="Далее" class="Add_new_ad_ajax_1_button_inp" />
     </div>
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

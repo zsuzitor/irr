@@ -32,6 +32,12 @@ textarea{
      color: black; /* Цвет ссылки */
 
 }
+.link_standart_for_div_white{
+    display: block; /* Ссылка как блочный элемент */
+     text-align: center; /* Выравнивание по центру */
+     height: 100%; /* Высота на весь слой */
+     color: white; /* Цвет ссылки */
+}
 a{
     color: black; /* Цвет ссылки */
     font-size: 150%;
@@ -159,9 +165,12 @@ div.main_header_small{
     height:70px;
     width:100%;
     display:none;
-    background-color: #C0C0C0;
+    /*background-color: #C0C0C0;*/
+    
     position:fixed;
     z-index:100;
+    background:url('/Content/img/krasivaya_dolina_1920x1200.jpg')  no-repeat;
+ background-size: cover;
     
 }
 div.main_header_small_link_Social{
@@ -291,9 +300,9 @@ div.main_header_inline_block_form{
 
 div.main_header_div_lvl_1{
     height: 500px;
-    background:  #C0C0C0;   
-    
-
+   /*background:  #C0C0C0;   */ 
+   background:url('/Content/img/krasivaya_dolina_1920x1200.jpg') 50% 60% no-repeat;
+ background-size: cover;
 }
 #main_header_sr_text{
     font-size: 250%;
@@ -345,6 +354,7 @@ div.main_header_Extended_search_div{
     width: 200px;
     height:30px;
     font-size: 10pt;
+    
 }
 
 
@@ -879,6 +889,18 @@ div.Show_one_ad_price{
 .Show_one_ad_name{
     font-size:20pt;
 }
+
+
+
+
+
+
+
+
+
+
+/*Add_new_ad*/
+
 .Add_new_ad_button_inp{
 
  height:30px;
@@ -895,8 +917,6 @@ div.Show_one_ad_price{
      width:200px;
 }
 
-
-/*Add_new_ad*/
 div.Add_new_ad_body{
     margin-top:50px;
     width: 80%;
@@ -915,15 +935,135 @@ div.Add_new_ad_div_form{
 }
 
 /*Add_new_ad_ajax_1*/
+.Add_new_ad_ajax_1_phone_number{
+    
+font-size:20pt;
+color:white;
+}
+div.Add_new_ad_ajax_1_price{
+    font-size:25pt;
+}
+.Add_new_ad_ajax_1_name{
+    font-size:20pt;
+}
+div.Add_new_ad_ajax_1_body_right_1{
+     margin-top:20px;
+
+    margin-left:100px;
+    min-width:300px;
+    width:30%;
+    min-height:400px;
+    display: inline-block;
+     vertical-align: top;
+     background-color:#E6E6FA;
+}
+div.Add_new_ad_ajax_1_body_right_2{
+    width:80%;
+    margin-left:10%;
+    margin-top:10%;
+    min-height:250px;
+     background-color:#DDA0DD;
+}
+div.Add_new_ad_ajax_1_body_right_3{
+    width:100%;
+    
+    margin-top:5px;
+    height:70px;
+     background-color:#DC143C;
+      
+}
+
+div.Add_new_ad_ajax_1_Under_header_small_block{
+     display:inline-block;
+    vertical-align:top;
+    height:150px;
+    width:200px;
+}
+div.Add_new_ad_ajax_1_body_left{
+     margin-top:20px;
+
+    width:60%;
+    display: inline-block;
+     vertical-align: top;
+}
+div.Add_new_ad_ajax_1_header{
+    
+    padding-left:10%;
+    font-size: 25pt;
+    font-weight: 600;
+}
+div.Add_new_ad_ajax_1_Under_header{
+    margin-top:50px;
+    font-size: 20pt;
+}
+div.Add_new_ad_ajax_1_Description{
+    /*border-bottom:1px solid black;
+     border-top:1px solid black;*/
+}
+.Add_new_ad_ajax_1_block_name{
+    font-size:18pt;
+    font-weight: 600;
+    
+}
+div.Add_new_ad_ajax_1_block_one_info{
+
+    margin-top:30px;
+    width:49%;
+    display: inline-block;
+     /*border-bottom:1px solid black;*/
+      
+     vertical-align: top;
+     height:400px;
+
+}
+
+.Add_new_ad_ajax_1_phone_number{
+    
+font-size:20pt;
+color:white;
+}
+div.Add_new_ad_ajax_1_price{
+    font-size:25pt;
+}
+.Add_new_ad_ajax_1_name{
+    font-size:20pt;
+}
+
+.Add_new_ad_ajax_1_Under_header_small_block_all_under_h{
+    height:300px;
+}
+.Add_new_ad_ajax_1_p_block_under_header{
+    height:80px;
+}
+
+
+
+
+
+
+
 .Add_new_ad_ajax_1_text_big{
     font-size:25pt;
+}
+.Add_new_ad_ajax_1_button_inp{
+
+ height:30px;
+     font-size: 14pt;
+      transition: 3s;
+      width:300px;
+      margin-left:40%;
+}
+.Add_new_ad_ajax_1_button_inp:hover{
+    background-color: green;
+     transition: 3s;
 }
 
 .Add_new_ad_ajax_1_text_small{
     font-size:20pt;
 }
+
 .Add_new_ad_ajax_1_text_heigh{
-    max-height:500px;
+    max-height:320px;
     min-height:200px;
     min-width:350px;
     
@@ -935,18 +1075,7 @@ div.Add_new_ad_div_form{
      font-size: 14pt;
      width:200px;
 }
+/*
+*/
 
-.Add_new_ad_ajax_1_button_inp{
-
- height:30px;
-     font-size: 14pt;
-      transition: 3s;
-      width:300px;
-}
-.Add_new_ad_ajax_1_button_inp:hover{
-    background-color: green;
-     transition: 3s;
-}
-.Add_new_ad_ajax_1_check_box{
     
-}

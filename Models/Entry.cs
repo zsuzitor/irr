@@ -88,6 +88,7 @@ namespace irr.Models
                 return true;
             if (Type.IndexOf(str) != -1)
                 return true;
+            if(Header!=null)
             if (Header.IndexOf(str) != -1)
                 return true;
             //if (Under_header.IndexOf(str) != -1)
@@ -96,11 +97,13 @@ namespace irr.Models
                 return true;
             if (Phone_number.IndexOf(str) != -1)
                 return true;
-            if (Name.IndexOf(str) != -1)
+            if (Name != null)
+                if (Name.IndexOf(str) != -1)
                 return true;
             if (Place.IndexOf(str) != -1)
                 return true;
-            if (Description.IndexOf(str) != -1)
+            if (Description != null)
+                if (Description.IndexOf(str) != -1)
                 return true;
             //foreach(var i in Info1)
                 //if (i.IndexOf(str) != -1)

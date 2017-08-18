@@ -14,6 +14,8 @@ namespace irr.Controllers
     {
       
         EntryContext db = new EntryContext();
+        //нигде не используется пока что
+        List<string> main_town = new List<string>() { "Вся Россия", "Москва", "Петербург", "Пермь", "Воронеж", "Казань", "Сочи", "Саратов" };
         //db.Players.Add(player);
         //db.SaveChanges();
         //
@@ -25,6 +27,8 @@ namespace irr.Controllers
         public ActionResult Index()
         {
             db.Entries.RemoveRange(db.Entries.Where(x1=>x1.Header.IndexOf("test322")!=-1).ToList());
+            db.Entries.RemoveRange(db.Entries.Where(x1 => x1.Id == 7378).ToList());
+            db.SaveChanges();
             return View();
         }
         //END-SETTINGS/ADMIN BLOCK--------------------------------------------------------------------------------------------------------------------//
@@ -270,7 +274,7 @@ namespace irr.Controllers
         {
             if(a.Type== "Квартиры")
             {
-                if(a.Info1.Count>0&&!string.IsNullOrEmpty( a.Info1[0]))//!string.IsNullOrEmpty
+               // if(a.Info1.Count>0&&!string.IsNullOrEmpty( a.Info1[0]))//!string.IsNullOrEmpty
                 {
                     //\r\n
                     string[] mas = a.Info1[0].Split(new char[] { '\r' ,'\n'});
@@ -311,7 +315,7 @@ namespace irr.Controllers
                     }
 
                 }
-                if (a.Info2.Count > 0 && !string.IsNullOrEmpty(a.Info2[0]))//!string.IsNullOrEmpty
+                //if (a.Info2.Count > 0 && !string.IsNullOrEmpty(a.Info2[0]))//!string.IsNullOrEmpty
                 {
                     //\r\n
                     string[] mas = a.Info2[0].Split(new char[] { '\r', '\n' });
@@ -352,7 +356,7 @@ namespace irr.Controllers
                     }
 
                 }
-                if (a.Info3.Count > 0 && !string.IsNullOrEmpty(a.Info3[0]))//!string.IsNullOrEmpty
+               // if (a.Info3.Count > 0 && !string.IsNullOrEmpty(a.Info3[0]))//!string.IsNullOrEmpty
                 {
                     //\r\n
                     string[] mas = a.Info3[0].Split(new char[] { '\r', '\n' });
@@ -393,7 +397,7 @@ namespace irr.Controllers
                     }
 
                 }
-                if (a.Info4.Count > 0 && !string.IsNullOrEmpty(a.Info4[0]))//!string.IsNullOrEmpty
+                //if (a.Info4.Count > 0 && !string.IsNullOrEmpty(a.Info4[0]))//!string.IsNullOrEmpty
                 {
                     //\r\n
                     string[] mas = a.Info4[0].Split(new char[] { '\r', '\n' });
