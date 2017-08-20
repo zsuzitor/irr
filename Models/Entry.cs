@@ -9,24 +9,24 @@ namespace irr.Models
     public class Entry
     {
         public int Id { get; set; }
-        public string Type_of_apartment { get; set; }
-        public string Type_ad { get; set; }
-        public string Type { get; set; }
-        // public string Url_page { get; set; }
+        public string Type_of_apartment { get; set; }//проверять текст что бы не f12
+        public string Type_ad { get; set; }//проверять текст что бы не f12
+        public string Type { get; set; }//проверять текст что бы не f12
+        
         public bool VIP { get; set; }
         public string Map { get; set; }
         public string Header { get; set; }
-        //public string Under_header { get; set; }
-        public int ?Price { get; set; }
-        public int ?Count_rooms{ get; set; }
+        
+        public int ?Price { get; set; }//должно быть значение
+        public int ?Count_rooms{ get; set; }//должно быть значение
         public double ?Total_area { get; set; }
         public double? Residential_area { get; set; }
         
         public int? Floor { get; set; }
         public int? Count_floor { get; set; }
-        public string Phone_number { get; set; }
+        public string Phone_number { get; set; }//должно быть значение
         public string Name { get; set; }
-        public string Place { get; set; }
+        public string Place { get; set; }//должно быть значение
         public string Link { get; set; }
         public string Description { get; set; }
         public int? Images_id { get; set; }
@@ -40,10 +40,7 @@ namespace irr.Models
         public List<string> Info3 { get; set; }
         public int? Info4_id { get; set; }
         public List<string> Info4 { get; set; }
-        //public string Images;
-        // public string Info1;
-        // public string Info2;
-        //public string Info3;
+        
         public Entry()
         {
             Images_id = null;
@@ -70,10 +67,7 @@ namespace irr.Models
             Info4 = new List<string>();
             Images = new List<string>();
             Images_byte=new List< byte[] > ();
-            // Images = "";
-            //Info1 = "";
-            //Info2 = "";
-            //Info3 = "";
+            
 
 
         }
@@ -91,8 +85,7 @@ namespace irr.Models
             if(Header!=null)
             if (Header.IndexOf(str) != -1)
                 return true;
-            //if (Under_header.IndexOf(str) != -1)
-                //return true;
+          
             if (Price.ToString().IndexOf(str) != -1)
                 return true;
             if (Phone_number.IndexOf(str) != -1)
@@ -105,23 +98,6 @@ namespace irr.Models
             if (Description != null)
                 if (Description.IndexOf(str) != -1)
                 return true;
-            //foreach(var i in Info1)
-                //if (i.IndexOf(str) != -1)
-                    //return true;
-            
-            //foreach (var i in Info2)
-               // if (i.IndexOf(str) != -1)
-                    //return true;
-            
-            //foreach (var i in Info3)
-                //if (i.IndexOf(str) != -1)
-                   // return true;
-            //foreach (var i in Info4)
-                //if (i.IndexOf(str) != -1)
-                  //  return true;
-
-
-
 
             return false;
         }

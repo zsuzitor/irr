@@ -13,13 +13,45 @@
 {
     
         @Html.Label((string)@ViewBag.category, new { @class= "Add_new_ad_ajax_1_text_big" })
+    {//@Html.ValidationMessageFor(x1 => x1.Type_of_apartment)
+     // @Html.ValidationSummary()
+    }
+    <div>
+        @{
+            if (TempData["er_Type_of_apartment"] != null)
+            {
+                <p class="not_valid_txt">@TempData["er_Type_of_apartment"]</p>
+            }
+            if (TempData["er_Type_ad"] != null)
+            {
+                <p class="not_valid_txt">@TempData["er_Type_ad"]</p>
+            }
+            if (TempData["er_Type"] != null)
+            {
+                <p class="not_valid_txt">@TempData["er_Type"]</p>
+            }
+            if (TempData["er_Price"] != null)
+            {
+                <p class="not_valid_txt">@TempData["er_Price"]</p>
+            }
+            if (TempData["er_Count_rooms"] != null)
+            {
+                <p class="not_valid_txt">@TempData["er_Count_rooms"]</p>
+            }
+            if (TempData["er_Phone_number"] != null)
+            {
+                <p class="not_valid_txt">@TempData["er_Phone_number"]</p>
+            }
+            if (TempData["er_Place"] != null)
+            {
+                <p class="not_valid_txt">@TempData["er_Place"]</p>
+            }
+        }
+    </div>
+
 
 
     <div>
-        
-
-
-
         <div class="Add_new_ad_ajax_1_body_left">
             @{//<div class="Add_new_ad_ajax_1_header">Хедер: @Html.Editor("Header", new { })</div>
             }

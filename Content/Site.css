@@ -22,7 +22,17 @@ select,
 textarea{
     max-width: 280px;
 }*/ 
-
+/*
+.validation-summary-errors {
+font-weight: bold;
+color: #f00;
+}*/
+.not_valid_txt{
+    color: red;
+    font-weight: bold;
+        font-size:25pt;
+        
+}
 
 
 .link_standart_for_div{
@@ -969,7 +979,7 @@ div.Add_new_ad_ajax_1_body_right_3{
     
     margin-top:5px;
     height:70px;
-     background-color:#DC143C;
+    
       
 }
 
@@ -1008,7 +1018,7 @@ div.Add_new_ad_ajax_1_Description{
 div.Add_new_ad_ajax_1_block_one_info{
 
     margin-top:30px;
-    width:49%;
+    width:350px;
     display: inline-block;
      /*border-bottom:1px solid black;*/
       
@@ -1020,7 +1030,7 @@ div.Add_new_ad_ajax_1_block_one_info{
 .Add_new_ad_ajax_1_phone_number{
     
 font-size:20pt;
-color:white;
+
 }
 div.Add_new_ad_ajax_1_price{
     font-size:25pt;

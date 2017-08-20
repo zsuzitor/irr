@@ -1,4 +1,5 @@
 ﻿@model irr.Models.Entry
+    @using  Newtonsoft.Json;
 @section scripts
     {
     @Scripts.Render("~/scripts/jquery-1.10.2.js")
@@ -28,12 +29,14 @@
         <div class="Add_new_ad_div_form">
             @using (Ajax.BeginForm(ajaxOpts))
             {
+                @Html.Hidden("obg", JsonConvert.SerializeObject(Model)) 
                 @Html.DropDownList("category", new SelectList(category), new { @class = "Add_new_ad_drop_d_l_inp" })
                 <input type="submit" value="Выбрать категорию" class="Add_new_ad_button_inp" />
             }
         </div>
+        
         <div id="Add_new_ad_id_for_ajax">
-            @Html.Action("Add_new_ad_ajax_1", "Home", new { category = category[0] })
+            @Html.Action("Add_new_ad_ajax_1", "Home", new {obg= JsonConvert.SerializeObject(Model), category = category[0] })
         </div>
     </div>
 

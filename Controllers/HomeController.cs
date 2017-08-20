@@ -91,12 +91,16 @@ namespace irr.Controllers
             return PartialView(search_bd(srch));
         }
         
-        public ActionResult Add_new_ad_ajax_1(string category)
+        public ActionResult Add_new_ad_ajax_1(string category,  string obg)
         {
-            
+            Entry res;
+            if (obg != null)
+                res = JsonConvert.DeserializeObject<Entry>(obg);
+            else
+                res = new Entry();
             ViewBag.category = category;
-            
-            return PartialView();
+            res.Type = category;
+            return PartialView(res);
         }
 
         //END-PARTIAL BLOCK--------------------------------------------------------------------------------------------------------------------//
@@ -272,12 +276,87 @@ namespace irr.Controllers
         [HttpPost]
         public ActionResult Add_new_ad(Entry a)
         {
-            if(a.Type== "Квартиры")
+            bool error_flag = false;
+            TempData["er_Type_of_apartment"] = null;
+            TempData["er_Type_ad"] = null;
+            TempData["er_Type"] = null;
+            TempData["er_Price"] = null;
+            TempData["er_Count_rooms"] = null;
+            TempData["er_Phone_number"] = null;
+            TempData["er_Place"] = null;
+            //"Жилая недвижимость", "Коммерческая недвижимость", "Загородная недвижимость"
+            if (a.Type_of_apartment != "Жилая недвижимость" && a.Type_of_apartment != "Коммерческая недвижимость" && a.Type_of_apartment != "Загородная недвижимость")
             {
-               // if(a.Info1.Count>0&&!string.IsNullOrEmpty( a.Info1[0]))//!string.IsNullOrEmpty
+                TempData["er_Type_of_apartment"] = "error Type of apartment";
+                error_flag = true;
+            }
+            //"Продажа", "Аренда"
+            if (a.Type_ad != "Продажа" && a.Type_ad != "Аренда")
+            {
+                TempData["er_Type_ad"] = "error Type ad";
+                //ModelState.AddModelError("Type_ad", "error Type ad");
+                error_flag = true;
+            }
+            if (a.Type != "Квартиры" )
+            {
+                TempData["er_Type"] = "error Type";
+                //ModelState.AddModelError("Type", "error Type");
+                error_flag = true;
+            }
+            if (a.Price == null|| a.Price ==0)
+            {
+                TempData["er_Price"] = "error Price";
+                //ModelState.AddModelError("Price", "error Price");
+                error_flag = true;
+            }
+            
+                if (a.Count_rooms == null)
+            {
+                TempData["er_Count_rooms"] = "error Count rooms";
+                //ModelState.AddModelError("Count_rooms", "error Count rooms");
+                error_flag = true;
+            }
+            //Phone_number
+            if (a.Phone_number == null)
+            {
+                TempData["er_Phone_number"] = "error Phone number";
+               // ModelState.AddModelError("Phone_number", "error Phone number");
+                error_flag = true;
+            }
+            else
+            {
+                if(a.Phone_number.Length>12|| a.Phone_number.Length < 10)
+                {
+                    TempData["er_Phone_number"] = "error Phone number";
+                   // ModelState.AddModelError("Phone_number", "error Phone number");
+                    error_flag = true;
+                }
+            }
+            if (a.Place == null)
+            {
+                TempData["er_Place"] = "error Place";
+                //ModelState.AddModelError("Place", "error Place");
+                error_flag = true;
+            }
+
+
+            if (error_flag)
+            {
+
+
+
+                return View("Add_new_ad", a);
+            }
+            else
+            {
+
+            
+            if (a.Type == "Квартиры")
+            {
+                // if(a.Info1.Count>0&&!string.IsNullOrEmpty( a.Info1[0]))//!string.IsNullOrEmpty
                 {
                     //\r\n
-                    string[] mas = a.Info1[0].Split(new char[] { '\r' ,'\n'});
+                    string[] mas = a.Info1[0].Split(new char[] { '\r', '\n' });
                     a.Info1.Clear();
                     Entry_info info = new Entry_info();
                     try
@@ -356,7 +435,7 @@ namespace irr.Controllers
                     }
 
                 }
-               // if (a.Info3.Count > 0 && !string.IsNullOrEmpty(a.Info3[0]))//!string.IsNullOrEmpty
+                // if (a.Info3.Count > 0 && !string.IsNullOrEmpty(a.Info3[0]))//!string.IsNullOrEmpty
                 {
                     //\r\n
                     string[] mas = a.Info3[0].Split(new char[] { '\r', '\n' });
@@ -441,18 +520,22 @@ namespace irr.Controllers
                 db.Entries.Add(a);
                 db.SaveChanges();
             }
-           
 
-           
-           
+
+
+
 
             return View("Add_new_ad_img_step", a);
-            
+        }
         }
         //END-POST/FORM BLOCK--------------------------------------------------------------------------------------------------------------------//
-        public ActionResult Add_new_ad()
+
+
+        public ActionResult Add_new_ad(Entry res=null,int rab=0)//rab что бы работало
         {
-            irr.Models.Entry res = new irr.Models.Entry();
+            if(res==null)
+            
+             res = new irr.Models.Entry();
             return View(res);
         }
 
